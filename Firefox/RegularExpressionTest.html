@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+	<title>正则表达式验证</title>
+	<script type='text/javascript'>
+		function test()
+		{
+			txtResult.value="";
+			var txtRegex=document.getElementById("txtRegex");
+			var txtContent=document.getElementById("txtContent");
+			var reg=eval(txtRegex.value);
+			var content=txtContent.value;
+			try{
+				txtResult.value=reg.test(content);
+			}
+			catch(Err)
+			{
+				txtResult.value=Err;
+			}
+		}
+		function execute()
+		{
+			txtResult.value="";
+			var txtRegex=document.getElementById("txtRegex");
+			var txtContent=document.getElementById("txtContent");
+			var reg=eval(txtRegex.value);
+			var content=txtContent.value;
+			try{
+				var results= reg.exec(content);
+				var strResult = "长度：" + results.length + "\r\n";
+				for(var i=0;i<results.length;i++)
+				{
+					strResult += (i).toString()+" = "+results[i] + "\r\n";
+				}
+				txtResult.value=strResult;
+			}
+			catch(Err)
+			{
+				txtResult.value=Err;
+			}
+		}
+	</script>
+	<style type='text/css'>
+		body
+		{
+			width:1200px;
+			margin-top:0px;
+			margin-left:auto;
+			margin-right:auto;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h3>正则表达式</h3>
+		<textarea id='txtRegex' style='width:1000px;height:100px;'></textarea>
+	</div>
+	<div>
+		<h3>检验内容</h3>
+		<textarea id='txtContent' style='width:1000px;height:300px;'></textarea>
+	</div>
+	<div>
+		<input type='button' value='测试' onclick='test();'/>
+		<input type='button' value='执行' onclick='execute();'
+	</div>
+	<div>
+		<h2>测试结果</h2>
+		<textarea id='txtResult' style='width:1000px;height:100px;'></textarea>
+	</div>
+</body>
