@@ -2,6 +2,7 @@
 // @name        加载黑科技插件
 // @namespace   nga
 // @include     http://bbs.ngacn.cc/*
+// @include		http://nga.178.com/*
 // @version     1
 // ==/UserScript==
 
