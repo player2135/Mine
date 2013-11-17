@@ -8,4 +8,4 @@
 
 var href=location.href;
 var newHref=href.replace("nga.178.com","bbs.ngacn.cc");
-window.open(newHref,"_self");
+window.location.href=newHref;
