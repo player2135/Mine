@@ -361,7 +361,7 @@ function varietynga_setCollapseButton(){
 		oo.style.display = 'block'
 		oo = oo.getElementsByTagName('button')[0]
 		if(o.innerHTML==""){
-			oo.innerHTML = "-";
+			oo.innerHTML = "—";
 			//oo.style.width = "17px";
 			//oo.style.margin = "2px";
 			ubbcode.collapse.load_ngaplug(o,id)
