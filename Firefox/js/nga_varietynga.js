@@ -51,8 +51,8 @@ function varietynga_Initialization(){
 	var e = new nga_plug_tab();
 	e.add("总体设置",'<input onclick="varietynga_setting.data.set.tieba=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.tieba)+'>启用主题图片预览（贴吧风格）<br>\
 		<input onclick="varietynga_setting.data.set.weibo=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.weibo)+'>启用帖子即时加载（腾讯微博风格）<br>\
-		<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.img)+'>启用图片旋转功能>\
-		<input onclick="varietynga_setting.data.set.zd=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.zd)+'>启用折叠内容可收缩<br>');
+		<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.img)+'>启用图片旋转功能<br>\
+		<input onclick="varietynga_setting.data.set.zd=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.zd)+'>启用折叠内容可收缩');
 	e.add("界面设置",varietynga_setthtml());
 	var t = e.gethtml();
 	nga_plug_table_addTab("百变NGA",t);
