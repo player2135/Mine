@@ -44,14 +44,15 @@ function varietynga_Initialization(){
 	
 	//将小工具集的设置加入导出数据中
 	nga_plug_setting("add","小工具设置","varietynga_setting");
-	
+	varietynga_setting.data.set.kj = varietynga_setting.data.set.kj == null?true:varietynga_setting.data.set.kj;
 	varietynga_setting.data.set.css = varietynga_setting.data.set.css || {colsenav:false,colsebg:false,colseinfo:false,custombg:{check:false,bg:"CCE8CC",custom:"FFFFFF"},avis:{check:false,color:"888"}}
 	varietynga_css();
 	
 	var e = new nga_plug_tab();
 	e.add("总体设置",'<input onclick="varietynga_setting.data.set.tieba=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.tieba)+'>启用主题图片预览（贴吧风格）<br>\
 		<input onclick="varietynga_setting.data.set.weibo=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.weibo)+'>启用帖子即时加载（腾讯微博风格）<br>\
-		<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.img)+'>启用图片旋转功能>');
+		<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.img)+'>启用图片旋转功能>\
+		<input onclick="varietynga_setting.data.set.zd=this.checked;varietynga_setting.save();" type="checkbox" '+c(varietynga_setting.data.set.zd)+'>启用折叠内容可收缩<br>');
 	e.add("界面设置",varietynga_setthtml());
 	var t = e.gethtml();
 	nga_plug_table_addTab("百变NGA",t);
