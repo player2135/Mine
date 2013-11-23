@@ -64,6 +64,8 @@ function varietynga_Initialization(){
 	x.innerHTML = ".varietynga_cur_zin{cursor: url(http://ngaplug.googlecode.com/svn/ngaplug/img/cur_zin.cur) 14 14,pointer;}.varietynga_cur_zout{cursor: url(http://ngaplug.googlecode.com/svn/ngaplug/img/cur_zout.cur) 14 14,pointer;}";
 	h.insertBefore(x,h.firstChild);
 	
+	if (varietynga_setting.data.set.kj && !ubbcode.collapse.load_ngaplug) varietynga_setCollapseButton();
+	
 	if (location.pathname != "/thread.php" && location.pathname != "/read.php") return;
 	if (location.search.indexOf("authorid") >= 0 && location.pathname == "/thread.php") return;
 	if (varietynga_setting.data.set.img) try{varietynga_img()}catch(e){}; //加载图片旋转功能
@@ -350,7 +352,29 @@ var elimg = document.getElementById(arg).parentNode.getElementsByTagName("img")[
 		return;
 	}
 }
-
+//折叠内容收缩
+function varietynga_setCollapseButton(){
+	ubbcode.collapse.load_ngaplug = ubbcode.collapse.load
+	ubbcode.collapse.load = function(o,id){
+		var oo = o.previousSibling
+		oo.style.display = 'block'
+		oo = oo.getElementsByTagName('button')[0]
+		if(o.innerHTML==""){
+			oo.innerHTML = "-";
+			oo.style.width = "17px";
+			oo.style.margin = "2px";
+			ubbcode.collapse.load_ngaplug(o,id)
+		}else{
+			if(oo.innerHTML == "+"){
+				o.style.display="block";
+				oo.innerHTML = "-";
+			}else{
+				o.style.display="none";
+				oo.innerHTML = "+";
+			}
+		}
+	}
+}
 //贴吧风格-缩略图的放大缩小操作
 function varietynga_setimg(img){
 	if (img.offsetHeight>75){
