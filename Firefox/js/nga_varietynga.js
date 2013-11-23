@@ -362,13 +362,13 @@ function varietynga_setCollapseButton(){
 		oo = oo.getElementsByTagName('button')[0]
 		if(o.innerHTML==""){
 			oo.innerHTML = "-";
-			oo.style.width = "17px";
-			oo.style.margin = "2px";
+			//oo.style.width = "17px";
+			//oo.style.margin = "2px";
 			ubbcode.collapse.load_ngaplug(o,id)
 		}else{
 			if(oo.innerHTML == "+"){
 				o.style.display="block";
-				oo.innerHTML = "-";
+				oo.innerHTML = "—";
 			}else{
 				o.style.display="none";
 				oo.innerHTML = "+";
