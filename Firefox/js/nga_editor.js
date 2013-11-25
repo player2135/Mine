@@ -28,7 +28,7 @@ function nga_edit_Initialization(){
 	nga_plug_mojo.unshift({autoor:"LinTx",data:nga_edit_custom_mojo.data})
 	
 	nga_plug_setting("add","表情开关设置","nga_edit_mojo_check");   //将表情开关设置加入统一导入导出设置
-	nga_plug_setting("add","自定义表情","nga_edit_custom_mojo");   //将自定义表情加入统一导入导出设置
+	//nga_plug_setting("add","自定义表情","nga_edit_custom_mojo");   //将自定义表情加入统一导入导出设置
 	nga_plug_setting("add","最后使用的表情","nga_edit_quick_mojo");   //将最后使用的表情加入统一导入导出设置
 	var m = [{
 		title:"系统",
