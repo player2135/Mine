@@ -202,7 +202,10 @@ function varietynga_Initialization(){
 	console.log("2");
 	if (location.search.indexOf("authorid") >= 0 && location.pathname == "/thread.php") return;
 	console.log("3");
-	if (varietynga_setting.data.set.img) try{varietynga_img()}catch(e){}; //加载图片旋转功能
+	if (varietynga_setting.data.set.img){
+		try{varietynga_img()}catch(e){}; //加载图片旋转功能
+		nga_plug_varietynga_reload.push("varietynga_img();");   //添加到自动加载的自动运行中以在后几页也能实现图片旋转
+	}
 	if (location.pathname == "/thread.php"){
 		if (varietynga_setting.data.set.tieba){
 			for (var i=0;i<35;i++){
