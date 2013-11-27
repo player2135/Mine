@@ -215,7 +215,6 @@ function varietynga_Initialization(){
 		}
 	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
 		console.log("4");
-		if (varietynga_setting.data.set.kj) varietynga_kj();
 		console.log("5");
 		if (location.search.indexOf("pid=") >= 0) return;
 		console.log("6");
