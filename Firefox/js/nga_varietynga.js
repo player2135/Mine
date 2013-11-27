@@ -224,7 +224,7 @@ function varietynga_Initialization(){
 				var nowpage = 1;
 			}
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
-			
+			alert(maxpage+","+nowpage);
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
 			
