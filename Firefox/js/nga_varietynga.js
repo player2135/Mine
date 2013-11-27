@@ -227,6 +227,7 @@ function varietynga_Initialization(){
 				var maxpage = 1;
 				var nowpage = 1;
 			}
+			console.log(maxpage+","+nowpage);
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
@@ -238,6 +239,7 @@ function varietynga_Initialization(){
 				if(n[i].rows && n[i].rows[0] && n[i].rows[0].id && /post1strow(\d+)/.exec(n[i].rows[0].id)[1]) varietynga_maxl = /post1strow(\d+)/.exec(n[i].rows[0].id)[1];
 			}
 			
+			console.log("8");
 			
 			if (navigator.appVersion.indexOf("MSIE") != -1){                //按END键取消自动加载
 				document.attachEvent("onkeydown",varietynga_weibo_ajax.k);
@@ -264,6 +266,21 @@ function varietynga_Initialization(){
 
 	function c(p){
 		if (p) return "checked"; else return "";
+	}
+	function getdiv(){
+		var td = document.getElementById('m_posts').nextSibling;
+		while (td.nodeType!=1){
+			td=td.nextSibling;
+		}
+		td=td.firstChild;
+		while (td.nodeType!=1){
+			td=td.nextSibling;
+		}
+		td=td.firstChild;
+		while (td.nodeType!=1 || td.className!='clear'){
+			td=td.nextSibling;
+		}
+		return td;
 	}
 }
 //腾讯微博风格（即时加载下一页）
