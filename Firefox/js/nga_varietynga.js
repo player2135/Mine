@@ -197,9 +197,11 @@ function varietynga_Initialization(){
 	h.insertBefore(x,h.firstChild);
 	
 	if (varietynga_setting.data.set.kj && !ubbcode.collapse.load_ngaplug) varietynga_setCollapseButton();
-	
+	console.log("1");
 	if (location.pathname != "/thread.php" && location.pathname != "/read.php") return;
+	console.log("2");
 	if (location.search.indexOf("authorid") >= 0 && location.pathname == "/thread.php") return;
+	console.log("3");
 	if (varietynga_setting.data.set.img) try{varietynga_img()}catch(e){}; //加载图片旋转功能
 	if (location.pathname == "/thread.php"){
 		if (varietynga_setting.data.set.tieba){
@@ -212,10 +214,12 @@ function varietynga_Initialization(){
 			}
 		}
 	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
+		console.log("4");
 		if (varietynga_setting.data.set.kj) varietynga_kj();
 		if (location.search.indexOf("pid=") >= 0) return;
+		console.log("5");
 		if (varietynga_setting.data.set.weibo){
-			
+			console.log("6");
 			try{
 				var maxpage = __PAGE[1];
 				var nowpage = __PAGE[2];
@@ -223,7 +227,6 @@ function varietynga_Initialization(){
 				var maxpage = 1;
 				var nowpage = 1;
 			}
-			alert(maxpage+","+nowpage);
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
