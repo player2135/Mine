@@ -197,11 +197,8 @@ function varietynga_Initialization(){
 	h.insertBefore(x,h.firstChild);
 	
 	if (varietynga_setting.data.set.kj && !ubbcode.collapse.load_ngaplug) varietynga_setCollapseButton();
-	console.log("1");
 	if (location.pathname != "/thread.php" && location.pathname != "/read.php") return;
-	console.log("2");
 	if (location.search.indexOf("authorid") >= 0 && location.pathname == "/thread.php") return;
-	console.log("3");
 	if (varietynga_setting.data.set.img){
 		try{varietynga_img()}catch(e){}; //加载图片旋转功能
 		nga_plug_varietynga_reload.push("varietynga_img();");   //添加到自动加载的自动运行中以在后几页也能实现图片旋转
@@ -217,12 +214,8 @@ function varietynga_Initialization(){
 			}
 		}
 	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
-		console.log("4");
-		console.log("5");
 		if (location.search.indexOf("pid=") >= 0) return;
-		console.log("6");
 		if (varietynga_setting.data.set.weibo){
-			console.log("7");
 			try{
 				var maxpage = __PAGE[1];
 				var nowpage = __PAGE[2];
@@ -230,7 +223,6 @@ function varietynga_Initialization(){
 				var maxpage = 1;
 				var nowpage = 1;
 			}
-			console.log(maxpage+","+nowpage);
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
@@ -242,7 +234,6 @@ function varietynga_Initialization(){
 				if(n[i].rows && n[i].rows[0] && n[i].rows[0].id && /post1strow(\d+)/.exec(n[i].rows[0].id)[1]) varietynga_maxl = /post1strow(\d+)/.exec(n[i].rows[0].id)[1];
 			}
 			
-			console.log("8");
 			
 			if (navigator.appVersion.indexOf("MSIE") != -1){                //按END键取消自动加载
 				document.attachEvent("onkeydown",varietynga_weibo_ajax.k);
