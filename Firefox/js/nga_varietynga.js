@@ -1,6 +1,8 @@
 ﻿var varietynga_setting = new nga_plug_local_data("varietynga_setting");
 var varietynga_lasthtml = "";
 var varietynga_customcss = document.createElement('style');
+var varietynga_maxpage ;
+var varietynga_weibo_ajax = {s:'',f:'',k:'',t:-1,ts:'',tf:'',lasttime:0}
 
 String.prototype.colorHex = function(){
         var that = this;
