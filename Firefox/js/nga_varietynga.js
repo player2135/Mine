@@ -210,20 +210,51 @@ function varietynga_Initialization(){
 			}
 		}
 	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
+		if (varietynga_setting.data.set.kj) varietynga_kj();
 		if (location.search.indexOf("pid=") >= 0) return;
+		if (varietynga_setting.data.set.search) varietynga_search()
 		if (varietynga_setting.data.set.weibo){
-			/*
-			var pagea = document.getElementsByTagName("a");
-			for (i=0;i<pagea.length;i++){  //获取最大页
-				if (pagea[i].title=="最后页") var maxpage=parseInt(pagea[i].href.split("page=")[1]); 
-				if (pagea[i].className == "b current" && /<b>(\d*)<\/b>/i.test(pagea[i].innerHTML)) var nowpage = parseInt(/<b>(\d*)<\/b>/i.exec(pagea[i].innerHTML)[1]);
-			}*/
-			var maxpage=getMaxPage();
-			var nowpage=getNowPage();
+			
+			try{
+				var maxpage = __PAGE[1];
+				var nowpage = __PAGE[2];
+			}catch(e){
+				var maxpage = 1;
+				var nowpage = 1;
+			}
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
-			if (maxpage == nowpage) return;
+			
+			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
-			new nga_plug_XMLHttp(pageurl + (nowpage + 1),varietynga_weibo,{url:pageurl,p:nowpage + 1,n:2});
+			
+			if(!document.getElementById('varietynga_tip_div')) getdiv().parentNode.insertBefore(_$('/div').$0('id','varietynga_tip_div'),getdiv());  //创建放置提示信息和按钮的DIV
+			
+			var n = document.getElementsByTagName('table');
+			for(var i=0;i<n.length;i++){
+				if(n[i].rows && n[i].rows[0] && n[i].rows[0].id && /post1strow(\d+)/.exec(n[i].rows[0].id)[1]) varietynga_maxl = /post1strow(\d+)/.exec(n[i].rows[0].id)[1];
+			}
+			
+			
+			if (navigator.appVersion.indexOf("MSIE") != -1){                //按END键取消自动加载
+				document.attachEvent("onkeydown",varietynga_weibo_ajax.k);
+			}else{   // 非IE用addEventListener
+				window.addEventListener("keydown",varietynga_weibo_ajax.k,false);
+			}
+			
+			if (maxpage == nowpage){
+				//varietynga_weibo_scroll(1,'new nga_plug_XMLHttp("'+pageurl + nowpage+'",varietynga_weibo,{url:"'+pageurl+'",p:'+nowpage+',n:1});')
+				varietynga_weibo_ajax.ts = 'new nga_plug_XMLHttp(\''+pageurl + nowpage+'\',varietynga_weibo,{url:\''+pageurl+'\',p:'+nowpage+',n:1})';
+				var tid = /tid=(\d+)/.exec(varietynga_weibo_ajax.ts)[1]
+				__NUKE.doRequest({
+					u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
+					f:function(d){
+						varietynga_weibo_ajax.lasttime = d.data[0]
+					}
+				})
+				varietynga_weibo_ajax.tf(2);
+			}else{
+				varietynga_weibo_scroll(1,'new nga_plug_XMLHttp("'+pageurl + (nowpage + 1)+'",varietynga_weibo,{url:"'+pageurl+'",p:'+(nowpage + 1)+',n:2});')
+			}
 		}
 	}
 
