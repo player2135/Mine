@@ -223,8 +223,8 @@ function varietynga_Initialization(){
 				var maxpage = 1;
 				var nowpage = 1;
 			}
-			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
 			alert(maxpage+","+nowpage);
+			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
 			
