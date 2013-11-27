@@ -35,7 +35,136 @@ String.prototype.colorHex = function(){
             return that;
         }
 };
+//腾讯微博风格-onkey事件
+varietynga_weibo_ajax.k = function(e){
+	if(varietynga_weibo_ajax.t && varietynga_weibo_ajax.t!=-1) return;
+	var e = e || window.event;
+	var keyCode = e.which ? e.which : e.keyCode;
+	//alert(keyCode)
+	if (keyCode == 35){   //取消自动加载
+		varietynga_weibo_scroll(0);
+		
+		if(varietynga_weibo_ajax.s!=''){
+			var oo = commonui.stdBtns()   //加载提示
+			oo._.__add(
+				_$('/a').$0(
+					'href','javascript:void(0)',
+					'innerHTML','继续加载',
+					'title','因为你刚刚按下了“END”键，暂时中止了本页面的即时加载功能，如果需要继续使用，请点击这个按钮。',
+					'className','darkred',
+					'onclick','eval(varietynga_weibo_ajax.s)'
+				)
+			)
+			var tipdiv = document.getElementById('varietynga_tip_div');
+			tipdiv.innerHTML = '';
+			tipdiv.appendChild(oo)
+			if(oo._.__vml) oo._.__vml()
+		}
+	}
+}
 
+//腾讯微博风格-timeout事件（末尾页定时加载）
+varietynga_weibo_ajax.tf = function(mode){
+	if(mode==2 && !varietynga_weibo_ajax.t) return;
+	var tipdiv = document.getElementById('varietynga_tip_div');
+	varietynga_weibo_ajax.s = '';
+	var oo = commonui.stdBtns()
+	if(mode){
+		oo._.__add(
+			_$('/a').$0(
+				'href','javascript:void(0)',
+				'innerHTML','完毕<img src="http://ngaplugins.googlecode.com/svn/trunk/progressIndicator16x16.gif" style="height:12px;">',
+				'title','本帖内容已经显示到最后页,现在每隔6秒将检测一次是否有新回复，你也可以点击这个按钮取消定时检测。',
+				'className','darkred',
+				'onclick','varietynga_weibo_ajax.tf(0)'
+			)
+		)
+		
+		//varietynga_weibo_ajax.t = setTimeout(varietynga_weibo_ajax.ts,6000);
+		varietynga_weibo_ajax.t = setTimeout(function(){
+			var tid = /tid=(\d+)/.exec(varietynga_weibo_ajax.ts)[1]
+			__NUKE.doRequest({
+				u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
+				f:function(d){
+					//alert(d.data[0])
+					if (d.data[0] > varietynga_weibo_ajax.lasttime){
+						varietynga_weibo_ajax.lasttime = d.data[0]
+						eval(varietynga_weibo_ajax.ts)
+					}else{
+						varietynga_weibo_ajax.tf(2)
+					}
+				}
+			})},10000)
+	}else{
+		oo._.__add(
+			_$('/a').$0(
+				'href','javascript:void(0)',
+				'innerHTML','定时检测',
+				'title','本帖内容已经显示到最后页,已经取消定时检测，你也可以点击这个按钮重新开始每6秒检测一次是否有新回复。',
+				'className','darkred',
+				'onclick','varietynga_weibo_ajax.tf(1)'
+			)
+		)
+		
+		clearTimeout(varietynga_weibo_ajax.t);
+		varietynga_weibo_ajax.t = 0;
+	}
+	tipdiv.innerHTML = '';
+	tipdiv.appendChild(oo)
+	if(oo._.__vml) oo._.__vml()
+}
+
+//腾讯微博风格-滚动条事件
+varietynga_weibo_ajax.f = function(){
+	try{
+		if(varietynga_weibo_ajax.s=='') return;
+		var top = document.getElementById('post1strow'+varietynga_maxl).getBoundingClientRect().top //元素顶端到可见区域顶端的距离
+		var se = document.documentElement.clientHeight //浏览器可见区域高度。
+		if(top <= se){
+			eval(varietynga_weibo_ajax.s)
+			varietynga_weibo_ajax.s = ''
+		}
+	}catch(e){}
+}
+
+//腾讯微博风格-绑定/解绑滚动条事件
+function varietynga_weibo_scroll(check,tfunc){
+	if(check){
+		varietynga_weibo_ajax.s = tfunc;
+		
+		var oo = commonui.stdBtns()   //加载提示
+		oo._.__add(
+			_$('/a').$0(
+				'href','javascript:void(0)',
+				'innerHTML','正在加载<img src="http://ngaplugins.googlecode.com/svn/trunk/progressIndicator16x16.gif" style="height:12px;">',
+				'title','正在加载后面的页面，请稍候...',
+				'className','darkred'
+			)
+		)
+		var tipdiv = document.getElementById('varietynga_tip_div');
+		tipdiv.innerHTML = '';
+		tipdiv.appendChild(oo)
+		if(oo._.__vml) oo._.__vml()
+		
+		if (navigator.appVersion.indexOf("MSIE") != -1){               //先解除事件
+			window.detachEvent("onscroll",varietynga_weibo_ajax.f);
+		}else{   // 非IE用addEventListener
+			window.removeEventListener("scroll",varietynga_weibo_ajax.f,false);
+		}
+		
+		if (navigator.appVersion.indexOf("MSIE") != -1){                //再重新绑定
+			window.attachEvent("onscroll",varietynga_weibo_ajax.f);
+		}else{   // 非IE用addEventListener
+			window.addEventListener("scroll",varietynga_weibo_ajax.f,false);
+		}
+	}else{
+		if (navigator.appVersion.indexOf("MSIE") != -1){
+			window.detachEvent("onscroll",varietynga_weibo_ajax.f);
+		}else{   // 非IE用addEventListener
+			window.removeEventListener("scroll",varietynga_weibo_ajax.f,false);
+		}
+	}
+}
 function varietynga_Initialization(){
 	nga_plug_addmsg("varietynga","百变NGA","修复帖子列表页图片不能显示的BUG。");
 	
@@ -102,6 +231,156 @@ function varietynga_Initialization(){
 		if (p) return "checked"; else return "";
 	}
 }
+//腾讯微博风格（即时加载下一页）
+function varietynga_weibo(html,arg){
+	varietynga_weibo_scroll(0)
+	var tipdiv = document.getElementById('varietynga_tip_div');
+	
+	try{                                                                                   //获取最大页
+		eval(/(var __NGAPLUG_PAGE[\s\S]*?)<\/script>/.exec(html.replace('__PAGE','__NGAPLUG_PAGE'))[1]);var maxpage = __NGAPLUG_PAGE[1];
+	}catch(e){
+		var maxpage = 1;
+	};
+
+	if (maxpage == arg.p) {                                                                //如果最大页==当前页则load后进入over模式
+		load(html,arg);
+		varietynga_weibo_ajax.ts = 'new nga_plug_XMLHttp(\''+arg.url + (arg.p)+'\',varietynga_weibo,{url:\''+arg.url+'\',p:'+(arg.p)+',n:'+(arg.n)+'})';
+		var tid = /tid=(\d+)/.exec(varietynga_weibo_ajax.ts)[1]
+		__NUKE.doRequest({
+			u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
+			f:function(d){
+				varietynga_weibo_ajax.lasttime = d.data[0]
+			}
+		})
+		varietynga_weibo_ajax.tf(2);
+		return;
+	}
+	if (/<title>提示信息<\/title>/.test(html)) {                                           //如果提示错误也进入over模式
+		varietynga_weibo_ajax.ts = 'new nga_plug_XMLHttp(\''+arg.url + (arg.p)+'\',varietynga_weibo,{url:\''+arg.url+'\',p:'+(arg.p)+',n:'+(arg.n)+'})';
+		var tid = /tid=(\d+)/.exec(varietynga_weibo_ajax.ts)[1]
+		__NUKE.doRequest({
+			u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
+			f:function(d){
+				varietynga_weibo_ajax.lasttime = d.data[0]
+			}
+		})
+		varietynga_weibo_ajax.tf(2);
+		return;
+	}
+	
+	varietynga_weibo_ajax.t = -1                                                            //进入非over模式，必须赋值为true，否则varietynga_weibo_ajax.tf会直接return
+	if (arg.n == 5) {load(html,arg);nload(html,arg);return;}                               //如果加载的页面达到了5页则进入停止加载模式
+	
+	load(html,arg);                                                                        //如果上面的情况都没有发生，则正常load并给滚动条绑定加载下一页事件
+	varietynga_weibo_scroll(1,'new nga_plug_XMLHttp("'+arg.url + (arg.p + 1)+'",varietynga_weibo,{url:"'+arg.url+'",p:'+(arg.p+1)+',n:'+(arg.n+1)+'});')
+	
+	function load(html,arg){                                                               //load方法，将新的回复append到主贴上，并进行必要的JavaScript处理
+		if (/<body>[\s\S]*?<\/body>/.test(html)){
+			var tu = document.createElement('div');                                        //建立临时div存放get过来的html的body
+			tu.innerHTML = /<body>([\s\S]*?)<\/body>/.exec(html)[1]
+			var x = tu.getElementsByTagName('div');
+			for(var i=0;i<x.length;i++){
+				if (x[i].id == "m_posts_c"){
+					x = x[i];
+					break;
+				}
+			}
+			if (x.id=='m_posts_c'){
+				var tmaxl = 0;
+				var n=x.firstChild
+				while (n!=null && Number(varietynga_maxl)>=Number(tmaxl)){                 //判断有无新楼层
+					if(n.tagName && n.tagName.toLowerCase()=="table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1]) tmaxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+					if(Number(varietynga_maxl)>=Number(tmaxl)) n.parentNode.removeChild(n);
+					n=x.firstChild
+				}
+				
+				if(Number(tmaxl)>Number(varietynga_maxl)){
+					var ts = tu.getElementsByTagName('script');                            //必要的JavaScript脚本处理
+					for(var i=0;i<ts.length;i++){
+						if(ts[i].innerHTML){
+							//console.info(ts[i].innerHTML);
+							if (/commonui.userInfo.setAll.*/.test(ts[i].innerHTML)){       //处理用户信息
+								//console.info(/commonui.userInfo.setAll.*/.exec(ts[i].innerHTML)[0]);
+								try{eval(/commonui.userInfo.setAll.*/.exec(ts[i].innerHTML)[0])}catch(e){};
+								break;
+							}
+						}
+					}
+					for(n=x.firstChild; n!=null; n=x.firstChild){                          //将新楼层append到主贴上
+						if(n.tagName && n.tagName.toLowerCase()=="table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1]) varietynga_maxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+						document.getElementById("m_posts_c").appendChild(n);
+
+						if (n.nodeType==1){
+							ts = n.getElementsByTagName('script');                         //必要的JavaScript脚本处理
+							for(var i=0;i<ts.length;i++){
+								if(ts[i].innerHTML){
+									if(ts[i].innerHTML.indexOf('commonui.loadAlertInfo')>=0){                                                           //处理编辑记录和评分记录
+										try{eval(ts[i].innerHTML.replace('commonui.loadAlertInfo(','varietynga_loadAlertInfo(ts[i],'))}catch(e){}
+									}
+									if(ts[i].innerHTML.indexOf('commonui.postArg.proc')>=0 || ts[i].innerHTML.indexOf('ubbcode.attach.load')>=0){       //格式化样式和附件列表
+										try{eval(ts[i].innerHTML)}catch(e){}
+									}
+								}
+							}
+						}
+					}
+					
+					for (var i=0;i<nga_plug_varietynga_reload.length;i++){                 //处理需要在load后重新调用的方法
+						setTimeout('try{'+nga_plug_varietynga_reload[i]+'}catch(e){}',3000);
+					}
+				}
+			}
+	    }
+	}
+	function varietynga_loadAlertInfo(obj,info){   //评分记录和编辑记录处理
+		if(!info)return;
+		info = info.split(/\t|\n/);
+		var e = '';
+		var p = '';
+		var q = '';
+		for (var k in info){
+			if(typeof(info[k])!='string')continue
+			info[k] = info[k].replace(/^[\t\n ]+/,'');
+			if (info[k]){
+				if (info[k].substr(0,4).toLowerCase()=='edit')e+=info[k]+' ';
+				else p+=info[k].replace(/\[([\d\.]+) ([\d\.]+) ([\d\.]+)\]/,'[$1声望 $2威望 $3G]')+' ';
+			}
+		}
+		var obja = obj.nextSibling;
+		while (obja.nodeType!=1){
+			obja=obja.nextSibling;
+		}
+		if(e) obj.parentNode.insertBefore(_$('/div').$0('class','silver','innerHTML',e),obja);
+		if(p) obj.parentNode.insertBefore(_$('/table').$0('class','quote','innerHTML','<tr><td>'+p+'</td></tr>'),obja);
+	}
+	
+	function nload(html,arg){                          //停止加载，除非手动按下加载按钮
+		varietynga_weibo_ajax.s = '';
+		var oo = commonui.stdBtns()
+		oo._.__add(
+			_$('/a').$0(
+				'href','javascript:void(0)',
+				'innerHTML','继续加载',
+				'title','本帖内容已经显示到第'+arg.p+'页,还可以继续加载后面的页面,点击继续加载.',
+				'className','darkred',
+				'onclick','new nga_plug_XMLHttp("'+arg.url + (arg.p + 1)+'",varietynga_weibo,{url:"'+arg.url+'",p:'+(arg.p+1)+',n:1})'
+			)
+		)
+		
+		oo._.__add(
+			_$('/a').$0(
+				'href',arg.url + (arg.p + 1),
+				'innerHTML','第'+(arg.p+1)+'页',
+				'title','直接跳转到第'+(arg.p+1)+'页',
+				'className','darkred'
+			)
+		)
+		tipdiv.innerHTML = '';
+		tipdiv.appendChild(oo)
+		if(oo._.__vml) oo._.__vml()
+	}
+}
+/* 
 function getMaxPage()
 {
 	try{
@@ -201,12 +480,7 @@ function varietynga_weibo(html,arg){
 		if (/commonui.userInfo.setAll[\s\S]*?<\/script>/.test(html)){
 			try{
 				var initScript=/(commonui.userInfo.setAll[\s\S]*)__AUTO_TRANS_FID=/.exec(html)[1];
-				/* var div=document.createElement("div");
-				div.style.border="solid 1px black";
-				div.style.padding="10px";
-				div.style.margin="10px";
-				div.textContent=initScript;
-				document.body.appendChild(div); */
+				
 				var c= eval(initScript);
 			}
 			catch(e)
@@ -228,14 +502,7 @@ function varietynga_weibo(html,arg){
 				var x = document.createElement('div');
 				x.innerHTML = thtml;
 				document.getElementById("m_posts_c").appendChild(x); 
-				/* var scripts=x.getElementsByTagName("script");
-				for(var i=0;i<scripts.length;i++)
-				{
-					if(/commonui.postArg.proc/.test(scripts[i].innerHTML))
-					{
-						try{eval(scripts[i].innerHTML);}catch(e){}
-					}
-				} */
+				
 			}
 		}
 		if (/<script>([\s\S]*?)<\/script>/gi.test(html)){    //附件处理
@@ -274,7 +541,7 @@ function varietynga_weibo(html,arg){
 			setTimeout('new nga_plug_XMLHttp(\''+arg.url + (arg.p)+'\',varietynga_weibo,{url:\''+arg.url+'\',p:'+(arg.p)+',n:1,reload:true})',10000);
 		}
 	}
-}
+} */
 
 //贴吧风格-使用AJAX获取版面帖子中是否有图片并作相应操作
 function varietynga_tieba(html,arg){
