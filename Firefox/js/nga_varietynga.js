@@ -212,7 +212,6 @@ function varietynga_Initialization(){
 	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
 		if (varietynga_setting.data.set.kj) varietynga_kj();
 		if (location.search.indexOf("pid=") >= 0) return;
-		if (varietynga_setting.data.set.search) varietynga_search()
 		if (varietynga_setting.data.set.weibo){
 			
 			try{
