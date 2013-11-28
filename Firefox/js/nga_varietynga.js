@@ -266,6 +266,10 @@ function varietynga_Initialization(){
 		while (td.nodeType!=1){
 			td=td.nextSibling;
 		}
+		while(td.firstChild==null)
+		{
+			td=td.nextSibling;
+		}
 		td=td.firstChild;
 		while (td.nodeType!=1){
 			td=td.nextSibling;
