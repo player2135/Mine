@@ -81,18 +81,106 @@ function FindConcernPersons() {
         }
     }
 }
+function LocationUser()
+{
+	var username=document.getElementById("txtLocationUsername").value;
+	if(username=="")
+	{
+		return;
+	}
+	if(window.lastLocationUser==null)
+	{
+		window.lastLocationUser={};
+		window.lastLocationUser.name=username;
+		window.lastLocationUser.floorIndex=-1;
+	}
+	else
+	{
+		if(window.lastLocationUser.name!=username)
+		{
+			window.lastLocationUser.name=username;
+			window.lastLocationUser.floorIndex=-1;
+		}
+	}
+	var result=FindUser(username,window.lastLocationUser.floorIndex+1);
+	if(result.A!=null)
+	{
+		var rect = result.A.getBoundingClientRect();
+		var top = rect.top+scrollY;
+		window.scroll(0,top);	
+	}
+	window.lastLocationUser.floorIndex=result.Index;
+	function FindUser(name, startIndex)
+	{
+		var div = document.getElementById("m_posts_c");
+		var divChildren = div.childNodes;
+		for	(var i=startIndex;i<div.childNodes.length;i++)
+		{
+			var index=i;
+			var author=document.getElementById("postauthor"+index);
+			if(author)
+			{
+				if(author.innerHTML==name || author.innerHTML.indexOf(name+"(") != -1)
+				{
+					var anchor=document.getElementById("post1strow"+index);
+					return {A:anchor,Index:i};
+				}
+			}
+			var post=document.getElementById("postcontent"+index);
+			if(post)
+			{
+				var bs = post.getElementsByTagName("b");
+				for (var j = 0; j < bs.length; j++) {
+					var content = bs[j].innerHTML;
+					if (content.indexOf("Post by " + name) != -1) {
+						var anchor=document.getElementById("post1strow"+index);
+						return {A:anchor,Index:i};
+					}
+				}
+			}
+		}
+		for	(var i=0;i<startIndex;i++)
+		{
+			var index=i;
+			var author=document.getElementById("postauthor"+index);
+			if(author)
+			{
+				if(author.innerHTML==name || author.innerHTML.indexOf(name+"(") != -1)
+				{
+					var anchor=document.getElementById("post1strow"+index);
+					return {A:anchor,Index:i};
+				}
+			}
+			var post=document.getElementById("postcontent"+index);
+			if(post)
+			{
+				var bs = post.getElementsByTagName("b");
+				for (var j = 0; j < bs.length; j++) {
+					var content = bs[j].innerHTML;
+					if (content.indexOf("Post by " + name) != -1) {
+						var anchor=document.getElementById("post1strow"+index);
+						return {A:anchor,Index:i};
+					}
+				}
+			}
+		}
+		return {A:null,Index:-1};
+	}
+}
 function AppendTempConcernDiv() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.innerHTML = "function TurnToFloor() {try {var index = parseInt(document.getElementById('txtFloorIndex').value, 10);var tdId = 'post1strow' + index;var td = document.getElementById(tdId);if (td != null && td != undefined) {var table = td.parentNode.parentNode;var top = table.getBoundingClientRect().top;top += scrollY; window.scrollTo(scrollX, top);}}catch (Err) {alert(Err);}}";
     document.getElementsByTagName("head")[0].appendChild(script);
+	window.locationUser=LocationUser;
     var div = document.createElement("div");
     div.style.position = "fixed";
     div.style.right = "0px";
     div.style.bottom = "0px";
     div.style.backgroundColor = "rgb(255,248,229)";
     div.style.border = "solid 1px black";
-    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/>";
+	div.style.textAlign="left";
+    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/><br/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/>";
     document.body.appendChild(div);
 }
 function FindTempConcern() {
