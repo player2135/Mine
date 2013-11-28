@@ -84,7 +84,7 @@ function FindConcernPersons() {
 function LocationUser(name)
 {
 	var username;
-	if(name==undefine)
+	if(name==undefined)
 	{
 		username=document.getElementById("txtLocationUsername").value;
 	}
