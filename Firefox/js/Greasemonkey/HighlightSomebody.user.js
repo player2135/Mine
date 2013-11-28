@@ -180,7 +180,7 @@ function AppendTempConcernDiv() {
     div.style.backgroundColor = "rgb(255,248,229)";
     div.style.border = "solid 1px black";
 	div.style.textAlign="left";
-    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/><br/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/>";
+    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/>";
     document.body.appendChild(div);
 }
 function FindTempConcern() {
