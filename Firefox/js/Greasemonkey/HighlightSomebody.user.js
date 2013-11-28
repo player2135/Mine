@@ -81,9 +81,17 @@ function FindConcernPersons() {
         }
     }
 }
-function LocationUser()
+function LocationUser(name)
 {
-	var username=document.getElementById("txtLocationUsername").value;
+	var username;
+	if(name==undefine)
+	{
+		username=document.getElementById("txtLocationUsername").value;
+	}
+	else
+	{
+		username=name;
+	}
 	if(username=="")
 	{
 		return;
@@ -167,6 +175,17 @@ function LocationUser()
 		return {A:null,Index:-1};
 	}
 }
+function GetLouzhuName()
+{
+	try {
+        var anchor = document.getElementById("postauthor0");
+        var name = anchor.innerHTML;
+        return name;
+    }
+    catch (ERR) {
+    }
+	return "";
+}
 function AppendTempConcernDiv() {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -180,7 +199,7 @@ function AppendTempConcernDiv() {
     div.style.backgroundColor = "rgb(255,248,229)";
     div.style.border = "solid 1px black";
 	div.style.textAlign="left";
-    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/>";
+    div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/><input type='button' onclick='window.locationUser(\""+__CURRENT_UNAME+"\");' value='Me'/><input type='button' onclick='window.locationUser(\""+GetLouzhuName()+"\");' value='楼主'/>";
     document.body.appendChild(div);
 }
 function FindTempConcern() {
