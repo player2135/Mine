@@ -213,7 +213,7 @@ function varietynga_Initialization(){
 				ti.parentNode.appendChild(x);
 			}
 		}
-	}else if(location.pathname == "/read.php")// && document.URL.indexOf("page=e#a") < 0){
+	}else if(location.pathname == "/read.php") {// && document.URL.indexOf("page=e#a") < 0){
 		if (location.search.indexOf("pid=") >= 0) return;
 		if (varietynga_setting.data.set.weibo){
 			try{
