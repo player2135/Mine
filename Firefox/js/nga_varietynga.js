@@ -213,7 +213,7 @@ function varietynga_Initialization(){
 				ti.parentNode.appendChild(x);
 			}
 		}
-	}else if(location.pathname == "/read.php" && document.URL.indexOf("page=e#a") < 0){
+	}else if(location.pathname == "/read.php")// && document.URL.indexOf("page=e#a") < 0){
 		if (location.search.indexOf("pid=") >= 0) return;
 		if (varietynga_setting.data.set.weibo){
 			try{
@@ -223,7 +223,7 @@ function varietynga_Initialization(){
 				var maxpage = 1;
 				var nowpage = 1;
 			}
-			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
+			var pageurl = "http://" + location.host + location.pathname + location.search.replace("page=e#a","") + "&page=";
 			//if (maxpage == nowpage) return;
 			if (maxpage == null && location.search.indexOf("authorid") < 0) return;
 			
