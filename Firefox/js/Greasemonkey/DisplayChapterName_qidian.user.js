@@ -44,13 +44,33 @@ window.ChangeTextToPicture = function()
 			div.appendChild(imgs[i]);
 		}
 	}
+	else
+	{
+		var zj_img=document.getElementsByClassName("zj_img");
+		if(zj_img.length!=0)
+		{
+			for(var i=0;i<zj_img.length;i++)
+			{
+				var zj_cont=zj_img[i].parentNode;
+				var img=zj_img[i].getElementsByTagName("img")[0];
+				if(img.src.indexOf("http://localhost/Mine/MyWeb/QiDian/VipPictureConverter.ashx")==-1)
+				{
+					var pageUrl="http://vipreader.qidian.com"+zj_cont.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute("action");
+					var imgUrl=img.src;
+					img.src=GetConvertImgUrl(pageUrl,imgUrl);
+				}
+			}
+		}
+	}
 	function GetImages(form1,textLength)
 	{
+		var pageUrl="http://vipreader.qidian.com"+form1.getAttribute("action");
 		var imgArr=[];
 		for	(var i = 0;i<Math.ceil(textLength/2500);i++)
 		{
 			var img=document.createElement("img");
-			img.src=GetImgUrl(form1)+i.toString();
+			var imgUrl=GetImgUrl(form1)+i.toString();
+			img.src=GetConvertImgUrl(pageUrl,imgUrl);
 			imgArr.push(img);
 		}
 		return imgArr;
@@ -83,11 +103,15 @@ window.ChangeTextToPicture = function()
 	{
 		return "http://vip.qidian.com/BookReader/ChapterImage.aspx?bookId="+GetBookId()+"&chapterId="+GetChapterId(form1)+"&page=";
 	}
+	function GetConvertImgUrl(pageUrl,imgUrl)
+	{
+		return "http://localhost/Mine/MyWeb/QiDian/VipPictureConverter.ashx?PageUrl="+encodeURIComponent(pageUrl)+"&ImageUrl="+encodeURIComponent(imgUrl)+"&Cookie="+encodeURIComponent(document.cookie);
+	}
 }
 SetNextPageHref();
 DisplayChapterName();
 document.getElementById('reader_zancb').style.display='none';
 window.addEventListener("load",function(){
 	window.ChangeTextToPicture();
-	//setInterval(window.ChangeTextToPicture,500);
+	setInterval(window.ChangeTextToPicture,500);
 });
