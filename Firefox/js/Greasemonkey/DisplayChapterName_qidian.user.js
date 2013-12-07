@@ -47,7 +47,7 @@ window.ChangeTextToPicture = function()
 	function GetImages(form1,textLength)
 	{
 		var imgArr=[];
-		for	(var i = 0;i<Math.ceil(textLength/2000);i++)
+		for	(var i = 0;i<Math.ceil(textLength/2500);i++)
 		{
 			var img=document.createElement("img");
 			img.src=GetImgUrl(form1)+i.toString();
