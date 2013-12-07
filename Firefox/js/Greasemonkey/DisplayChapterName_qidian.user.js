@@ -15,7 +15,7 @@ function DisplayChapterName()
     div.style.backgroundColor = "black";
 	div.style.color="#00ff00";
 	div.style.fontSize="16px";
-	div.innerHTML=document.getElementById("lbChapterName").textContent;//"<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" + 
+	div.innerHTML="<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" + document.getElementById("lbChapterName").textContent;//"<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" + 
 	document.body.appendChild(div);
 }
 function SetNextPageHref()
@@ -76,5 +76,5 @@ DisplayChapterName();
 document.getElementById('reader_zancb').style.display='none';
 window.addEventListener("load",function(){
 	window.ChangeTextToPicture();
-	setInterval(window.ChangeTextToPicture,500);
+	//setInterval(window.ChangeTextToPicture,500);
 });
