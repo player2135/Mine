@@ -15,7 +15,7 @@ function DisplayChapterName()
     div.style.backgroundColor = "black";
 	div.style.color="#00ff00";
 	div.style.fontSize="16px";
-	div.innerHTML=document.getElementById("lbChapterName").textContent;
+	div.innerHTML=document.getElementById("lbChapterName").textContent;//"<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" + 
 	document.body.appendChild(div);
 }
 function SetNextPageHref()
@@ -27,7 +27,7 @@ function SetNextPageHref()
 		document.getElementById("NextPage").removeAttribute("rel");
 	}
 }
-var ChangeTextToPicture = function()
+window.ChangeTextToPicture = function()
 {
 	var zj_txt=document.getElementsByClassName("zj_txt");
 	if(zj_txt.length!=0)
@@ -75,5 +75,6 @@ SetNextPageHref();
 DisplayChapterName();
 document.getElementById('reader_zancb').style.display='none';
 window.addEventListener("load",function(){
-	setInterval(ChangeTextToPicture,1000);
+	window.ChangeTextToPicture();
+	setInterval(window.ChangeTextToPicture,500);
 });
