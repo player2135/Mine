@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name        右下角显示章节名及VIP章节强制图片显示
 // @namespace   qidian
-// @include     http://*.qidian.com/*
+// @include     http://vipreader.qidian.com/BookReader/vip,*.aspx
 // @version     1
 // ==/UserScript==
 
