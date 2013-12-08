@@ -18,7 +18,7 @@ function ScrollTopAndBottom()
 		img.style.left="915px";
 		img.style.bottom="0px";
 		img.style.fontSize="16px";
-		img.style.opacity="0.1";
+		img.style.opacity="0.2";
 		img.src="https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toTop.png";
 		document.body.appendChild(img);
 	}
@@ -32,7 +32,7 @@ function ScrollTopAndBottom()
 		img.style.left="955px";
 		img.style.bottom="0px";
 		img.style.fontSize="16px";
-		img.style.opacity="0.1";
+		img.style.opacity="0.2";
 		img.src="https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toBottom.png";
 		document.body.appendChild(img);
 	}
