@@ -82,10 +82,11 @@ function nga_edit_Initialization(){
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
 	var nga_edit_pathname = location.pathname;
 	if(nga_edit_pathname == '/post.php'){
+		var outerHTML=document.getElementById('atc_content').outerHTML;
 		var t_td = document.getElementById('atc_content').parentNode;
 		//try{document.getElementById("postform").appendChild(document.getElementById("atc_content"));}catch(e){}
 		t_td.innerHTML = nga_edit_gettabhtml();
-		try{document.getElementById("nga_edit_content").appendChild(document.getElementById("atc_content"));}catch(e){console.log(e);}
+		try{document.getElementById("nga_edit_content").append(outerHTML);}catch(e){console.log(e);}
 		document.getElementById("atc_content").style.width="99%";
 		document.getElementById("post_preview").style.display="inline";
 		document.getElementById("post_preview").style.padding="0";
