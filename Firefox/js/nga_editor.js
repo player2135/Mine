@@ -60,6 +60,12 @@ function nga_edit_Initialization(){
 			}
 			return "";
 		};
+		postfunc.post_v2=function(){
+			postfunc.content=document.getElementById("atc_content").innerHTML;
+		};
+		postfunc.quickpost=function(e){
+			postfunc.content=document.getElementById("atc_content").innerHTML;
+		};
 	}
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
 	var nga_edit_pathname = location.pathname;
