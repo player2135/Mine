@@ -38,8 +38,27 @@ function nga_edit_Initialization(){
 	nga_plug_mojo.unshift({autoor:"NGA",data:m})
 	
 	var txtisfocus = false;
-	document.getElementById("atc_content").id="";
-	document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
+	if(document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
+	{
+		document.getElementById("atc_content").id="";
+		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
+		postfunc.addsmile=function(code){
+			document.getElementById("atc_content").innerHTML+=code;
+		};
+		postfunc.addText=function(txt){
+			document.getElementById("atc_content").innerHTML+=txt;
+		};
+		postfunc.getSelectText=function(){
+			if (window.getSelection) {
+				return window.getSelection().toString(); 
+			}else if (document.getSelection) {  
+				return document.getSelection();  
+			}else if (document.selection) {  
+				return document.selection.createRange().text;
+			}
+			return "";
+		};
+	}
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
 	var nga_edit_pathname = location.pathname;
 	if(nga_edit_pathname == '/post.php'){
