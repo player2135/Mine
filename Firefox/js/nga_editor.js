@@ -77,29 +77,6 @@ function nga_edit_Initialization(){
 			document.getElementById("atc_content").innerHTML+=code;
 			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
-		postfunc.addText=function(txt){
-			document.getElementById("atc_content").innerHTML+=txt;
-			postfunc.content=document.getElementById("atc_content").innerHTML;
-		};
-		postfunc.getSelectText=function(){
-			if (window.getSelection) {
-				return window.getSelection().toString(); 
-			}else if (document.getSelection) {  
-				return document.getSelection();  
-			}else if (document.selection) {  
-				return document.selection.createRange().text;
-			}
-			return "";
-		};
-		postfunc.post_v2=function(){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
-		};
-		postfunc.quickpost=function(e){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
-		};
-		postfunc.inputchar=function(event){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
-		};
 	}
 		
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
