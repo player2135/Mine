@@ -51,7 +51,6 @@ function nga_edit_Initialization(){
 			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
 		postfunc.getSelectText=function(){
-			return "";
 			if (window.getSelection) {
 				return window.getSelection().toString(); 
 			}else if (document.getSelection) {  
