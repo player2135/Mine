@@ -70,7 +70,7 @@ function nga_edit_Initialization(){
 			postfunc.content=document.getElementById("atc_content").value;
 		};
 	}
-	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
+	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined && location.search.indexOf("action=modify")==-1 && location.search.indexOf("action=quote"))
 	{
 		document.getElementById("xoxoxxxoxoxxoo").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
