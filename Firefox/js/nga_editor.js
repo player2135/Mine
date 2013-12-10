@@ -38,11 +38,13 @@ function nga_edit_Initialization(){
 	nga_plug_mojo.unshift({autoor:"NGA",data:m})
 	
 	var txtisfocus = false;
+	document.getElementById("atc_content").id="";
+	document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
 	var nga_edit_pathname = location.pathname;
 	if(nga_edit_pathname == '/post.php'){
 		var t_td = document.getElementById('atc_content').parentNode;
-		try{document.getElementById("postform").appendChild(document.getElementById("atc_content"));}catch(e){}
+		//try{document.getElementById("postform").appendChild(document.getElementById("atc_content"));}catch(e){}
 		t_td.innerHTML = nga_edit_gettabhtml();
 		try{document.getElementById("nga_edit_content").appendChild(document.getElementById("atc_content"));}catch(e){}
 		document.getElementById("atc_content").style.width="99%";
