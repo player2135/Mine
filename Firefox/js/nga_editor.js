@@ -116,7 +116,7 @@ function nga_edit_Initialization(){
 				nga_edit_settmpshot()
 				return true;
 			}
-			document.getElementById("atc_content").onkeyup = function(event){nga_edit_setshot('up');postfunc.inputchar(event,this);}
+			/*document.getElementById("atc_content").onkeyup = function(event){nga_edit_setshot('up');postfunc.inputchar(event,this);}
 			document.getElementById("atc_content").onkeydown = function(e){
 				nga_edit_setshot('down');
 				var e = e || window.event;
@@ -125,7 +125,7 @@ function nga_edit_Initialization(){
 					postfunc.post_v2();
 				}
 				postfunc.quickpost(e);
-			}
+			}*/
 			try{if (txtisfocus) document.getElementById('atc_content').focus();}catch(e){};
 		}catch(e){console.log(e);};
 	}
