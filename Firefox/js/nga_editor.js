@@ -85,7 +85,7 @@ function nga_edit_Initialization(){
 		var t_td = document.getElementById('atc_content').parentNode;
 		//try{document.getElementById("postform").appendChild(document.getElementById("atc_content"));}catch(e){}
 		t_td.innerHTML = nga_edit_gettabhtml();
-		try{document.getElementById("nga_edit_content").appendChild(document.getElementById("atc_content"));}catch(e){}
+		try{document.getElementById("nga_edit_content").appendChild(document.getElementById("atc_content"));}catch(e){console.log(e);}
 		document.getElementById("atc_content").style.width="99%";
 		document.getElementById("post_preview").style.display="inline";
 		document.getElementById("post_preview").style.padding="0";
