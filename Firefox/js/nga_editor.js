@@ -66,7 +66,7 @@ function nga_edit_Initialization(){
 		postfunc.quickpost=function(e){
 			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
-		postfunc.inputchar=function(event,this){
+		postfunc.inputchar=function(event){
 			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
 	}
