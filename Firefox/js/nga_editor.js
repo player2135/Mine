@@ -44,9 +44,11 @@ function nga_edit_Initialization(){
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
 			document.getElementById("atc_content").innerHTML+=code;
+			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
 		postfunc.addText=function(txt){
 			document.getElementById("atc_content").innerHTML+=txt;
+			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
 		postfunc.getSelectText=function(){
 			return "";
