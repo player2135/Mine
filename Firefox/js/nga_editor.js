@@ -38,7 +38,7 @@ function nga_edit_Initialization(){
 	nga_plug_mojo.unshift({autoor:"NGA",data:m})
 	
 	var txtisfocus = false;
-	if(document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
+	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
 	{
 		document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
