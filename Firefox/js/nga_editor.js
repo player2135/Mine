@@ -127,7 +127,7 @@ function nga_edit_Initialization(){
 				postfunc.quickpost(e);
 			}
 			try{if (txtisfocus) document.getElementById('atc_content').focus();}catch(e){};
-		}catch(e){};
+		}catch(e){console.log(e);};
 	}
 	
 	if (!document.getElementById("nga_edit_PreviewImgDiv")){
