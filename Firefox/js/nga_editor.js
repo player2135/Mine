@@ -43,12 +43,12 @@ function nga_edit_Initialization(){
 		document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
-			document.getElementById("atc_content").innerHTML+=code;
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			document.getElementById("atc_content").value+=code;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.addText=function(txt){
-			document.getElementById("atc_content").innerHTML+=txt;
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			document.getElementById("atc_content").value+=txt;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.getSelectText=function(){
 			if (window.getSelection) {
@@ -61,21 +61,21 @@ function nga_edit_Initialization(){
 			return "";
 		};
 		postfunc.post_v2=function(){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.quickpost=function(e){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.inputchar=function(event){
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 	}
 	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
 	{
 		document.getElementById("xoxoxxxoxoxxoo").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
-			document.getElementById("atc_content").innerHTML+=code;
-			postfunc.content=document.getElementById("atc_content").innerHTML;
+			document.getElementById("atc_content").value+=code;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 	}
 		
