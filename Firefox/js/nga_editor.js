@@ -49,6 +49,7 @@ function nga_edit_Initialization(){
 			document.getElementById("atc_content").innerHTML+=txt;
 		};
 		postfunc.getSelectText=function(){
+			return "";
 			if (window.getSelection) {
 				return window.getSelection().toString(); 
 			}else if (document.getSelection) {  
