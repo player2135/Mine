@@ -72,7 +72,6 @@ function nga_edit_Initialization(){
 	}
 	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
 	{
-		document.getElementById("atc_content").id="";
 		document.getElementById("xoxoxxxoxoxxoo").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
 			document.getElementById("atc_content").innerHTML+=code;
