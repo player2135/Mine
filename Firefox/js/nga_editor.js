@@ -66,6 +66,9 @@ function nga_edit_Initialization(){
 		postfunc.quickpost=function(e){
 			postfunc.content=document.getElementById("atc_content").innerHTML;
 		};
+		postfunc.inputchar=function(event,this){
+			postfunc.content=document.getElementById("atc_content").innerHTML;
+		};
 	}
 	if (document.activeElement.id == "atc_content") txtisfocus = true;
 	var nga_edit_pathname = location.pathname;
