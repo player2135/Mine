@@ -147,6 +147,7 @@ function LocationUser(name)
 				}
 			}
 		}
+		alert("已经搜索到文档末尾，将回到最上层重新搜索");
 		for	(var i=0;i<startIndex;i++)
 		{
 			var index=i;
