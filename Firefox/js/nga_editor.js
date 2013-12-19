@@ -42,23 +42,14 @@ function nga_edit_Initialization(){
 	{
 		//document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
+		postfunc.o_content=document.getElementById("atc_content");
 		postfunc.addsmile=function(code){
-			document.getElementById("atc_content").value+=code;
+			postfunc.addText(code);
 			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.addText=function(txt){
-			document.getElementById("atc_content").value+=txt;
+			postfunc.addText(txt);
 			postfunc.content=document.getElementById("atc_content").value;
-		};
-		postfunc.getSelectText=function(){
-			if (window.getSelection) {
-				return window.getSelection().toString(); 
-			}else if (document.getSelection) {  
-				return document.getSelection();  
-			}else if (document.selection) {  
-				return document.selection.createRange().text;
-			}
-			return "";
 		};
 		postfunc.post_v2=function(){
 			postfunc.content=document.getElementById("atc_content").value;
@@ -77,7 +68,7 @@ function nga_edit_Initialization(){
 	{
 		postfunc.o_content.id="atc_content";
 		postfunc.addsmile=function(code){
-			postfunc.o_content.value+=code;
+			postfunc.addText(code);
 			postfunc.content=postfunc.o_content.value;
 		};
 	}
