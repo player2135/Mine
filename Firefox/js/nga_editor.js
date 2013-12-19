@@ -41,7 +41,7 @@ function nga_edit_Initialization(){
 	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
 	{
 		//postfunc.o_content.id="";
-		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
+		postfunc.o_content.id="atc_content";
 		postfunc.addsmile=function(code){
 			postfunc.o_content.value+=code;
 			postfunc.content=postfunc.o_content.value;
@@ -75,7 +75,7 @@ function nga_edit_Initialization(){
 	//&& location.search.indexOf("action=quote")==-1)
 	//&& location.search.indexOf("action=reply")==-1)
 	{
-		document.getElementById("xoxoxxxoxoxxoo").getElementsByTagName("textarea")[0].id="atc_content";
+		postfunc.o_content.id="atc_content";
 		postfunc.addsmile=function(code){
 			postfunc.o_content.value+=code;
 			postfunc.content=postfunc.o_content.value;
