@@ -47,10 +47,6 @@ function nga_edit_Initialization(){
 			postfunc.addText(code);
 			postfunc.content=document.getElementById("atc_content").value;
 		};
-		postfunc.addText=function(txt){
-			postfunc.addText(txt);
-			postfunc.content=document.getElementById("atc_content").value;
-		};
 		postfunc.post_v2=function(){
 			postfunc.content=document.getElementById("atc_content").value;
 		};
