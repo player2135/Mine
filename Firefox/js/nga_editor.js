@@ -43,18 +43,9 @@ function nga_edit_Initialization(){
 		//document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.o_content=document.getElementById("atc_content");
+		postfunc.content=postfunc.o_content;
 		postfunc.addsmile=function(code){
 			postfunc.addText(code);
-			postfunc.content=document.getElementById("atc_content").value;
-		};
-		postfunc.post_v2=function(){
-			postfunc.content=document.getElementById("atc_content").value;
-		};
-		postfunc.quickpost=function(e){
-			postfunc.content=document.getElementById("atc_content").value;
-		};
-		postfunc.inputchar=function(event){
-			postfunc.content=document.getElementById("atc_content").value;
 		};
 	}
 	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
@@ -65,7 +56,6 @@ function nga_edit_Initialization(){
 		postfunc.o_content.id="atc_content";
 		postfunc.addsmile=function(code){
 			postfunc.addText(code);
-			postfunc.content=postfunc.o_content.value;
 		};
 	}
 		
