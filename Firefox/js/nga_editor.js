@@ -96,17 +96,17 @@ function nga_edit_Initialization(){
 		try{
 			document.getElementById("nga_edit_content").parentNode.parentNode.parentNode.getElementsByTagName("li")[3].onclick=function(){
 				nga_plug_tab_setTab(this,2);
-				postfunc.preview = document.getElementById("post_preview");
-				postfunc.preview.innerHTML = postfunc.content.value.replace(/\n/g,'<br>');
-				ubbcode.bbsCode({c:postfunc.preview,tId:Math.floor(Math.random()*10000),pId:Math.floor(Math.random()*10000),authorId:__CURRENT_UID,rvrc:__GP['rvrc'],isLesser:__GP['lesser']});
+				postfunc.previewDiv = document.getElementById("post_preview");
+				postfunc.previewDiv.innerHTML = postfunc.content.value.replace(/\n/g,'<br>');
+				ubbcode.bbsCode({c:postfunc.previewDiv,tId:Math.floor(Math.random()*10000),pId:Math.floor(Math.random()*10000),authorId:__CURRENT_UID,rvrc:__GP['rvrc'],isLesser:__GP['lesser']});
 			};
 			document.getElementById("nga_edit_content").parentNode.parentNode.parentNode.getElementsByTagName("li")[2].onclick=function(){
 				nga_plug_tab_setTab(this,1);
-				postfunc.preview = document.getElementById("post_edit");
-				postfunc.preview.innerHTML = postfunc.content.value.replace(/\n/g,'<br>');
-				postfunc.preview.innerHTML = nga_edit_ubb2ubb(postfunc.preview.innerHTML,1);  //将不转换的UBB代码加感叹号
-				ubbcode.bbsCode({c:postfunc.preview,tId:Math.floor(Math.random()*10000),pId:Math.floor(Math.random()*10000),authorId:__CURRENT_UID,rvrc:__GP['rvrc'],isLesser:__GP['lesser']});
-				postfunc.preview.innerHTML = nga_edit_ubb2ubb(postfunc.preview.innerHTML,2);  //将没有转换的UBB代码的感叹号取消
+				postfunc.previewDiv = document.getElementById("post_edit");
+				postfunc.previewDiv.innerHTML = postfunc.content.value.replace(/\n/g,'<br>');
+				postfunc.previewDiv.innerHTML = nga_edit_ubb2ubb(postfunc.previewDiv.innerHTML,1);  //将不转换的UBB代码加感叹号
+				ubbcode.bbsCode({c:postfunc.previewDiv,tId:Math.floor(Math.random()*10000),pId:Math.floor(Math.random()*10000),authorId:__CURRENT_UID,rvrc:__GP['rvrc'],isLesser:__GP['lesser']});
+				postfunc.previewDiv.innerHTML = nga_edit_ubb2ubb(postfunc.previewDiv.innerHTML,2);  //将没有转换的UBB代码的感叹号取消
 			};
 			document.getElementById("post_edit").onblur=function(){
 				//alert(this.id);  //可编辑DIV失去焦点时触发，此处应执行html到ubb代码的转换
