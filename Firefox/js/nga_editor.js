@@ -54,6 +54,7 @@ function nga_edit_Initialization(){
 	//&& location.search.indexOf("action=reply")==-1)
 	{
 		postfunc.o_content.id="atc_content";
+		postfunc.content=postfunc.o_content;
 		postfunc.addsmile=function(code){
 			postfunc.addText(code);
 		};
