@@ -70,7 +70,7 @@ function nga_edit_Initialization(){
 			postfunc.content=postfunc.o_content.value;
 		};
 	}
-	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined 
+	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
 	//&& location.search.indexOf("action=modify")==-1 
 	//&& location.search.indexOf("action=quote")==-1)
 	//&& location.search.indexOf("action=reply")==-1)
