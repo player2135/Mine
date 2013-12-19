@@ -40,15 +40,15 @@ function nga_edit_Initialization(){
 	var txtisfocus = false;
 	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
 	{
-		//postfunc.o_content.id="";
-		postfunc.o_content.id="atc_content";
+		//document.getElementById("atc_content").id="";
+		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
-			postfunc.o_content.value+=code;
-			postfunc.content=postfunc.o_content.value;
+			document.getElementById("atc_content").value+=code;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.addText=function(txt){
-			postfunc.o_content.value+=txt;
-			postfunc.content=postfunc.o_content.value;
+			document.getElementById("atc_content").value+=txt;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.getSelectText=function(){
 			if (window.getSelection) {
@@ -61,13 +61,13 @@ function nga_edit_Initialization(){
 			return "";
 		};
 		postfunc.post_v2=function(){
-			postfunc.content=postfunc.o_content.value;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.quickpost=function(e){
-			postfunc.content=postfunc.o_content.value;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 		postfunc.inputchar=function(event){
-			postfunc.content=postfunc.o_content.value;
+			postfunc.content=document.getElementById("atc_content").value;
 		};
 	}
 	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined)
@@ -93,13 +93,13 @@ function nga_edit_Initialization(){
 		document.getElementById("post_preview").style.display="inline";
 		document.getElementById("post_preview").style.padding="0";
 	}else if(nga_edit_pathname == '/read.php' || nga_edit_pathname == '/thread.php'){
-		if (postfunc.o_content){
+		if (document.getElementById("atc_content")){
 			var nga_edit_divEl = document.createElement("div");
 			nga_edit_divEl.innerHTML = nga_edit_gettabhtml();
 			try{
-				postfunc.o_content.parentNode.insertBefore(nga_edit_divEl,postfunc.o_content);
-				document.getElementById("nga_edit_content").appendChild(postfunc.o_content);
-				postfunc.o_content.style.width="99%";
+				document.getElementById("atc_content").parentNode.insertBefore(nga_edit_divEl,document.getElementById("atc_content"));
+				document.getElementById("nga_edit_content").appendChild(document.getElementById("atc_content"));
+				document.getElementById("atc_content").style.width="99%";
 				document.getElementById("post_preview").style.display="inline";
 				document.getElementById("post_preview").style.padding="0";
 			}catch(e){};
@@ -124,12 +124,12 @@ function nga_edit_Initialization(){
 			document.getElementById("post_edit").onblur=function(){
 				//alert(this.id);  //可编辑DIV失去焦点时触发，此处应执行html到ubb代码的转换
 				nga_edit_settmpshot()
-				postfunc.o_content.value = nga_edit_html2ubb(this.innerHTML);
+				document.getElementById("atc_content").value = nga_edit_html2ubb(this.innerHTML);
 				nga_edit_settmpshot()
 				return true;
 			}
-			postfunc.o_content.onkeyup = function(event){nga_edit_setshot('up');postfunc.inputchar(event,this);}
-			postfunc.o_content.onkeydown = function(e){
+			document.getElementById("atc_content").onkeyup = function(event){nga_edit_setshot('up');postfunc.inputchar(event,this);}
+			document.getElementById("atc_content").onkeydown = function(e){
 				nga_edit_setshot('down');
 				var e = e || window.event;
 				var keyCode = e.which ? e.which : e.keyCode;
