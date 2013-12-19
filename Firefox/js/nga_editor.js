@@ -40,7 +40,7 @@ function nga_edit_Initialization(){
 	var txtisfocus = false;
 	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
 	{
-		document.getElementById("atc_content").id="";
+		//document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
 			document.getElementById("atc_content").value+=code;
