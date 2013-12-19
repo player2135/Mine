@@ -72,8 +72,8 @@ function nga_edit_Initialization(){
 	}
 	else if(document.getElementById("xoxoxxxoxoxxoo")!=undefined 
 	&& location.search.indexOf("action=modify")==-1 
-	&& location.search.indexOf("action=quote")==-1
-	&& location.search.indexOf("action=reply")==-1)
+	&& location.search.indexOf("action=quote")==-1)
+	//&& location.search.indexOf("action=reply")==-1)
 	{
 		document.getElementById("xoxoxxxoxoxxoo").getElementsByTagName("textarea")[0].id="atc_content";
 		postfunc.addsmile=function(code){
