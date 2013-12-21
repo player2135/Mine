@@ -14,26 +14,35 @@ function GetLouZhuName()
 	}
 	return louzhuName;
 }
-function FindSomebody(name, color, bgColor) {
-    function FindAuthor(name, color, bgColor) {
+function FindSomebody(name, color, bgColor, realName) {
+    function FindAuthor(name, color, bgColor, realName) {
         var anchors = document.getElementsByTagName("a");
         for (var i = 0; i < anchors.length; i++) {
             if (anchors[i].id.indexOf("postauthor") != -1) {
                 if (anchors[i].innerHTML == name || anchors[i].innerHTML.indexOf(name + "(") != -1) {
                     anchors[i].style.backgroundColor = bgColor;
                     anchors[i].style.color = color;
+					if(realName!=undefined)
+					{
+						anchors[i].title=realName;
+					}
                 }
             }
         }
     }
-    function FindQuoted(name, color, bgColor) {
+    function FindQuoted(name, color, bgColor, realName) {
         var spans = document.getElementsByClassName("postcontent");
         for (var i = 0; i < spans.length; i++) {
             var bs = spans[i].getElementsByTagName("b");
             for (var j = 0; j < bs.length; j++) {
-                var content = bs[j].innerHTML;
+				var html=bs[j].innerHTML;
+                var content = bs[j].textContent;
                 if (content.indexOf("Post by " + name) != -1) {
                     bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+					if(realName!=undefined)
+					{
+						bs[j].title=realName;
+					}
                 }
             }
         }
@@ -73,11 +82,20 @@ function FindGirls()
     }
 }
 function FindConcernPersons() {
-    var ConcernPersons = ["极坏的猪", "我怎能不变态", "岸本早未", "sephirothii",  "墮落的猴子",  "liqiangzimu"];
+    var ConcernPersons = ["极坏的猪", "我怎能不变态", "岸本早未", "sephirothii",  "墮落的猴子"];
 	var louzhuName = GetLouZhuName();
     for (var i = 0; i < ConcernPersons.length; i++) {
         if (ConcernPersons[i] != louzhuName) {
             FindSomebody(ConcernPersons[i], "#ff0000", "#000000");
+        }
+    }
+}
+function FindKnownPersons() {
+	var knownPersons=[{id:"liqiangzimu",name:"李强"}];
+	var louzhuName = GetLouZhuName();
+	for (var i = 0; i < ConcernPersons.length; i++) {
+        if (ConcernPersons[i] != louzhuName) {
+            FindSomebody(knownPersons[i].id, "#ffff00", "#000000",knownPersons[i].name);
         }
     }
 }
@@ -230,10 +248,12 @@ FindLouzhu();
 MarkLouzhu();
 FindMyself();
 FindConcernPersons();
+FindKnownPersons();
 FindGirls();
 setInterval(FindLouzhu, 5000);
 setInterval(FindMyself, 5000);
 setInterval(FindConcernPersons, 5000);
+setInterval(FindKnownPersons, 5000);
 setInterval(FindTempConcern, 5000);
 setInterval(FindGirls,5000);
 AppendTempConcernDiv();
