@@ -93,8 +93,8 @@ function FindConcernPersons() {
 function FindKnownPersons() {
 	var knownPersons=[{id:"liqiangzimu",name:"李强"}];
 	var louzhuName = GetLouZhuName();
-	for (var i = 0; i < ConcernPersons.length; i++) {
-        if (ConcernPersons[i] != louzhuName) {
+	for (var i = 0; i < knownPersons.length; i++) {
+        if (knownPersons[i] != louzhuName) {
             FindSomebody(knownPersons[i].id, "#ffff00", "#000000",knownPersons[i].name);
         }
     }
