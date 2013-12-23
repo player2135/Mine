@@ -850,15 +850,15 @@ function nga_edit_mojo(act,obj,e,autoor,id){
 						s = "";
 						for (var l=0;l<nga_plug_mojo[i].data[k].img.length;l++){
 							s += '<div style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,event,\''+nga_plug_mojo[i].autoor+'\',\''+nga_plug_mojo[i].data[k].id+'\');" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);">';
-							if (i>1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'add\');" title="把这个表情添加到自定义表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/add.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>';
-							if (i==1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'del\');" title="从自定义表情中删除这个表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/del.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>';
-							s += '<img style="width:40px;height:40px;" alt="'+(i==0?nga_plug_mojo[i].data[k].alt[l]:nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
+							/* if (i>1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'add\');" title="把这个表情添加到自定义表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/add.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>';
+							if (i==1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'del\');" title="从自定义表情中删除这个表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/del.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>'; */
+							s += '<img style="width:40px;height:40px;" alt="'+((i==nga_plug_mojo.length-1)?nga_plug_mojo[i].data[k].alt[l]:nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
 						}
 						var t = false;
-						if (i==1){
+						/* if (i==1){
 							s += '<div title="手动添加自定义表情" style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,\'add1\');">';
 							s += '<img style="width:40px;height:40px;" src="http://ngaplug.googlecode.com/svn/ngaplug/img/add1.png"></div>';
-						}
+						} */
 						try{if (nga_edit_mojo_check.data[0].lastautoor == nga_plug_mojo[i].autoor && nga_edit_mojo_check.data[0].id == nga_plug_mojo[i].data[k].id) t = true;}catch(e){}
 						x.add(nga_plug_mojo[i].data[k].title,s,t);
 					}
