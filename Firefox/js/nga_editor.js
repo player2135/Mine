@@ -35,7 +35,7 @@ function nga_edit_Initialization(){
 		alt:["s:1","s:2","s:3","s:4","s:5","s:6","s:7","s:8","s:34","s:32","s:33","s:30","s:29","s:28","s:27","s:26","s:25","s:24","s:35","s:36","s:37","s:38","s:39","s:40","s:41","s:42","s:43"],
 		img:["http://img4.ngacn.cc/ngabbs/post/smile/smile.gif","http://img4.ngacn.cc/ngabbs/post/smile/mrgreen.gif","http://img4.ngacn.cc/ngabbs/post/smile/question.gif","http://img4.ngacn.cc/ngabbs/post/smile/wink.gif","http://img4.ngacn.cc/ngabbs/post/smile/redface.gif","http://img4.ngacn.cc/ngabbs/post/smile/sad.gif","http://img4.ngacn.cc/ngabbs/post/smile/cool.gif","http://img4.ngacn.cc/ngabbs/post/smile/crazy.gif","http://img4.ngacn.cc/ngabbs/post/smile/14.gif","http://img4.ngacn.cc/ngabbs/post/smile/12.gif","http://img4.ngacn.cc/ngabbs/post/smile/13.gif","http://img4.ngacn.cc/ngabbs/post/smile/10.gif","http://img4.ngacn.cc/ngabbs/post/smile/09.gif","http://img4.ngacn.cc/ngabbs/post/smile/08.gif","http://img4.ngacn.cc/ngabbs/post/smile/07.gif","http://img4.ngacn.cc/ngabbs/post/smile/06.gif","http://img4.ngacn.cc/ngabbs/post/smile/05.gif","http://img4.ngacn.cc/ngabbs/post/smile/04.gif","http://img4.ngacn.cc/ngabbs/post/smile/15.gif","http://img4.ngacn.cc/ngabbs/post/smile/16.gif","http://img4.ngacn.cc/ngabbs/post/smile/17.gif","http://img4.ngacn.cc/ngabbs/post/smile/18.gif","http://img4.ngacn.cc/ngabbs/post/smile/19.gif","http://img4.ngacn.cc/ngabbs/post/smile/20.gif","http://img4.ngacn.cc/ngabbs/post/smile/21.gif","http://img4.ngacn.cc/ngabbs/post/smile/22.gif","http://img4.ngacn.cc/ngabbs/post/smile/23.gif"]
 	}];
-	nga_plug_mojo.push({autoor:"NGA",data:m})
+	nga_plug_mojo.push({autoor:"NGA",data:m,isSystemMojo:true})
 	
 	var txtisfocus = false;
 	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
@@ -852,7 +852,7 @@ function nga_edit_mojo(act,obj,e,autoor,id){
 							s += '<div style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,event,\''+nga_plug_mojo[i].autoor+'\',\''+nga_plug_mojo[i].data[k].id+'\');" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);">';
 							/* if (i>1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'add\');" title="把这个表情添加到自定义表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/add.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>';
 							if (i==1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'del\');" title="从自定义表情中删除这个表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/del.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>'; */
-							s += '<img style="width:40px;height:40px;" alt="'+((i==nga_plug_mojo.length-1)?nga_plug_mojo[i].data[k].alt[l]:nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
+							s += '<img style="width:40px;height:40px;" alt="'+((nga_plug_mojo[i].isSystemMojo)?nga_plug_mojo[i].data[k].alt[l]:nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
 						}
 						var t = false;
 						/* if (i==1){
