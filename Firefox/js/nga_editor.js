@@ -11,6 +11,7 @@ var nga_edit_tmpshot_i = 0;
 var nga_edit_mojo_check = new nga_plug_local_data("nga_edit_mojo_check");
 var nga_edit_custom_mojo = new nga_plug_local_data("nga_edit_custom_mojo");
 var nga_edit_quick_mojo = new nga_plug_local_data("nga_edit_quick_mojo");
+var nga_edit_system_mojo;
 
 function nga_edit_Initialization(){
 	nga_plug_addmsg("nga_edit","NGA UBB编辑器插件","添加测试功能：所见即所得编辑，原“编辑”标签修改为“代码”标签，原“编辑”标签为所见即所得编辑模式。\n提示：1.部分代码暂不支持所见即所得模式（如code代码）这种类型的代码在所见即所得模式下依然显示源代码。\
@@ -35,7 +36,7 @@ function nga_edit_Initialization(){
 		alt:["s:1","s:2","s:3","s:4","s:5","s:6","s:7","s:8","s:34","s:32","s:33","s:30","s:29","s:28","s:27","s:26","s:25","s:24","s:35","s:36","s:37","s:38","s:39","s:40","s:41","s:42","s:43"],
 		img:["http://img4.ngacn.cc/ngabbs/post/smile/smile.gif","http://img4.ngacn.cc/ngabbs/post/smile/mrgreen.gif","http://img4.ngacn.cc/ngabbs/post/smile/question.gif","http://img4.ngacn.cc/ngabbs/post/smile/wink.gif","http://img4.ngacn.cc/ngabbs/post/smile/redface.gif","http://img4.ngacn.cc/ngabbs/post/smile/sad.gif","http://img4.ngacn.cc/ngabbs/post/smile/cool.gif","http://img4.ngacn.cc/ngabbs/post/smile/crazy.gif","http://img4.ngacn.cc/ngabbs/post/smile/14.gif","http://img4.ngacn.cc/ngabbs/post/smile/12.gif","http://img4.ngacn.cc/ngabbs/post/smile/13.gif","http://img4.ngacn.cc/ngabbs/post/smile/10.gif","http://img4.ngacn.cc/ngabbs/post/smile/09.gif","http://img4.ngacn.cc/ngabbs/post/smile/08.gif","http://img4.ngacn.cc/ngabbs/post/smile/07.gif","http://img4.ngacn.cc/ngabbs/post/smile/06.gif","http://img4.ngacn.cc/ngabbs/post/smile/05.gif","http://img4.ngacn.cc/ngabbs/post/smile/04.gif","http://img4.ngacn.cc/ngabbs/post/smile/15.gif","http://img4.ngacn.cc/ngabbs/post/smile/16.gif","http://img4.ngacn.cc/ngabbs/post/smile/17.gif","http://img4.ngacn.cc/ngabbs/post/smile/18.gif","http://img4.ngacn.cc/ngabbs/post/smile/19.gif","http://img4.ngacn.cc/ngabbs/post/smile/20.gif","http://img4.ngacn.cc/ngabbs/post/smile/21.gif","http://img4.ngacn.cc/ngabbs/post/smile/22.gif","http://img4.ngacn.cc/ngabbs/post/smile/23.gif"]
 	}];
-	nga_plug_mojo.push({autoor:"NGA",data:m,isSystemMojo:true})
+	nga_edit_system_mojo={autoor:"NGA",data:m,isSystemMojo:true};
 	
 	var txtisfocus = false;
 	if(document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length!=0)
@@ -850,19 +851,22 @@ function nga_edit_mojo(act,obj,e,autoor,id){
 						s = "";
 						for (var l=0;l<nga_plug_mojo[i].data[k].img.length;l++){
 							s += '<div style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,event,\''+nga_plug_mojo[i].autoor+'\',\''+nga_plug_mojo[i].data[k].id+'\');" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);">';
-							/* if (i>1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'add\');" title="把这个表情添加到自定义表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/add.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>';
-							if (i==1) s += '<div onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,\'del\');" title="从自定义表情中删除这个表情" style="display:none;position: absolute;background: url(\'http://ngaplug.googlecode.com/svn/ngaplug/img/del.png\');height:15px;width:15px;border-right:1px solid #777;border-bottom:1px solid #777;"></div>'; */
-							s += '<img style="width:40px;height:40px;" alt="'+((nga_plug_mojo[i].isSystemMojo)?nga_plug_mojo[i].data[k].alt[l]:nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
+							s += '<img style="width:40px;height:40px;" alt="'+(nga_plug_mojo[i].data[k].img[l])+'" src="'+nga_plug_mojo[i].data[k].img[l]+'"></div>';
 						}
 						var t = false;
-						/* if (i==1){
-							s += '<div title="手动添加自定义表情" style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,\'add1\');">';
-							s += '<img style="width:40px;height:40px;" src="http://ngaplug.googlecode.com/svn/ngaplug/img/add1.png"></div>';
-						} */
-						try{if (nga_edit_mojo_check.data[0].lastautoor == nga_plug_mojo[i].autoor && nga_edit_mojo_check.data[0].id == nga_plug_mojo[i].data[k].id) t = true;}catch(e){}
+						try{if ("acniang" == nga_plug_mojo[i].data[k].id) t = true;}catch(e){}
 						x.add(nga_plug_mojo[i].data[k].title,s,t);
 					}
 				}
+			}
+			for (var k=0;k<nga_edit_system_mojo.data.length;k++){
+				s = "";
+				for (var l=0;l<nga_edit_system_mojo.data[k].img.length;l++){
+					s += '<div style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,event,\''+nga_edit_system_mojo.autoor+'\',\''+nga_edit_system_mojo.data[k].id+'\');" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);">';
+					s += '<img style="width:40px;height:40px;" alt="'+(nga_edit_system_mojo.data[k].alt[l])+'" src="'+nga_edit_system_mojo.data[k].img[l]+'"></div>';
+				}
+				var t = false;
+				x.add(nga_edit_system_mojo.data[k].title,s,t);
 			}
 			document.getElementById("nga_edit_mojo_b").innerHTML = x.gethtml();
 		}
