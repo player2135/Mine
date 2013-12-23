@@ -847,7 +847,7 @@ function nga_edit_mojo(act,obj,e,autoor,id){
 			var s;
 			for (var i=0;i<nga_plug_mojo.length;i++){
 				for (var k=0;k<nga_plug_mojo[i].data.length;k++){
-					if (nga_plug_mojo[i].data[k].check || i == nga_plug_mojo.length-1){
+					if (nga_plug_mojo[i].data[k].check){
 						s = "";
 						for (var l=0;l<nga_plug_mojo[i].data[k].img.length;l++){
 							s += '<div style="cursor:pointer;width:40px;height:40px;border:1px solid #777;margin-right:1px;margin-bottom:1px;display:inline-block;" onclick="nga_edit_mojo(\'click\',this,event,\''+nga_plug_mojo[i].autoor+'\',\''+nga_plug_mojo[i].data[k].id+'\');" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);">';
