@@ -157,7 +157,7 @@ function LocationUser(name)
 			{
 				var bs = post.getElementsByTagName("b");
 				for (var j = 0; j < bs.length; j++) {
-					var content = bs[j].innerHTML;
+					var content = bs[j].textContent;
 					if (content.indexOf("Post by " + name) != -1) {
 						var anchor=document.getElementById("post1strow"+index);
 						return {A:anchor,Index:i};
