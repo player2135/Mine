@@ -4,6 +4,7 @@
 // @include     http://bbs.ngacn.cc/read.php*
 // @version     1
 // ==/UserScript==
+
 function GetLouZhuName()
 {
 	var anchor = document.getElementById("postauthor0");
@@ -50,7 +51,20 @@ function FindSomebody(name, color, bgColor, realName) {
     FindAuthor(name, color, bgColor);
     FindQuoted(name, color, bgColor);
 }
-
+var findPersons=function(persons,color,bgColor)
+{
+	var louzhuName = GetLouZhuName();
+	if(persons.length!=0)
+	{
+		for (var i=0;i<persons.length;i++)
+		{
+			if(persons[i]!=louzhuName)
+			{
+				FindSomebody(persons[i].id, color, bgColor, persons[i].description);
+			}
+		}
+	}
+};
 function FindLouzhu() {
     try {
         var anchor = document.getElementById("postauthor0");
@@ -73,31 +87,16 @@ function FindMyself() {
 }
 function FindGirls()
 {
-	var nvhanzi=["cinderella2012","竹小晓","一啊萨姆一","寄语明月","微微笑很倾城","陈_豆豆","明月清锋","银色_荆棘","虞兮","辉夜姬kaguya","圣光赐予我力量吧","无双包包","目立里"];
-    var louzhuName = GetLouZhuName();
-    for (var i = 0; i < nvhanzi.length; i++) {
-        if (nvhanzi[i] != louzhuName) {
-            FindSomebody(nvhanzi[i], "pink", "#000000");
-        }
-    }
+	var girls=[{id:"cinderella2012",description:"时政狂魔女汉子"},{id:"竹小晓"},{id:"一啊萨姆一"},{id:"寄语明月"},{id:"微微笑很倾城"},{id:"陈_豆豆"},{id:"明月清锋",description:"大魔王"},{id:"银色_荆棘"},{id:"虞兮"},{id:"辉夜姬kaguya",description:"时政狂魔女汉子"},{id:"圣光赐予我力量吧"},{id:"无双包包"},{id:"目立里"}];
+    findPersons(girls,"pink","#000000");
 }
 function FindConcernPersons() {
-    var ConcernPersons = ["极坏的猪", "我怎能不变态", "岸本早未", "sephirothii",  "墮落的猴子"];
-	var louzhuName = GetLouZhuName();
-    for (var i = 0; i < ConcernPersons.length; i++) {
-        if (ConcernPersons[i] != louzhuName) {
-            FindSomebody(ConcernPersons[i], "#ff0000", "#000000");
-        }
-    }
+    var concernPersons = [{id:"极坏的猪"}, {id:"我怎能不变态"}, {id:"岸本早未"}, {id:"sephirothii",description:"表弟"},  {id:"墮落的猴子"}];
+	findPersons(concernPersons,"#ff0000","#000000");
 }
 function FindKnownPersons() {
-	var knownPersons=[{id:"liqiangzimu",name:"李强"}];
-	var louzhuName = GetLouZhuName();
-	for (var i = 0; i < knownPersons.length; i++) {
-        if (knownPersons[i] != louzhuName) {
-            FindSomebody(knownPersons[i].id, "#ffff00", "#000000",knownPersons[i].name);
-        }
-    }
+	var knownPersons=[{id:"liqiangzimu"}];
+	findPersons(knownPersons,"#ffff00","#000000");
 }
 function LocationUser(name)
 {
