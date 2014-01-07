@@ -15,23 +15,23 @@ function GetLouZhuName()
 	}
 	return louzhuName;
 }
-function FindSomebody(name, color, bgColor, realName) {
-    function FindAuthor(name, color, bgColor, realName) {
+function FindSomebody(name, color, bgColor, record) {
+    function FindAuthor(name, color, bgColor, record) {
         var anchors = document.getElementsByTagName("a");
         for (var i = 0; i < anchors.length; i++) {
             if (anchors[i].id.indexOf("postauthor") != -1) {
                 if (anchors[i].innerHTML == name || anchors[i].innerHTML.indexOf(name + "(") != -1) {
                     anchors[i].style.backgroundColor = bgColor;
                     anchors[i].style.color = color;
-					if(realName!=undefined)
+					if(record!=undefined)
 					{
-						anchors[i].title=realName;
+						anchors[i].title=record;
 					}
                 }
             }
         }
     }
-    function FindQuoted(name, color, bgColor, realName) {
+    function FindQuoted(name, color, bgColor, record) {
         var spans = document.getElementsByClassName("postcontent");
         for (var i = 0; i < spans.length; i++) {
             var bs = spans[i].getElementsByTagName("b");
@@ -40,16 +40,16 @@ function FindSomebody(name, color, bgColor, realName) {
                 var content = bs[j].textContent;
                 if (content.indexOf("Post by " + name) != -1) {
                     bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
-					if(realName!=undefined)
+					if(record!=undefined)
 					{
-						bs[j].title=realName;
+						bs[j].title=record;
 					}
                 }
             }
         }
     }
-    FindAuthor(name, color, bgColor, realName);
-    FindQuoted(name, color, bgColor, realName);
+    FindAuthor(name, color, bgColor, record);
+    FindQuoted(name, color, bgColor, record);
 }
 var findPersons=function(persons,color,bgColor)
 {
