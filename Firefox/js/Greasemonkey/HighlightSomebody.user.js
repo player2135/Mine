@@ -48,8 +48,8 @@ function FindSomebody(name, color, bgColor, realName) {
             }
         }
     }
-    FindAuthor(name, color, bgColor);
-    FindQuoted(name, color, bgColor);
+    FindAuthor(name, color, bgColor, realName);
+    FindQuoted(name, color, bgColor, realName);
 }
 var findPersons=function(persons,color,bgColor)
 {
@@ -58,9 +58,9 @@ var findPersons=function(persons,color,bgColor)
 	{
 		for (var i=0;i<persons.length;i++)
 		{
-			if(persons[i]!=louzhuName)
+			if(persons[i].id!=louzhuName)
 			{
-				FindSomebody(persons[i].id, color, bgColor, persons[i].description);
+				FindSomebody(persons[i].id, color, bgColor, persons[i].record);
 			}
 		}
 	}
@@ -87,11 +87,11 @@ function FindMyself() {
 }
 function FindGirls()
 {
-	var girls=[{id:"cinderella2012",description:"时政狂魔女汉子"},{id:"竹小晓"},{id:"一啊萨姆一"},{id:"寄语明月"},{id:"微微笑很倾城"},{id:"陈_豆豆"},{id:"明月清锋",description:"大魔王"},{id:"银色_荆棘"},{id:"虞兮"},{id:"辉夜姬kaguya",description:"时政狂魔女汉子"},{id:"圣光赐予我力量吧"},{id:"无双包包"},{id:"目立里"},{id:"mi21",description:"DS5女司机"}];
+	var girls=[{id:"cinderella2012",record:"时政狂魔女汉子"},{id:"竹小晓"},{id:"一啊萨姆一"},{id:"寄语明月"},{id:"微微笑很倾城"},{id:"陈_豆豆"},{id:"明月清锋",record:"大魔王"},{id:"银色_荆棘"},{id:"虞兮"},{id:"辉夜姬kaguya",record:"时政狂魔女汉子"},{id:"圣光赐予我力量吧"},{id:"无双包包"},{id:"目立里"},{id:"mi21",record:"DS5女司机"}];
     findPersons(girls,"pink","#000000");
 }
 function FindConcernPersons() {
-    var concernPersons = [{id:"极坏的猪"}, {id:"我怎能不变态"}, {id:"岸本早未"}, {id:"sephirothii",description:"表弟"},  {id:"墮落的猴子"}];
+    var concernPersons = [{id:"极坏的猪"}, {id:"我怎能不变态"}, {id:"岸本早未"}, {id:"sephirothii",record:"表弟"},  {id:"墮落的猴子"}];
 	findPersons(concernPersons,"#ff0000","#000000");
 }
 function FindKnownPersons() {
