@@ -91,7 +91,7 @@ function FindGirls()
     findPersons(girls,"pink","#000000");
 }
 function FindConcernPersons() {
-    var concernPersons = [{id:"极坏的猪"}, {id:"我怎能不变态"}, {id:"岸本早未"}, {id:"sephirothii",record:"表弟"},  {id:"墮落的猴子"}];
+    var concernPersons = [{id:"极坏的猪"}, {id:"我怎能不变态"}, {id:"岸本早未"}, {id:"sephirothii",record:"表弟"},  {id:"墮落的猴子"}, {id:"今井绘理子",record:"岸本小号"}];
 	findPersons(concernPersons,"#ff0000","#000000");
 }
 function FindKnownPersons() {
