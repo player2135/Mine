@@ -99,7 +99,7 @@ function FindConcernPersons() {
 	findPersons(concernPersons,"#ff0000","#000000");
 }
 function FindKnownPersons() {
-	var knownPersons=[{id:"liqiangzimu"}];
+	var knownPersons=[{id:"liqiangzimu"},{id:"银色の空",record:"星爷"}];
 	findPersons(knownPersons,"#ffff00","#000000");
 }
 function LocationUser(name)
