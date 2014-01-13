@@ -44,14 +44,30 @@ function FindSomebody(name, color, bgColor, record) {
             var bs = spans[i].getElementsByTagName("b");
             for (var j = 0; j < bs.length; j++) {
 				var html=bs[j].innerHTML;
-                var content = bs[j].textContent;
-                if (checkReply(name, content)) {
-                    bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
-					if(record!=undefined)
+				var anchors = bs[j].getElementsByTagName("a");
+				if(anchors.length != 0)
+				{
+					var a = anchors[0];
+					if(checkReply(name, a.textContent))
 					{
-						bs[j].title=record;
+						a.innerHTML=a.textContent.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+						if(record!=undefined)
+						{
+							a.title=record;
+						}
 					}
-                }
+				}
+				else
+				{
+					var content = bs[j].textContent;
+					if (checkReply(name, content)) {
+						bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+						if(record!=undefined)
+						{
+							bs[j].title=record;
+						}
+				   }
+			   }
             }
         }
     }
