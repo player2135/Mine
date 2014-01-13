@@ -4,7 +4,14 @@
 // @include     http://bbs.ngacn.cc/read.php*
 // @version     1
 // ==/UserScript==
-
+var checkAuthor = function(name, html)
+{
+	return html == name || html.indexOf(name + "(") != -1;
+};
+var checkReply = function(name, content)
+{
+	return content.indexOf("[" + name + "]") != -1;
+};
 function GetLouZhuName()
 {
 	var anchor = document.getElementById("postauthor0");
@@ -20,7 +27,7 @@ function FindSomebody(name, color, bgColor, record) {
         var anchors = document.getElementsByTagName("a");
         for (var i = 0; i < anchors.length; i++) {
             if (anchors[i].id.indexOf("postauthor") != -1) {
-                if (anchors[i].innerHTML == name || anchors[i].innerHTML.indexOf(name + "(") != -1) {
+                if (checkAuthor(name, anchors[i].innerHTML)) {
                     anchors[i].style.backgroundColor = bgColor;
                     anchors[i].style.color = color;
 					if(record!=undefined)
@@ -38,7 +45,7 @@ function FindSomebody(name, color, bgColor, record) {
             for (var j = 0; j < bs.length; j++) {
 				var html=bs[j].innerHTML;
                 var content = bs[j].textContent;
-                if (content.indexOf("Post by [" + name + "]") != -1) {
+                if (checkReply(name, content)) {
                     bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
 					if(record!=undefined)
 					{
@@ -149,7 +156,7 @@ function LocationUser(name)
 			var author=document.getElementById("postauthor"+index);
 			if(author)
 			{
-				if(author.innerHTML==name || author.innerHTML.indexOf(name+"(") != -1)
+				if(checkAuthor(name, author.innerHTML))
 				{
 					var anchor=document.getElementById("post1strow"+index);
 					return {A:anchor,Index:i};
@@ -161,7 +168,7 @@ function LocationUser(name)
 				var bs = post.getElementsByTagName("b");
 				for (var j = 0; j < bs.length; j++) {
 					var content = bs[j].textContent;
-					if (content.indexOf("Post by " + name) != -1) {
+					if (checkReply(name, content)) {
 						var anchor=document.getElementById("post1strow"+index);
 						return {A:anchor,Index:i};
 					}
@@ -175,7 +182,7 @@ function LocationUser(name)
 			var author=document.getElementById("postauthor"+index);
 			if(author)
 			{
-				if(author.innerHTML==name || author.innerHTML.indexOf(name+"(") != -1)
+				if(checkAuthor(name, author.innerHTML))
 				{
 					var anchor=document.getElementById("post1strow"+index);
 					return {A:anchor,Index:i};
@@ -187,7 +194,7 @@ function LocationUser(name)
 				var bs = post.getElementsByTagName("b");
 				for (var j = 0; j < bs.length; j++) {
 					var content = bs[j].innerHTML;
-					if (content.indexOf("Post by " + name) != -1) {
+					if (checkReply(name, content)) {
 						var anchor=document.getElementById("post1strow"+index);
 						return {A:anchor,Index:i};
 					}
