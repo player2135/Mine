@@ -38,7 +38,7 @@ function FindSomebody(name, color, bgColor, record) {
             for (var j = 0; j < bs.length; j++) {
 				var html=bs[j].innerHTML;
                 var content = bs[j].textContent;
-                if (content.indexOf("Post by " + name) != -1) {
+                if (content.indexOf("Post by [" + name + "]") != -1) {
                     bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
 					if(record!=undefined)
 					{
