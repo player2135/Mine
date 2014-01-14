@@ -6,7 +6,7 @@
 // ==/UserScript==
 
 var markReply = function () {
-	this.getFloorIndex = function (anchorID) {
+	var getFloorIndex = function (anchorID) {
 		var anchor = document.getElementById(anchorID);
 		if (anchor != null) {
 			var td = anchor.parentNode;
@@ -16,17 +16,17 @@ var markReply = function () {
 		}
 		return -1;
 	};
-	this.getAnchorID = function (href) {
+	var getAnchorID = function (href) {
 		if (href.indexOf("#") != -1) {
 			return href.split("#")[1];
 		} else {
 			return "pid" + href.split("=")[1] + "Anchor";
 		}
 	};
-	this.getCommentID = function (href) {
+	var getCommentID = function (href) {
 		return "postauthor_" + href.split("#")[1].replace("pid", "").replace("Anchor", "");
 	};
-	this.getPostContainerLeft = function (anchor) {
+	var getPostContainerLeft = function (anchor) {
 		var parentNode = anchor.parentNode;
 		while (!(parentNode.tag != "td" && parentNode.id.indexOf("postcontainer") != -1) && parentNode != null) {
 			parentNode = parentNode.parentNode;
@@ -36,7 +36,7 @@ var markReply = function () {
 		}
 		return 100;
 	};
-	this.setAnchorClickEvent = function (anchor, aimAnchorID) {
+	var setAnchorClickEvent = function (anchor, aimAnchorID) {
 		anchor.target = "_blank";
 		anchor.removeAttribute("onclick");
 		var aimAnchor = document.getElementById(aimAnchorID);
@@ -46,7 +46,7 @@ var markReply = function () {
 			anchor.setAttribute("onclick", "window.scroll(0," + top + ");return false;");
 		}
 	};
-	this.appendReplyDiv = function (floorIndex, anchor, quoteContent) {
+	var appendReplyDiv = function (floorIndex, anchor, quoteContent) {
 		try {
 			var anchorRect = anchor.getBoundingClientRect();
 			var divId = "divQuoteContent" + floorIndex;
@@ -84,7 +84,7 @@ var markReply = function () {
 			//document.getElementById(divId).style.display="";
 		}
 	};
-	this.setAllReplyA = function () {
+	var setAllReplyA = function () {
 		var spans = document.getElementsByClassName("postcontent");
 		for (var i = 0; i < spans.length; i++) {
 			var anchors = spans[i].getElementsByTagName("a");

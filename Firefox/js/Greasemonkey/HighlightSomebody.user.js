@@ -4,6 +4,79 @@
 // @include     http://bbs.ngacn.cc/read.php*
 // @version     1
 // ==/UserScript==
+
+var highlightSomebody = function () {
+	this.checkAuthor = function (name, html) {
+		return html == name || html.indexOf(name + "(") != -1;
+	};
+	this.checkReply = function (name, content) {
+		return content.indexOf("[" + name + "]") != -1 || content.indexOf("Post by " + name) != -1;
+	};
+	this.getLouzhuName = function () {
+		var anchor = document.getElementById("postauthor0");
+		var louzhuName = "";
+		if (anchor) {
+			louzhuName = anchor.innerHTML;
+		}
+		return louzhuName;
+	};
+	var louzhuName = getLouzhuName();
+	this.findSomebody = function (name, color, bgColor, record) {
+		var findAuthor = function (name, color, bgColor, record) {
+			var anchors = document.getElementsByTagName("a");
+			for (var i = 0; i < anchors.length; i++) {
+				if (anchors[i].id.indexOf("postauthor") != -1) {
+					if (checkAuthor(name, anchors[i].innerHTML)) {
+						anchors[i].style.backgroundColor = bgColor;
+						anchors[i].style.color = color;
+						if (record != undefined) {
+							anchors[i].title = record;
+						}
+					}
+				}
+			}
+		}
+		var findQuoted = function (name, color, bgColor, record) {
+			var spans = document.getElementsByClassName("postcontent");
+			for (var i = 0; i < spans.length; i++) {
+				var bs = spans[i].getElementsByTagName("b");
+				for (var j = 0; j < bs.length; j++) {
+					var html = bs[j].innerHTML;
+					var anchors = bs[j].getElementsByTagName("a");
+					if (anchors.length != 0) {
+						var a = anchors[0];
+						if (checkReply(name, a.textContent)) {
+							a.innerHTML = a.textContent.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+							if (record != undefined) {
+								a.title = record;
+							}
+						}
+					} else {
+						var content = bs[j].textContent;
+						if (checkReply(name, content)) {
+							bs[j].innerHTML = content.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+							if (record != undefined) {
+								bs[j].title = record;
+							}
+						}
+					}
+				}
+			}
+		}
+		findAuthor(name, color, bgColor, record);
+		findQuoted(name, color, bgColor, record);
+	};
+	this.findPersons = function (persons, color, bgColor) {
+		var louzhuName = GetLouZhuName();
+		if (persons.length != 0) {
+			for (var i = 0; i < persons.length; i++) {
+				if (persons[i].id != louzhuName) {
+					FindSomebody(persons[i].id, color, bgColor, persons[i].record);
+				}
+			}
+		}
+	};
+};
 var checkAuthor = function (name, html) {
 	return html == name || html.indexOf(name + "(") != -1;
 };
