@@ -163,6 +163,24 @@ var highlightSomebody = function () {
 			}
 		}
 	};
+	var getRecord = function (name) {
+		for (var i = 0; i < specialPersons.famous.length; i++) {
+			if (name == specialPersons.famous[i].id) {
+				return specialPersons.famous[i].record;
+			}
+		}
+		for (var i = 0; i < specialPersons.female.length; i++) {
+			if (name == specialPersons.female[i].id) {
+				return specialPersons.female[i].record;
+			}
+		}
+		for (var i = 0; i < specialPersons.known.length; i++) {
+			if (name == specialPersons.known[i].id) {
+				return specialPersons.known[i].record;
+			}
+		}
+		return "";
+	};
 	var findLouzhu = function () {
 		try {
 			var name = louzhuName;
@@ -171,8 +189,9 @@ var highlightSomebody = function () {
 			}
 			var bgColor = "Black";
 			var color = "#00ff00";
+			var record = getRecord(name);
 			if (name != __CURRENT_UNAME) {
-				findSomebody(name, color, bgColor);
+				findSomebody(name, color, bgColor, record);
 			}
 		} catch (ERR) {}
 	};
