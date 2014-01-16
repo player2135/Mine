@@ -360,20 +360,21 @@ var highlightSomebody = function () {
 				var index = i + pageStartIndex;
 				var author = document.getElementById("postauthor" + index);
 				if (author) {
+					var content = author.innerHTML;
 					for (var j = 0; j < specialPersons.famous.length; j++) {
-						var result = checkUser(specialPersons.famous[j].id, author.innerHTML, index);
+						var result = checkUser(specialPersons.famous[j].id, content, index);
 						if (result.A != null) {
 							return result;
 						}
 					}
 					for (var j = 0; j < specialPersons.female.length; j++) {
-						var result = checkUser(specialPersons.female[j].id, author.innerHTML, index);
+						var result = checkUser(specialPersons.female[j].id, content, index);
 						if (result.A != null) {
 							return result;
 						}
 					}
 					for (var j = 0; j < specialPersons.known.length; j++) {
-						var result = checkUser(specialPersons.known[j].id, author.innerHTML, index);
+						var result = checkUser(specialPersons.known[j].id, content, index);
 						if (result.A != null) {
 							return result;
 						}
@@ -385,19 +386,19 @@ var highlightSomebody = function () {
 					for (var j = 0; j < bs.length; j++) {
 						var content = bs[j].textContent;
 						for (var k = 0; k < specialPersons.famous.length; k++) {
-							var result = checkUser(specialPersons.famous[k].id, author.innerHTML, index);
+							var result = checkUser(specialPersons.famous[k].id, content, index);
 							if (result.A != null) {
 								return result;
 							}
 						}
 						for (var k = 0; k < specialPersons.female.length; k++) {
-							var result = checkUser(specialPersons.female[k].id, author.innerHTML, index);
+							var result = checkUser(specialPersons.female[k].id, content, index);
 							if (result.A != null) {
 								return result;
 							}
 						}
 						for (var k = 0; k < specialPersons.known.length; k++) {
-							var result = checkUser(specialPersons.known[k].id, author.innerHTML, index);
+							var result = checkUser(specialPersons.known[k].id, content, index);
 							if (result.A != null) {
 								return result;
 							}
