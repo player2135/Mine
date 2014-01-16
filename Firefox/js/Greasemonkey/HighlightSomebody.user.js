@@ -230,7 +230,16 @@ var highlightSomebody = function () {
 			}
 		}
 	};
-
+	var getPageStartIndex = function () {
+		try {
+			var postDiv = document.getElementById("m_posts_c");
+			var tblFirst = postDiv.getElementsByTagName("table")[1];
+			var tr = tblFirst.getElementsByTagName("tr")[0];
+			return parseInt(tr.id.replace("post1strow", ""), 10);
+		} catch (ERR) {}
+		return 0;
+	};
+	var pageStartIndex = getPageStartIndex();
 	var locationUser = function (name) {
 		var username;
 		if (name == undefined) {
@@ -262,7 +271,7 @@ var highlightSomebody = function () {
 			var div = document.getElementById("m_posts_c");
 			var divChildren = div.childNodes;
 			for (var i = startIndex; i < div.childNodes.length; i++) {
-				var index = i;
+				var index = i + pageStartIndex;
 				var author = document.getElementById("postauthor" + index);
 				if (author) {
 					if (checkAuthor(name, author.innerHTML)) {
@@ -290,7 +299,7 @@ var highlightSomebody = function () {
 			}
 			alert("已经搜索到文档末尾，将回到最上层重新搜索");
 			for (var i = 0; i < startIndex; i++) {
-				var index = i;
+				var index = i + pageStartIndex;
 				var author = document.getElementById("postauthor" + index);
 				if (author) {
 					if (checkAuthor(name, author.innerHTML)) {
@@ -323,12 +332,155 @@ var highlightSomebody = function () {
 		}
 	};
 
+	var locationSpecial = function () {
+		var checkUser = function (name, content, index) {
+			if (checkAuthor(name, content)) {
+				var anchor = document.getElementById("post1strow" + index);
+				return {
+					A : anchor,
+					Index : index - pageStartIndex
+				};
+			}
+			if (checkReply(name, content)) {
+				var anchor = document.getElementById("post1strow" + index);
+				return {
+					A : anchor,
+					Index : index - pageStartIndex
+				};
+			}
+			return {
+				A : null,
+				Index : -1
+			};
+		};
+		var findSpecialUser = function (startIndex) {
+			var div = document.getElementById("m_posts_c");
+			var divChildren = div.childNodes;
+			for (var i = startIndex; i < div.childNodes.length; i++) {
+				var index = i + pageStartIndex;
+				var author = document.getElementById("postauthor" + index);
+				if (author) {
+					for (var j = 0; j < specialPersons.famous.length; j++) {
+						var result = checkUser(specialPersons.famous[j].id, author.innerHTML, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+					for (var j = 0; j < specialPersons.female.length; j++) {
+						var result = checkUser(specialPersons.female[j].id, author.innerHTML, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+					for (var j = 0; j < specialPersons.known.length; j++) {
+						var result = checkUser(specialPersons.known[j].id, author.innerHTML, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+				}
+				var post = document.getElementById("postcontent" + index);
+				if (post) {
+					var bs = post.getElementsByTagName("b");
+					for (var j = 0; j < bs.length; j++) {
+						var content = bs[j].textContent;
+						for (var k = 0; k < specialPersons.famous.length; k++) {
+							var result = checkUser(specialPersons.famous[k].id, author.innerHTML, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+						for (var k = 0; k < specialPersons.female.length; k++) {
+							var result = checkUser(specialPersons.female[k].id, author.innerHTML, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+						for (var k = 0; k < specialPersons.known.length; k++) {
+							var result = checkUser(specialPersons.known[k].id, author.innerHTML, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+					}
+				}
+			}
+			alert("已经搜索到文档末尾，将回到最上层重新搜索");
+			for (var i = 0; i < startIndex; i++) {
+				var index = i + pageStartIndex;
+				var author = document.getElementById("postauthor" + index);
+				if (author) {
+					var content = author.innerHTML;
+					for (var j = 0; j < specialPersons.famous.length; j++) {
+						var result = checkUser(specialPersons.famous[j].id, content, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+					for (var j = 0; j < specialPersons.female.length; j++) {
+						var result = checkUser(specialPersons.female[j].id, content, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+					for (var j = 0; j < specialPersons.known.length; j++) {
+						var result = checkUser(specialPersons.known[j].id, content, index);
+						if (result.A != null) {
+							return result;
+						}
+					}
+				}
+				var post = document.getElementById("postcontent" + index);
+				if (post) {
+					var bs = post.getElementsByTagName("b");
+					for (var j = 0; j < bs.length; j++) {
+						var content = bs[j].innerHTML;
+						for (var k = 0; k < specialPersons.famous.length; k++) {
+							var result = checkUser(specialPersons.famous[k].id, content, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+						for (var k = 0; k < specialPersons.female.length; k++) {
+							var result = checkUser(specialPersons.female[k].id, content, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+						for (var k = 0; k < specialPersons.known.length; k++) {
+							var result = checkUser(specialPersons.known[k].id, content, index);
+							if (result.A != null) {
+								return result;
+							}
+						}
+					}
+				}
+			}
+			return {
+				A : null,
+				Index : -1
+			};
+		};
+		if (window.locationSpecialUser == null) {
+			window.locationSpecialUser = {};
+			window.locationSpecialUser.floorIndex = -1;
+		}
+		var result = findSpecialUser(window.locationSpecialUser.floorIndex + 1);
+		if (result.A != null) {
+			var rect = result.A.getBoundingClientRect();
+			var top = rect.top + scrollY;
+			window.scroll(0, top);
+		}
+		window.locationSpecialUser.floorIndex = result.Index;
+	};
+
 	var appendTempConcernDiv = function () {
 		var script = document.createElement("script");
 		script.type = "text/javascript";
 		script.innerHTML = "function TurnToFloor() {try {var index = parseInt(document.getElementById('txtFloorIndex').value, 10);var tdId = 'post1strow' + index;var td = document.getElementById(tdId);if (td != null && td != undefined) {var table = td.parentNode.parentNode;var top = table.getBoundingClientRect().top;top += scrollY; window.scrollTo(scrollX, top);}}catch (Err) {alert(Err);}}";
 		document.getElementsByTagName("head")[0].appendChild(script);
 		window.locationUser = locationUser;
+		window.locationSpecial = locationSpecial;
 		var div = document.createElement("div");
 		div.style.position = "fixed";
 		div.style.right = "0px";
@@ -336,7 +488,7 @@ var highlightSomebody = function () {
 		div.style.backgroundColor = "rgb(255,248,229)";
 		div.style.border = "solid 1px black";
 		div.style.textAlign = "left";
-		div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/><input type='button' onclick='window.locationUser(\"" + __CURRENT_UNAME + "\");' value='Me'/><input type='button' onclick='window.locationUser(\"" + louzhuName + "\");' value='楼主'/>";
+		div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/><input type='button' onclick='window.locationUser(\"" + __CURRENT_UNAME + "\");' value='Me'/><input type='button' onclick='window.locationUser(\"" + louzhuName + "\");' value='楼主'/><input type='button' value='找人' onclick='window.locationSpecial();'/>";
 		document.body.appendChild(div);
 	};
 	findLouzhu();
