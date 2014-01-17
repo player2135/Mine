@@ -112,9 +112,10 @@ var markReply = function () {
 									floorIndex = getFloorIndex(anchorID);
 									span.innerHTML = floorIndex + "楼评论";
 									span.style.fontSize = "16px";
-
-									anchors[j].href = "#" + commentID;
-									anchors[j].target = "_self";
+									
+									setAnchorClickEvent(anchors[j], commentID);
+									/* anchors[j].href = "#" + commentID;
+									anchors[j].target = "_self"; */
 									var quoteContent = document.getElementById("postcommentcontainer_" + commentID.replace("postauthor_", "")).innerHTML;
 									appendReplyDiv(floorIndex, anchors[j], quoteContent);
 								}
