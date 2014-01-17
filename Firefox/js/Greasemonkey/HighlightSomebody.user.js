@@ -66,6 +66,9 @@ var highlightSomebody = function () {
 			}, {
 				id : "朵朵桑",
 				record : "自称女汉子的君威女司机"
+			}, {
+				id : "夏小伊",
+				record : "起得早画眉毛"
 			}
 		],
 		known : [{
