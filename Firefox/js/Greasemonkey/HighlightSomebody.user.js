@@ -135,11 +135,13 @@ var highlightSomebody = function () {
 					var html = bs[j].innerHTML;
 					var anchors = bs[j].getElementsByTagName("a");
 					if (anchors.length != 0) {
-						var a = anchors[0];
-						if (checkReply(name, a.textContent)) {
-							a.innerHTML = a.textContent.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
-							if (record != undefined) {
-								a.title = record;
+						for (var k = 0; k < anchors.length; k++) {
+							var a = anchors[k];
+							if (checkReply(name, a.textContent)) {
+								a.innerHTML = a.textContent.replace(name, "<span style='color:" + color + ";background-color:" + bgColor + ";'>" + name + "</span>");
+								if (record != undefined) {
+									a.title = record;
+								}
 							}
 						}
 					} else {
