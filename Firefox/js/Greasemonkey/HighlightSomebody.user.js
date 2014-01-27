@@ -26,6 +26,9 @@ var highlightSomebody = function () {
 			}, {
 				id : "毕游侠",
 				record : "炉石视频"
+			}, {
+				id : "竹井詩織里",
+				record : "安总"
 			}
 		],
 		female : [{
