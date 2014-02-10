@@ -79,6 +79,9 @@ var highlightSomebody = function () {
 			}, {
 				id : "银色の空",
 				record : "星爷"
+			}, {
+				id : "ty020530",
+				record : "野鸡"
 			}
 		]
 	};
