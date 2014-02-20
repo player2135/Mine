@@ -596,7 +596,7 @@ function varietynga_weibo(html,arg){
 //贴吧风格-使用AJAX获取版面帖子中是否有图片并作相应操作
 function varietynga_tieba(html,arg){
 var elimg = document.getElementById(arg).parentNode.getElementsByTagName("img")[0];
-	var poststr = /<span id='postcontent0'.*?>(.*?)(?=<\/span>)/.exec(html)[1];
+	var poststr = /<p id='postcontent0'.*?>(.*?)(?=<\/p>)/.exec(html)[1];
 	var imgreg = /\[img\](.*?)\[\/img\]/gi;
 	var postimg = [];
 	var ngamojostr = JSON.stringify(nga_plug_mojo).toLowerCase();
