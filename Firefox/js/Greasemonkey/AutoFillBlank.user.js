@@ -31,7 +31,7 @@ all.autoFillForm = function () {
 			for (var j = 0; j < firstNode.forms.length; j++) {
 				try {
 					document.getElementById(firstNode.forms[j].id).value = firstNode.forms[j].value;
-				} catch {}
+				} catch(err) {console.log(err);}
 			}
 		}
 	}
