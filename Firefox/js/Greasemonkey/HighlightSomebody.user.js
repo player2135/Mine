@@ -2,6 +2,7 @@
 // @name        楼主名字加亮
 // @namespace   nga
 // @include     http://bbs.ngacn.cc/read.php*
+// @include     http://nga.178.com/read.php*
 // @version     1
 // ==/UserScript==
 

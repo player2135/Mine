@@ -2,6 +2,7 @@
 // @name        标记回复楼层
 // @namespace   nga
 // @include     http://bbs.ngacn.cc/read.php*
+// @include     http://nga.178.com/read.php*
 // @version     1
 // ==/UserScript==
 

@@ -2,6 +2,7 @@
 // @name        列表新窗口打开
 // @namespace   nga
 // @include     http://bbs.ngacn.cc/thread.php*
+// @include     http://nga.178.com/thread.php*
 // @include		http://bbs.bt5156.com/forumdisplay.php*
 // @include		http://bbs.bt5156.com/thread.php*
 // @version     1
