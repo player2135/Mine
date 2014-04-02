@@ -2,6 +2,7 @@
 // @name        自动跳转到NGA.CC
 // @namespace   all
 // @include     http://nga.178.com/*
+// @exclude     http://nga.178.com/nuke.php
 // @version     1
 // ==/UserScript==
 
