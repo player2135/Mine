@@ -66,7 +66,7 @@ window.ChangeTextToPicture = function()
 	{
 		var pageUrl="http://vipreader.qidian.com"+form1.getAttribute("action");
 		var imgArr=[];
-		for	(var i = 0;i<Math.ceil(textLength/2500);i++)
+		for	(var i = 0;i<Math.ceil(textLength/2400);i++)
 		{
 			var img=document.createElement("img");
 			var imgUrl=GetImgUrl(form1)+i.toString();
