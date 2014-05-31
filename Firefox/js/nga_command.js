@@ -681,7 +681,7 @@ var nga_plug_plugs = [
 	id:"varietynga",
 	title:"百变NGA",
 	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_varietynga.js",
-	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/varietynga.test.js",
+	//testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/varietynga.test.js",
 	charset:"UTF-8",
 	check:true
 }
