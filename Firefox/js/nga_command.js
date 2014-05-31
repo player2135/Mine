@@ -651,7 +651,14 @@ var nga_plug_plugs = [
 	//testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.test.js",
 	charset:"UTF-8",
 	check:true
-},{
+},/*{
+	id:"Blacklist",
+	title:"黑名单插件",
+	src:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.js",
+	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.test.js",
+	charset:"UTF-8",
+	check:false
+},*/{
 	id:"ngacn_ui_mojo",
 	title:"表情-虚空之魂",
 	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/ngacn_ui_mojo.js",
@@ -663,28 +670,21 @@ var nga_plug_plugs = [
 	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_mojo_for_lintx.js",
 	charset:"UTF-8",
 	check:true
-},,{
-	id:"varietynga",
-	title:"百变NGA",
-	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_varietynga.js",
-	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/varietynga.test.js",
-	charset:"UTF-8",
-	check:true
-}/*{
-	id:"Blacklist",
-	title:"黑名单插件",
-	src:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.js",
-	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.test.js",
-	charset:"UTF-8",
-	check:false
-},*//*{
+},/*{
 	id:"othertools",
 	title:"小工具集合",
 	src:"http://ngaplug.googlecode.com/svn/ngaplug/othertools.js",
 	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/othertools.test.js",
 	charset:"UTF-8",
 	check:false
-}*/
+},*/{
+	id:"varietynga",
+	title:"百变NGA",
+	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_varietynga.js",
+	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/varietynga.test.js",
+	charset:"UTF-8",
+	check:true
+}
 ];
 var nga_plug_mojo = [];
 var nga_plug_setting_list = [];
@@ -758,7 +758,7 @@ function nga_plug_control_Initialization(){
 	
 	//加载固定插件
 	for (var i = 0;i<nga_plug_plugs.length;i++){
-		if (nga_plug_plugs[i] && nga_plug_plugs[i].check){
+		if (nga_plug_plugs[i].check){
 			nga_plug_loaderScript(nga_plug_plugs[i].src,nga_plug_plugs[i].id+"_Initialization()",nga_plug_plugs[i].charset);
 		}
 	}
