@@ -4,7 +4,7 @@
 // ================================================================================
 var nga_plug_control_table_s = [];
 var nga_plug_control_version = "2.0";
-loader.css("http://ngaplug.googlecode.com/svn/ngaplug/css.css");  //加载CSS
+loader.css("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/js/nga_style.css");  //加载CSS
 var nga_plug_varietynga_reload = [];  //存储百变NGA，加载后一页时需要执行的函数  用法： nga_plug_varietynga_reload.push("xxxx")   xxxx为需要执行的函数
 //全局函数：给一个有ID的元素绑定事件以使点击该元素外的区域隐藏该元素
 //注意：需要在弹出菜单的触发链接或者按钮的onclick里面加  event.cancelBubble = true;   这是禁止冒泡的语句，如果该链接或者按钮需要点击后触父元素的某些事件请勿使用该方法
@@ -648,7 +648,7 @@ var nga_plug_plugs = [
 	id:"nga_edit",
 	title:'UBB编辑器',
 	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_editor.js",//"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.js",
-	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.test.js",
+	//testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.test.js",
 	charset:"UTF-8",
 	check:true
 },/*{
