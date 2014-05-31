@@ -657,7 +657,7 @@ var nga_plug_plugs = [
 	src:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.js",
 	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/Blacklist.test.js",
 	charset:"UTF-8",
-	check:true
+	check:false
 },{
 	id:"ngacn_ui_mojo",
 	title:"表情-虚空之魂",
@@ -676,7 +676,7 @@ var nga_plug_plugs = [
 	src:"http://ngaplug.googlecode.com/svn/ngaplug/othertools.js",
 	testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/othertools.test.js",
 	charset:"UTF-8",
-	check:true
+	check:false
 },{
 	id:"varietynga",
 	title:"百变NGA",
