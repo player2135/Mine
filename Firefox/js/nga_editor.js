@@ -4,7 +4,7 @@
 // 版本：1.4
 // ================================================================================
 
-loader.css("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/js/nga_editor.css"); //加载CSS
+loader.css("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/css/nga/nga_editor.css"); //加载CSS
 
 var nga_edit_tmpshot = [];
 var nga_edit_tmpshot_i = 0;
