@@ -7,8 +7,13 @@ var nga_plug_control_version = "2.0";
 
 var loadCss=function(url)
 {
-	var css=document.createElement("style");
-	css.src=url;
+	var css=document.createElement("link");
+	css.href=url;
+	css.rel="StyleSheet";
+	css.type="text/css";
+	css.onload=function(){
+		console.log("load:" + url);
+	};
 	document.getElementsByTagName("head")[0].appendChild(css);
 };
 loadCss("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/css/nga/nga_style.css");  //加载CSS
