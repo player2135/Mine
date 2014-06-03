@@ -937,10 +937,10 @@ function varietynga_img(){
 			ts.left = nga_plug_elementLeft(timg[i]) + "px";
 			ts.innerHTML = "<div style='position: absolute;z-index:999'>\r\
 				<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"l\");return false;' title='左转' \
-				style='display: inline-block; background-image: url(http://ngaplug.googlecode.com/svn/ngaplug/img/left.gif); \
+				style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/left.gif); \
 				height: 16px; width: 16px; border:1px solid #777777; background-position: initial initial; background-repeat: initial initial;'></div>\r\
 				<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"r\");return false;' title='右转' \
-				style='display: inline-block; background-image: url(http://ngaplug.googlecode.com/svn/ngaplug/img/right.gif); \
+				style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/right.gif); \
 				height: 16px; width: 16px; border:1px solid #777777;background-position: initial initial; background-repeat: initial initial;'></div>\
 				</div>";
 			timg[i].parentNode.insertBefore(ts,timg[i]);
