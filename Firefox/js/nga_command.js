@@ -8,6 +8,7 @@ var nga_plug_control_version = "2.0";
 var loadCssAjax=function(url){
 	var loadCss=function(content)
 	{
+		console.log(content);
 		var css=document.createElement("style");
 		css.innerHTML=content;
 		document.getElementsByTagName("head")[0].appendChild(css);
