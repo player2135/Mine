@@ -647,7 +647,7 @@ var nga_plug_plugs = [
 {
 	id:"nga_edit",
 	title:'UBB编辑器',
-	src:"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_editor.js",//"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.js",
+	src:"https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/js/nga_editor.js",//"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.js",
 	//testsrc:"http://ngaplug.googlecode.com/svn/ngaplug/editor/editor.test.js",
 	charset:"UTF-8",
 	check:true
