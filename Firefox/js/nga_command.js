@@ -12,7 +12,7 @@ var loadCssAjax=function(url){
 		css.innerHTML=content;
 		document.getElementsByTagName("head")[0].appendChild(css);
 	};
-	nga_plug_XMLHttp(url,loadCss);
+	new nga_plug_XMLHttp(url,loadCss);
 };
 loadCssAjax("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/css/nga/nga_style.css");  //加载CSS
 var nga_plug_varietynga_reload = [];  //存储百变NGA，加载后一页时需要执行的函数  用法： nga_plug_varietynga_reload.push("xxxx")   xxxx为需要执行的函数
