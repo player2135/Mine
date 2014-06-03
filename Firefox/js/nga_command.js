@@ -5,6 +5,21 @@
 var nga_plug_control_table_s = [];
 var nga_plug_control_version = "2.0";
 
+var loadCssUrl=function(url)
+{
+	var css=document.createElement("link");
+	css.href=url;
+	css.rel="StyleSheet";
+	css.type="text/css";
+	document.getElementsByTagName("head")[0].appendChild(css);
+};
+var loadCssContent=function(content)
+{
+	var css=document.createElement("style");
+	css.innerHTML=content;
+	document.getElementsByTagName("head")[0].appendChild(css);
+}
+loadCssContent("/* TAB */.nga_plug_tab{	/*background:#FFF8E5;*/}.nga_plug_tab_menu_box{	overflow:hidden;	width:100%;	text-align:left;	margin-top:2px;}.nga_plug_tab_menu{	margin:0;	padding:0;	position:absolute;}.nga_plug_tab_menu li{	float:left;	display:block;	cursor:pointer;	width:72px;	text-align:center;	margin-right:1px;}.nga_plug_tab_menu_close{ /*非选中状态的TAB项目样式*/	background:#feb;	border:1px solid #777;	height:20px;}.nga_plug_tab_menu_open{ /*选中状态的TAB项目样式*/	background:#FEF3D1;	border-left:1px solid #777;	border-top:1px solid #777;	border-right:1px solid #777;	height:21px;}.nga_plug_tab_menu a{/*TAB项链接样式*/	color:gray;	text-decoration:none;}.nga_plug_tab_menu a:hover {/*TAB项鼠标放上去的样式*/	color: #1D2A63;	text-decoration:none;}.nga_plug_tab_main{	background:#FEF3D1;	clear:both;	margin-top:21px;	border:1px solid #777;	padding:8px;}.nga_plug_tab_pan {	display: none;}/* TAB结束 *//*  控制台样式  */.nga_plug_table{	width:800px;	height:500px;	left:75px;	top:40px;	border:1px solid #777;	background:#FEF3D1;	box-shadow : 5px 5px 5px #444;	position : absolute;	z-index : 10;	text-align:left;}.nga_plug_table_top{	border-bottom:1px solid #777;	cursor:default;}.nga_plug_table_left{	border-right:1px solid #777;	width:146px;}.nga_plug_table_left_div{	OVERFLOW-Y:auto;	OVERFLOW-X:hidden;	HEIGHT:476px;	margin-top:2px;}.nga_plug_table_left_div_span_hover{	border:1px solid #777;	width:124px;	margin-bottom:3px;	margin-left:2px;	display:block;	cursor:pointer;	background:#c0b090;}.nga_plug_table_left_span{	border:1px solid #777;	width:124px;	margin-bottom:3px;	margin-left:2px;	display:block;	cursor:pointer;}.nga_plug_table_right_div{	margin-left:2px;	margin-right:2px;	HEIGHT:476px;}.nga_plug_table_tab_div{	height:434px;	OVERFLOW-Y:auto;}/*  控制台样式结束  */.nga_plug_plugcon{	border-left:1px solid #777;	border-right:1px solid #777;	border-bottom:1px solid #777;	text-align:left;	width:607px;}.ngaplug_heibenzi > span:nth-child(2) > div {display:none;background-image: url('http://ngaplug.googlecode.com/svn/ngaplug/bl.png');width:12px;height:12px;margin-left:2px;}.ngaplug_heibenzi:hover > span:nth-child(2) > div {display:inline-block!important;}.ngaplug_heibenzi > span:nth-child(2) > div:nth-of-type(1) {background-position: -12px 0;margin-left:10px;}.ngaplug_heibenzi {visibility: hidden;}.posterinfo > div > a[name='ngaplug_pingbi'] {display:none}td:hover > .posterinfo div[class='ngaplug_heibenzi'] {visibility: visible;}td:hover > .posterinfo > div > a[name='ngaplug_pingbi'] {display:inline}.varietyngas > div {display:none}.varietyngas:hover > div {display:block}.varietyngal {	-moz-transform: rotate(-90deg); /*Firefox*/	-webkit-transform: rotate(-90deg); /*webkit引擎的浏览器，如safari和chrome*/	-o-transform: rotate(-90deg); /*Opera*/	-ms-transform: rotate(-90deg); /*IE9*/}.varietyngar {	-moz-transform: rotate(90deg); /*Firefox*/	-webkit-transform: rotate(90deg); /*webkit引擎的浏览器，如safari和chrome*/	-o-transform: rotate(90deg); /*Opera*/	-ms-transform: rotate(90deg); /*IE9*/}.varietyngat {	-moz-transform: rotate(180deg); /*Firefox*/	-webkit-transform: rotate(180deg); /*webkit引擎的浏览器，如safari和chrome*/	-o-transform: rotate(180deg); /*Opera*/	-ms-transform: rotate(180deg); /*IE9*/}");  //加载CSS
 //loadCss("https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/css/nga/nga_style.css");  //加载CSS
 var nga_plug_varietynga_reload = [];  //存储百变NGA，加载后一页时需要执行的函数  用法： nga_plug_varietynga_reload.push("xxxx")   xxxx为需要执行的函数
 //全局函数：给一个有ID的元素绑定事件以使点击该元素外的区域隐藏该元素
