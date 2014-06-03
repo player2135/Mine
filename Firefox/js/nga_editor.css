@@ -22,7 +22,7 @@
 	display:inline-block!important;
 }
 .nga_edui_icon{   /*图标全局*/
-	background-image: url('http://ngaplugins.googlecode.com/svn/trunk/editor/eimg/icons.png');
+	background-image: url('https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/icons.png');
 	width:20px;
 	height:20px;
 	border:1px solid #FFF8E5;
@@ -163,7 +163,7 @@
 
 .nga_plug_quick_text_a > div{
 	display: none;
-	background-image: url('http://ngaplugins.googlecode.com/svn/trunk/bl.png');
+	background-image: url('https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/bl.png');
 	width: 12px;
 	height: 12px;
 	margin-left: 2px;
