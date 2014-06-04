@@ -75,7 +75,7 @@ varietynga_weibo_ajax.tf = function(mode){
 		oo._.__add(
 			_$('/a').$0(
 				'href','javascript:void(0)',
-				'innerHTML','完毕<img src="http://ngaplugins.googlecode.com/svn/trunk/progressIndicator16x16.gif" style="height:12px;">',
+				'innerHTML','完毕<img src="https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/progressIndicator16x16.gif" style="height:12px;">',
 				'title','本帖内容已经显示到最后页,现在每隔6秒将检测一次是否有新回复，你也可以点击这个按钮取消定时检测。',
 				'className','darkred',
 				'onclick','varietynga_weibo_ajax.tf(0)'
@@ -138,7 +138,7 @@ function varietynga_weibo_scroll(check,tfunc){
 		oo._.__add(
 			_$('/a').$0(
 				'href','javascript:void(0)',
-				'innerHTML','正在加载<img src="http://ngaplugins.googlecode.com/svn/trunk/progressIndicator16x16.gif" style="height:12px;">',
+				'innerHTML','正在加载<img src="https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/progressIndicator16x16.gif" style="height:12px;">',
 				'title','正在加载后面的页面，请稍候...',
 				'className','darkred'
 			)
@@ -209,7 +209,7 @@ function varietynga_Initialization(){
 				var ti = document.getElementById("t_tt"+i);
 				new nga_plug_XMLHttp(ti.href,varietynga_tieba,"t_tt"+i);
 				var x = document.createElement('span');
-				x.innerHTML = "<img title='正在获取该主题的图片' src='http://lintxinclude.googlecode.com/files/progressIndicator16x16.gif'>";
+				x.innerHTML = "<img title='正在获取该主题的图片' src='https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/progressIndicator16x16.gif'>";
 				ti.parentNode.appendChild(x);
 			}
 		}
@@ -633,7 +633,7 @@ var elimg = document.getElementById(arg).parentNode.getElementsByTagName("img")[
 		return;
 	}else{
 		//elimg.parentNode.removeChild(elimg);
-		elimg.src = "http://ngaplug.googlecode.com/svn/ngaplug/img/yes.png";
+		elimg.src = "https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/yes.png";
 		elimg.title = "该帖有图片。";
 		for(var i=0;i<postimg.length;i++){
 			if (postimg[i].substr(0,1) == "."){
