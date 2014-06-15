@@ -16,7 +16,7 @@ var nga_edit_system_mojo;
 
 function nga_edit_Initialization() {
 	nga_plug_addmsg("nga_edit", "NGA UBB编辑器插件", "添加测试功能：所见即所得编辑，原“编辑”标签修改为“代码”标签，原“编辑”标签为所见即所得编辑模式。\n提示：1.部分代码暂不支持所见即所得模式（如code代码）这种类型的代码在所见即所得模式下依然显示源代码。\
-			\n2.如在所见即所得编辑模式下编辑后造成代码错乱（部分换行消失不算）请在UBB（代码）模式下撤销至之前的内容即可，并请将之前的内容以code代码包含后发至交流贴以便修复BUG。");
+							\n2.如在所见即所得编辑模式下编辑后造成代码错乱（部分换行消失不算）请在UBB（代码）模式下撤销至之前的内容即可，并请将之前的内容以code代码包含后发至交流贴以便修复BUG。");
 
 	nga_edit_mojo_check.load();
 	nga_edit_mojo_check.data = nga_edit_mojo_check.data || [];
@@ -315,44 +315,45 @@ function nga_edit_html2ubb(html) {
 	c = c.replace(/<a.*?href="(.*?)"(.*?)>(.*?)<\/a>/gi, function ($0, $1, $2, $3) {
 			if ($2.indexOf("onmouseover") >= 0)
 				return "[url=" + $1 + "]" + $3 + "[/url]";
-			return "[url]" + $1 + "[/url]"
-		})while (/<(ul|ol.*?)>(.*?)<\/(u|o)l>/i.test(c)) {
-			c = c.replace(/(.*)<(ul|ol.*?)>(.*?)<\/(u|o)l>/i, function ($0, $1, $2, $3) {
-					var li = $3.replace(/<li>(.*?)(<\/li>)/gi, function ($0, $1) {
-							return "[*]" + $1
-						});
-					if ($2 != "ul") {
-						return $1 + "[list=" + $2.replace(/.*?type="(.*?)"/, function ($0, $1) {
-							return $1
-						}) + "]" + li + "[/list]";
-					} else {
-						return $1 + "[list]" + li + "[/list]"
-					}
-					//return $1 + "[list]" + $3.replace(/<li>(.*?)(<\/li>)/gi,function($0,$1){return "[*]" + $1}) + "[/list]"
-				})
-		}
-		while (/<table.*?>.*?<tbody>(.*?)<\/tbody>.*?<\/table>/.test(c)) {
-			c = c.replace(/(.*)<table.*?>.*?<tbody>(.*?)<\/tbody>.*?<\/table>/i, function ($0, $1, $2) {
-					$2 = $2.replace(/<tr>(.*?)<\/tr>/gi, function ($0, $1) {
-							$1 = $1.replace(/<td(.*?)>(.*?)<\/td>/gi, function ($0, $1, $2) {
-									var td = "[td";
-									if ($1.indexOf("rowspan=") >= 0) {
-										td += " rowspan" + /rowspan="(.*?)"/gi.exec($1)[1]
-									}
-									if ($1.indexOf("colspan=") >= 0) {
-										td += " colspan" + /colspan="(.*?)"/gi.exec($1)[1]
-									}
-									if ($1.indexOf("width:") >= 0) {
-										td += " width" + /width:(.*?)%/gi.exec($1)[1]
-									}
-									return td + "]" + $2 + "[/td]";
-								})
-								return "[tr]" + $1 + "[/tr]";
-						})
-						return $1 + "[table]" + $2 + "[/table]";
-				})
-		}
-		c = c.replace(/<br\/?>/ig, "\n")
+			return "[url]" + $1 + "[/url]";
+		});
+	while (/<(ul|ol.*?)>(.*?)<\/(u|o)l>/i.test(c)) {
+		c = c.replace(/(.*)<(ul|ol.*?)>(.*?)<\/(u|o)l>/i, function ($0, $1, $2, $3) {
+				var li = $3.replace(/<li>(.*?)(<\/li>)/gi, function ($0, $1) {
+						return "[*]" + $1
+					});
+				if ($2 != "ul") {
+					return $1 + "[list=" + $2.replace(/.*?type="(.*?)"/, function ($0, $1) {
+						return $1
+					}) + "]" + li + "[/list]";
+				} else {
+					return $1 + "[list]" + li + "[/list]";
+				}
+				//return $1 + "[list]" + $3.replace(/<li>(.*?)(<\/li>)/gi,function($0,$1){return "[*]" + $1}) + "[/list]"
+			})
+	}
+	while (/<table.*?>.*?<tbody>(.*?)<\/tbody>.*?<\/table>/.test(c)) {
+		c = c.replace(/(.*)<table.*?>.*?<tbody>(.*?)<\/tbody>.*?<\/table>/i, function ($0, $1, $2) {
+				$2 = $2.replace(/<tr>(.*?)<\/tr>/gi, function ($0, $1) {
+						$1 = $1.replace(/<td(.*?)>(.*?)<\/td>/gi, function ($0, $1, $2) {
+								var td = "[td";
+								if ($1.indexOf("rowspan=") >= 0) {
+									td += " rowspan" + /rowspan="(.*?)"/gi.exec($1)[1]
+								}
+								if ($1.indexOf("colspan=") >= 0) {
+									td += " colspan" + /colspan="(.*?)"/gi.exec($1)[1]
+								}
+								if ($1.indexOf("width:") >= 0) {
+									td += " width" + /width:(.*?)%/gi.exec($1)[1]
+								}
+								return td + "]" + $2 + "[/td]";
+							})
+							return "[tr]" + $1 + "[/tr]";
+					})
+					return $1 + "[table]" + $2 + "[/table]";
+			})
+	}
+	c = c.replace(/<br\/?>/ig, "\n")
 		return c;
 }
 
@@ -483,7 +484,7 @@ function nga_edit_gettabhtml() {
 	t_html += '   <div id="nga_edit_icon_huifu" onclick="nga_edit_icon_click(this,\'huifu\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="重做一次操作" class="nga_edui_icon nga_edui_huifu nga_edui_disabled"></div>';
 	t_html += '   <div class="nga_edui_icon nga_edui_fenge"></div>';
 	t_html += '   <div id="nga_edit_icon_mojo" onclick="event.cancelBubble = true;nga_edit_icon_click(this,\'mojo\');" onmouseover="nga_edit_icon_hover(this,\'move\');var td = document.getElementById(\'nga_edit_quickmojo\');td.style.display = \'block\';td.style.left = nga_plug_elementLeft(this) + 1 + \'px\';td.style.top = nga_plug_elementTop(this) + 23 + \'px\';try{clearTimeout(nga_edit_timer_lists);}catch(e){};" onmouseout="nga_edit_icon_hover(this,\'out\',\'quickmojo\');" title="表情" class="nga_edui_icon nga_edui_mojo">\
-						<div id="nga_edit_quickmojo" style="display:none;position : absolute;background-color:#FFF8E5;cursor :default;width:132px;border: 1px solid #777;z-index:3;">'
+								<div id="nga_edit_quickmojo" style="display:none;position : absolute;background-color:#FFF8E5;cursor :default;width:132px;border: 1px solid #777;z-index:3;">'
 	for (var i = 0; i < nga_edit_quick_mojo.data.length; i++) {
 		//for (var i=0;i<9;i++){
 		t_html += '<img onclick="event.cancelBubble = true;nga_edit_mojo(\'click\',this,event,\'quick\');" style="border:1px solid #777;margin:1px;cursor:pointer;width:40px;height:40px;" onmouseover="nga_edit_mojo(\'over\',this,event);" onmouseout="nga_edit_mojo(\'out\',this);" alt="' + nga_edit_quick_mojo.data[i] + '" src="' + nga_edit_quick_mojo.data[i] + '">';
@@ -515,13 +516,13 @@ function nga_edit_gettabhtml() {
 	t_html += '   <div onclick="nga_edit_icon_click(this,\'code\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入代码" class="nga_edui_icon nga_edui_code"></div>';
 	t_html += '   <div onclick="nga_edit_icon_click(this,\'lists\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入无序列表" class="nga_edui_icon nga_edui_lists"></div>';
 	t_html += '   <div onclick="nga_edit_icon_click(this,\'listsa\');" onmouseover="nga_edit_icon_hover(this,\'move\',\'option\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入有序列表" class="nga_edui_icon nga_edui_listsa">\
-						<div id="nga_edit_listselectdiv" style="display:none;position : absolute;background-color:#FFF8E5;cursor :default;width:120px;border: 1px solid #777;" onmouseover="nga_edit_icon_hover(this,\'move\',\'option\');" onmouseout="nga_edit_icon_hover(this.parentNode,\'out\',\'option\');">\
-							<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'1\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为1,2,3的列表">1,2,3</div>\
-							<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'a\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为a,b,c的列表">a,b,c</div>\
-							<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'A\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为A,B,C的列表">A,B,C</div>\
-							<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'i\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为i,ii,iii的列表">i,ii,iii</div>\
-							<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'I\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为I,II,III的列表">I,II,III</div>\
-						</div></div>';
+								<div id="nga_edit_listselectdiv" style="display:none;position : absolute;background-color:#FFF8E5;cursor :default;width:120px;border: 1px solid #777;" onmouseover="nga_edit_icon_hover(this,\'move\',\'option\');" onmouseout="nga_edit_icon_hover(this.parentNode,\'out\',\'option\');">\
+									<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'1\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为1,2,3的列表">1,2,3</div>\
+									<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'a\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为a,b,c的列表">a,b,c</div>\
+									<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'A\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为A,B,C的列表">A,B,C</div>\
+									<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'i\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为i,ii,iii的列表">i,ii,iii</div>\
+									<div style="border:1px solid #FFF8E5;padding-left: 20px; padding-top: 1px; padding-bottom: 1px;" onclick="nga_edit_icon_click(this,\'listsa\',\'I\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入序号为I,II,III的列表">I,II,III</div>\
+								</div></div>';
 	t_html += '   <div onclick="nga_edit_icon_click(this,\'table\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入表格" class="nga_edui_icon nga_edui_table"></div>';
 	t_html += '   <div class="nga_edui_icon nga_edui_fenge"></div>';
 	t_html += '   <div onclick="nga_edit_icon_click(this,\'tid\');" onmouseover="nga_edit_icon_hover(this,\'move\');" onmouseout="nga_edit_icon_hover(this,\'out\');" title="插入主题" class="nga_edui_icon nga_edui_tid"></div>';
@@ -958,9 +959,9 @@ function nga_edit_mojo(act, obj, e, autoor, id) {
 			tmpdiv.style.left = nga_plug_elementLeft(obj) + 1 + 'px';
 			tmpdiv.style.top = nga_plug_elementTop(obj) + 23 + 'px';
 			tmpdiv.innerHTML = '<div style="padding:4px;">\
-								<div style="width:100%;border-bottom:1px solid #777;">请选择表情  提示：按住CTRL键的同时点击表情可一次插入多个表情\
-								<span style="float:right"><a href="javascript:void(0)" onclick="document.body.removeChild(document.getElementById(\'nga_edit_mojo\'));nga_edit_mojo(\'create\',document.getElementById(\'nga_edit_icon_mojo\'));">重载</a> <a href="javascript:void(0)" onclick="nga_edit_mojo(\'create\');">关闭</a></span></div>\
-								<div id="nga_edit_mojo_b"></div></div>'
+																<div style="width:100%;border-bottom:1px solid #777;">请选择表情  提示：按住CTRL键的同时点击表情可一次插入多个表情\
+																<span style="float:right"><a href="javascript:void(0)" onclick="document.body.removeChild(document.getElementById(\'nga_edit_mojo\'));nga_edit_mojo(\'create\',document.getElementById(\'nga_edit_icon_mojo\'));">重载</a> <a href="javascript:void(0)" onclick="nga_edit_mojo(\'create\');">关闭</a></span></div>\
+																<div id="nga_edit_mojo_b"></div></div>'
 				document.body.appendChild(tmpdiv);
 			nga_plug_HideDomOfClick('nga_edit_mojo');
 			document.getElementById('nga_edit_mojo').style.display = "block";
@@ -1137,11 +1138,11 @@ function nga_edit_table(act, value, obj) {
 			tmpdiv.style.left = nga_plug_elementLeft(obj.parentNode.getElementsByTagName("div")[0]) + 1 + 'px';
 			tmpdiv.style.top = nga_plug_elementTop(obj) + 23 + 'px';
 			tmpdiv.innerHTML = "<div style='padding:5px;'>\
-								<button onclick='nga_edit_table(\"add\");'>确定</button>  <button onclick='nga_edit_table(\"create\");'>取消</button><br>\
-								行数：<input type='text' onchange='nga_edit_table(\"check\",this.value,this)' value=2> \
-								列数：<input type='text' onchange='nga_edit_table(\"check\")' value=2>  \
-								<button onclick='nga_edit_table(\"adv\");this.innerHTML = \"重制\"'>高级</button> 提示：高级中的合并单元格功能可能导致表格混乱。\
-								<div id='nga_edit_table_b' class='forumbox' style='width:880;display:none;'></div></div>"
+																<button onclick='nga_edit_table(\"add\");'>确定</button>  <button onclick='nga_edit_table(\"create\");'>取消</button><br>\
+																行数：<input type='text' onchange='nga_edit_table(\"check\",this.value,this)' value=2> \
+																列数：<input type='text' onchange='nga_edit_table(\"check\")' value=2>  \
+																<button onclick='nga_edit_table(\"adv\");this.innerHTML = \"重制\"'>高级</button> 提示：高级中的合并单元格功能可能导致表格混乱。\
+																<div id='nga_edit_table_b' class='forumbox' style='width:880;display:none;'></div></div>"
 				document.body.appendChild(tmpdiv);
 		}
 	} else if (act == "check") {
@@ -1245,9 +1246,9 @@ function nga_edit_table(act, value, obj) {
 		for (var i = 0; i < tables.rows.length; i++) {
 			for (var k = 0; k < tables.rows[i].cells.length; k++) {
 				tables.rows[i].cells[k].innerHTML = "<input style='width:80%' onchange='nga_edit_table(\"txt\",this.value,this.parentNode)' value='" + tables.rows[i].cells[k].innerHTML + "' />\
-										<a href='javascript:void(0)' title='向右合并' onclick='nga_edit_table(\"arr\",\"c\",this.parentNode)' class='right'>→</a> \
-										<a href='javascript:void(0)' title='向下合并' onclick='nga_edit_table(\"arr\",\"r\",this.parentNode)' class='right'>↓</a> \
-										<a href='javascript:void(0)' title='设置宽度' onclick='nga_edit_table(\"arr\",\"w\",this.parentNode)' class='right'>↔</a>";
+																				<a href='javascript:void(0)' title='向右合并' onclick='nga_edit_table(\"arr\",\"c\",this.parentNode)' class='right'>→</a> \
+																				<a href='javascript:void(0)' title='向下合并' onclick='nga_edit_table(\"arr\",\"r\",this.parentNode)' class='right'>↓</a> \
+																				<a href='javascript:void(0)' title='设置宽度' onclick='nga_edit_table(\"arr\",\"w\",this.parentNode)' class='right'>↔</a>";
 			}
 		}
 	}
