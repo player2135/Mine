@@ -1062,7 +1062,7 @@ function nga_edit_mojo(act, obj, e, autoor, id) {
 		}
 		if (!isquickmojo) {
 			var tsrc;
-			if (autoor == "NGA") {
+			if (autoor == "NGA" || obj.src!=obj.alt) {
 				tsrc = obj.src;
 			} else {
 				tsrc = obj.alt;
