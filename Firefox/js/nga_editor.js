@@ -54,7 +54,7 @@ function nga_edit_Initialization() {
 	if (document.getElementById("fast_post_c") && document.getElementById("fast_post_c").getElementsByTagName("textarea").length != 0) {
 		//document.getElementById("atc_content").id="";
 		document.getElementById("fast_post_c").getElementsByTagName("textarea")[0].id = "atc_content";
-		postfunc.o_content = document.getElementById("atc_content");
+		postfunc.o_content.id = "atc_content";
 		postfunc.content = postfunc.o_content;
 		postfunc.addsmile = function (code) {
 			postfunc.addText(code);
