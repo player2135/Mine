@@ -27,7 +27,9 @@ function OpenNewNga()
 	var authorA=document.getElementsByClassName("author");
 	SetAllAOpenNew(authorA);
 	var replyA=document.getElementsByClassName("silver replydate");
-	SetAllAOpenNew(replyA);	
+	SetAllAOpenNew(replyA);
+	var menuA=document.getElementById("mainmenu").getElementsByTagName("a");
+	SetAllAOpenNew(menuA);
 }
 function OpenNewBt5156()
 {
