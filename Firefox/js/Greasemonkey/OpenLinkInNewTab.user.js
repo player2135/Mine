@@ -11,7 +11,9 @@ function SetAllAOpenNew(anchors)
 {
 	for(var i=0;i<anchors.length;i++)
 	{
-		anchors[i].setAttribute("target","_blank");
+		if(anchors[i].href.indexOf("javascript")!=0){
+			anchors[i].setAttribute("target","_blank");
+		}
 	}
 }
 function OpenNewNga()
