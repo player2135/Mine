@@ -309,8 +309,8 @@ var highlightSomebody = function () {
 					}
 				}
 			}
-			alert("已经搜索到文档末尾，将回到最上层重新搜索");
-			for (var i = 0; i < startIndex; i++) {
+			alert("已经搜索到文档末尾，再次点击将回到最上层重新搜索");
+			/* for (var i = 0; i < startIndex; i++) {
 				var index = i + pageStartIndex;
 				var author = document.getElementById("postauthor" + index);
 				if (author) {
@@ -336,7 +336,7 @@ var highlightSomebody = function () {
 						}
 					}
 				}
-			}
+			} */
 			return {
 				A : null,
 				Index : -1
