@@ -6,15 +6,18 @@
 // ==/UserScript==
 
 function DisplayChapterName() {
-	var div = document.createElement("div");
-	div.style.position = "fixed";
-	div.style.right = "0px";
-	div.style.bottom = "0px";
-	div.style.backgroundColor = "black";
-	div.style.color = "#00ff00";
-	div.style.fontSize = "16px";
-	div.innerHTML = document.getElementById("lbChapterName").textContent; //"<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" +
-	document.body.appendChild(div);
+	var zj_title=document.getElementsByClassName("zj_title");
+	if(zj_title.length!=0){
+		var div = document.createElement("div");
+		div.style.position = "fixed";
+		div.style.right = "0px";
+		div.style.bottom = "0px";
+		div.style.backgroundColor = "black";
+		div.style.color = "#00ff00";
+		div.style.fontSize = "16px";
+		div.innerHTML = zj_title[0].textContent; //"<input type='button' value='图片化' onclick='window.ChangeTextToPicture();'/><br/>" +
+		document.body.appendChild(div);
+	}
 }
 function SetNextPageHref() {
 	if (ReadVipChapter.nextpage.indexOf("http") == -1) {
