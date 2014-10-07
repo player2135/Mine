@@ -35,8 +35,7 @@ window.ChangeTextToPicture = function () {
 		var div = document.createElement("div");
 		div.className = "zj_img";
 		zj_cont.insertBefore(div, zj_cont.childNodes[0]);
-
-		var imgs = GetImages(document.getElementById("form1"), textLength);
+		var imgs = GetImages(zj_cont.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode, textLength);
 		for (var i = 0; i < imgs.length; i++) {
 			div.appendChild(imgs[i]);
 		}
@@ -47,7 +46,7 @@ window.ChangeTextToPicture = function () {
 				var zj_cont = zj_img[i].parentNode;
 				var img = zj_img[i].getElementsByTagName("img")[0];
 				if (img.src.indexOf("http://localhost/Mine/MyWeb/QiDian/VipPictureConverter.ashx") == -1) {
-					var pageUrl = "http://vipreader.qidian.com" + document.getElementById("form1").getAttribute("action");
+					var pageUrl = "http://vipreader.qidian.com" + zj_cont.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute("action");
 					var imgUrl = img.src;
 					img.src = GetConvertImgUrl(pageUrl, imgUrl);
 				}
