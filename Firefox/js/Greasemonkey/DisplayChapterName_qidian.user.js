@@ -68,6 +68,16 @@ window.ChangeTextToPicture = function () {
 		return ReadVipChapter.bookId;
 	}
 	function GetChapterId(form1) {
+		var anchors=form1.getElementsByTagName("a");
+		for(var i=0;i<anchors.length;i++){
+			if(anchors[i].innerHTML=="加入VIP书签")
+			{
+				var clickString=anchors[i].getAttribute("onclick").replace("');","").toString();
+				var chapterId=clickString.split(',')[1].replace("'","");				
+				return chapterId;
+			}
+		}
+		return "";
 		var url = form1.getAttribute("action");
 		var paths = url.split('/');
 		var path = paths[paths.length - 1];
