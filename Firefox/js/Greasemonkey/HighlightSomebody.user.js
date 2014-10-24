@@ -508,7 +508,8 @@ var highlightSomebody = function () {
 	{MN:"RM-887",Version:"720T"},{MN:"RM-876",Version:"1020"},{MN:"RM-1027",Version:"530"},{MN:"RM-822",Version:"920"},{MN:"RM-1010",Version:"638"},
 	{MN:"RM-937",Version:"1520"},{MN:"RM-875",Version:"1020"},{MN:"RM-1045",Version:"930"},{MN:"RM-913",Version:"520T"},{MN:"RM-939",Version:"1520"},
 	{MN:"RM-996",Version:"1320"},{MN:"RM-910",Version:"925"},{MN:"RM-998",Version:"525"},{MN:"RM-878",Version:"820"},{MN:"RM-825",Version:"820"},
-	{MN:"RM-892",Version:"925"},{MN:"RM-860",Version:"928"},{MN:"RM-998",Version:"525"},{MN:"RM-878",Version:"820"},{MN:"RM-825",Version:"820"},];
+	{MN:"RM-892",Version:"925"},{MN:"RM-860",Version:"928"},{MN:"RM-885",Version:"720"},{MN:"RM-978",Version:"630"},{MN:"RM-822",Version:"920"},
+	{MN:"RM-826",Version:"820"},{MN:"RM-820",Version:"920"},{MN:"RM-885",Version:"720"},{MN:"RM-978",Version:"630"},{MN:"RM-822",Version:"920"},];
 	var getLumiaVersion=function (manufacturerName)
 	{
 		for(var i=0;i<lumiaManufacturerNames.length;i++)
@@ -524,12 +525,14 @@ var highlightSomebody = function () {
 		for(var i=0;i<clientIcons.length;i++)
 		{
 			var title=clientIcons[i].getAttribute("title");
-			if(title.indexOf("NOKIA")!=-1 && title.indexOf("RM")!=-1){
+			var hasChange=clientIcons[i].getAttribute("hasChange");
+			if(title.indexOf("NOKIA")!=-1 && title.indexOf("RM")!=-1 && hasChange!="yes"){
 				var manufacturerName=title.split("(")[0].replace("发送自 NOKIA ","");
 				var version=getLumiaVersion(manufacturerName);
 				if(version!=""){
 					clientIcons[i].setAttribute("title", title.replace(manufacturerName,version));
 				}
+				clientIcons[i].setAttribute("hasChange", "yes");
 			}
 		}
 	};
