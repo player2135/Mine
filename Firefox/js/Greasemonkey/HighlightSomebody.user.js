@@ -504,6 +504,35 @@ var highlightSomebody = function () {
 		div.innerHTML = "临时关注：<input type='text' id='txtTempConcern'/>转到：<input type='text' id='txtFloorIndex' style='width:40px;'/>楼<input type='button' onclick='TurnToFloor();' value='Go'/><br/>定位：<input type='text' id='txtLocationUsername' /><input type='button' onclick='window.locationUser();' value='Go'/><input type='button' onclick='window.locationUser(\"" + __CURRENT_UNAME + "\");' value='Me'/><input type='button' onclick='window.locationUser(\"" + louzhuName + "\");' value='楼主'/><input type='button' value='找人' onclick='window.locationSpecial();'/>";
 		document.body.appendChild(div);
 	};
+	var lumiaManufacturerNames=[{MN:"RM-984",Version:"830"},{MN:"RM-821",Version:"920"},{MN:"RM-867",Version:"920T"},{MN:"RM-1087",Version:"930"},
+	{MN:"RM-887",Version:"720T"},{MN:"RM-876",Version:"1020"},{MN:"RM-1027",Version:"530"},{MN:"RM-822",Version:"920"},{MN:"RM-1010",Version:"638"},
+	{MN:"RM-937",Version:"1520"},{MN:"RM-875",Version:"1020"},{MN:"RM-1045",Version:"930"},{MN:"RM-913",Version:"520T"},{MN:"RM-939",Version:"1520"},
+	{MN:"RM-996",Version:"1320"},{MN:"RM-910",Version:"925"},{MN:"RM-998",Version:"525"},{MN:"RM-878",Version:"820"},{MN:"RM-825",Version:"820"},
+	{MN:"RM-892",Version:"925"},{MN:"RM-860",Version:"928"},{MN:"RM-998",Version:"525"},{MN:"RM-878",Version:"820"},{MN:"RM-825",Version:"820"},];
+	var getLumiaVersion=function (manufacturerName)
+	{
+		for(var i=0;i<lumiaManufacturerNames.length;i++)
+		{
+			if(manufacturerName.indexOf(lumiaManufacturerNames[i].MN)!=-1){
+				return lumiaManufacturerNames[i].Version;
+			}
+		}
+		return "";
+	};
+	var changeLumiaManufacturerName=function(){
+		var clientIcons=document.getElementsByClassName("client_icon");
+		for(var i=0;i<clientIcons.length;i++)
+		{
+			var title=clientIcons[i].getAttribute("title");
+			if(title.indexOf("NOKIA")!=-1 && title.indexOf("RM")!=-1){
+				var manufacturerName=title.split("(")[0].replace("发送自 NOKIA ","");
+				var version=getLumiaVersion(manufacturerName);
+				if(version!=""){
+					clientIcons[i].setAttribute("title", title.replace(manufacturerName,version));
+				}
+			}
+		}
+	};
 	findLouzhu();
 	markLouzhu();
 	findMyself();
@@ -511,6 +540,7 @@ var highlightSomebody = function () {
 	findKnown();
 	findGirls();
 	quoteLinkOpenNew();
+	changeLumiaManufacturerName();
 	setInterval(findLouzhu, 5000);
 	setInterval(findMyself, 5000);
 	setInterval(findFamous, 5000);
@@ -518,6 +548,7 @@ var highlightSomebody = function () {
 	setInterval(findTemp, 5000);
 	setInterval(findGirls, 5000);
 	setInterval(quoteLinkOpenNew, 5000);
+	setInterval(changeLumiaManufacturerName,5000);
 	appendTempConcernDiv();
 };
 highlightSomebody();
