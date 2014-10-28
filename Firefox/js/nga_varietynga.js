@@ -248,7 +248,9 @@ function varietynga_Initialization(){
 				__NUKE.doRequest({
 					u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
 					f:function(d){
-						varietynga_weibo_ajax.lasttime = d.data[0]
+						if(d){
+							varietynga_weibo_ajax.lasttime = d.data[0];
+						}
 					}
 				})
 				varietynga_weibo_ajax.tf(2);
@@ -299,7 +301,9 @@ function varietynga_weibo(html,arg){
 		__NUKE.doRequest({
 			u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
 			f:function(d){
-				varietynga_weibo_ajax.lasttime = d.data[0]
+				if(d){
+					varietynga_weibo_ajax.lasttime = d.data[0];
+				}
 			}
 		})
 		varietynga_weibo_ajax.tf(2);
@@ -311,7 +315,9 @@ function varietynga_weibo(html,arg){
 		__NUKE.doRequest({
 			u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
 			f:function(d){
-				varietynga_weibo_ajax.lasttime = d.data[0]
+				if(d){
+					varietynga_weibo_ajax.lasttime = d.data[0];
+				}
 			}
 		})
 		varietynga_weibo_ajax.tf(2);
