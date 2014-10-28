@@ -509,7 +509,8 @@ var highlightSomebody = function () {
 	{MN:"RM-937",Version:"1520"},{MN:"RM-875",Version:"1020"},{MN:"RM-1045",Version:"930"},{MN:"RM-913",Version:"520T"},{MN:"RM-939",Version:"1520"},
 	{MN:"RM-996",Version:"1320"},{MN:"RM-910",Version:"925"},{MN:"RM-998",Version:"525"},{MN:"RM-878",Version:"820"},{MN:"RM-825",Version:"820"},
 	{MN:"RM-892",Version:"925"},{MN:"RM-860",Version:"928"},{MN:"RM-885",Version:"720"},{MN:"RM-978",Version:"630"},{MN:"RM-955",Version:"925T"},
-	{MN:"RM-826",Version:"820"},{MN:"RM-820",Version:"920"},{MN:"RM-974",Version:"635"},{MN:"RM-846",Version:"620"},{MN:"RM-914",Version:"520"},];
+	{MN:"RM-826",Version:"820"},{MN:"RM-820",Version:"920"},{MN:"RM-974",Version:"635"},{MN:"RM-846",Version:"620"},{MN:"RM-914",Version:"520"},
+	{MN:"RM-997",Version:"526"},{MN:"RM-820",Version:"920"},{MN:"RM-974",Version:"635"},{MN:"RM-846",Version:"620"},{MN:"RM-914",Version:"520"},];
 	var getLumiaVersion=function (manufacturerName)
 	{
 		for(var i=0;i<lumiaManufacturerNames.length;i++)
