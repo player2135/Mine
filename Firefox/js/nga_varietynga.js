@@ -212,9 +212,9 @@ function varietynga_Initialization() {
 
 	var e = new nga_plug_tab();
 	e.add("总体设置", '<input onclick="varietynga_setting.data.set.tieba=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.tieba) + '>启用主题图片预览（贴吧风格）<br>\
-						<input onclick="varietynga_setting.data.set.weibo=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.weibo) + '>启用帖子即时加载（腾讯微博风格）<br>\
-						<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.img) + '>启用图片旋转功能<br>\
-						<input onclick="varietynga_setting.data.set.zd=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.zd) + '>启用折叠内容可收缩');
+										<input onclick="varietynga_setting.data.set.weibo=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.weibo) + '>启用帖子即时加载（腾讯微博风格）<br>\
+										<input onclick="varietynga_setting.data.set.img=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.img) + '>启用图片旋转功能<br>\
+										<input onclick="varietynga_setting.data.set.zd=this.checked;varietynga_setting.save();" type="checkbox" ' + c(varietynga_setting.data.set.zd) + '>启用折叠内容可收缩');
 	e.add("界面设置", varietynga_setthtml());
 	var t = e.gethtml();
 	nga_plug_table_addTab("百变NGA", t);
@@ -297,8 +297,7 @@ function varietynga_Initialization() {
 			var maxpage = getMaxPage();
 			var nowpage = getNowPage();
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
-			if (maxpage == nowpage)
-			{
+			if (maxpage == nowpage) {
 				new nga_plug_XMLHttp(pageurl + (nowpage), varietynga_weibo, {
 					url : pageurl,
 					p : nowpage,
@@ -605,99 +604,100 @@ function varietynga_weibo(html, arg) {
 			}
 			if (x.id == 'm_posts_c') {
 				var tmaxl = 0;
-				var n = x.firstChild while (n != null && Number(varietynga_maxl) >= Number(tmaxl)) { //判断有无新楼层
-						if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
-							tmaxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
-						if (Number(varietynga_maxl) >= Number(tmaxl))
-							n.parentNode.removeChild(n);
-						n = x.firstChild
-					}
+				var n = x.firstChild;
+				while (n != null && Number(varietynga_maxl) >= Number(tmaxl)) { //判断有无新楼层
+					if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
+						tmaxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+					if (Number(varietynga_maxl) >= Number(tmaxl))
+						n.parentNode.removeChild(n);
+					n = x.firstChild;
+				}
 
-					if (Number(tmaxl) > Number(varietynga_maxl)) {
-						var ts = tu.getElementsByTagName('script'); //必要的JavaScript脚本处理
-						for (var i = 0; i < ts.length; i++) {
-							if (ts[i].innerHTML) {
-								//console.info(ts[i].innerHTML);
-								if (/commonui.userInfo.setAll.* /.test(ts[i].innerHTML)) { //处理用户信息
-									//console.info(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0]);
-									try {
-										eval(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0])
-									} catch (e) {};
-									break;
-								}
+				if (Number(tmaxl) > Number(varietynga_maxl)) {
+					var ts = tu.getElementsByTagName('script'); //必要的JavaScript脚本处理
+					for (var i = 0; i < ts.length; i++) {
+						if (ts[i].innerHTML) {
+							//console.info(ts[i].innerHTML);
+							if (/commonui.userInfo.setAll.* /.test(ts[i].innerHTML)) { //处理用户信息
+								//console.info(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0]);
+								try {
+									eval(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0])
+								} catch (e) {};
+								break;
 							}
 						}
-						for (n = x.firstChild; n != null; n = x.firstChild) { //将新楼层append到主贴上
-							if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
-								varietynga_maxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
-							document.getElementById("m_posts_c").appendChild(n);
+					}
+					for (n = x.firstChild; n != null; n = x.firstChild) { //将新楼层append到主贴上
+						if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
+							varietynga_maxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+						document.getElementById("m_posts_c").appendChild(n);
 
-							if (n.nodeType == 1) {
-								ts = n.getElementsByTagName('script'); //必要的JavaScript脚本处理
-								for (var i = 0; i < ts.length; i++) {
-									if (ts[i].innerHTML) {
-										if (ts[i].innerHTML.indexOf('commonui.loadAlertInfo') >= 0) { //处理编辑记录和评分记录
-											try {
-												eval(ts[i].innerHTML.replace('commonui.loadAlertInfo(', 'varietynga_loadAlertInfo(ts[i],'))
-											} catch (e) {}
-										}
-										if (ts[i].innerHTML.indexOf('commonui.postArg.proc') >= 0 || ts[i].innerHTML.indexOf('ubbcode.attach.load') >= 0) { //格式化样式和附件列表
-											try {
-												eval(ts[i].innerHTML)
-											} catch (e) {}
-										}
+						if (n.nodeType == 1) {
+							ts = n.getElementsByTagName('script'); //必要的JavaScript脚本处理
+							for (var i = 0; i < ts.length; i++) {
+								if (ts[i].innerHTML) {
+									if (ts[i].innerHTML.indexOf('commonui.loadAlertInfo') >= 0) { //处理编辑记录和评分记录
+										try {
+											eval(ts[i].innerHTML.replace('commonui.loadAlertInfo(', 'varietynga_loadAlertInfo(ts[i],'))
+										} catch (e) {}
+									}
+									if (ts[i].innerHTML.indexOf('commonui.postArg.proc') >= 0 || ts[i].innerHTML.indexOf('ubbcode.attach.load') >= 0) { //格式化样式和附件列表
+										try {
+											eval(ts[i].innerHTML)
+										} catch (e) {}
 									}
 								}
 							}
 						}
-
-						for (var i = 0; i < nga_plug_varietynga_reload.length; i++) { //处理需要在load后重新调用的方法
-							setTimeout('try{' + nga_plug_varietynga_reload[i] + '}catch(e){}', 3000);
-						}
 					}
+
+					for (var i = 0; i < nga_plug_varietynga_reload.length; i++) { //处理需要在load后重新调用的方法
+						setTimeout('try{' + nga_plug_varietynga_reload[i] + '}catch(e){}', 3000);
+					}
+				}
 			}
 		}
 	}
 	/* function load(html, arg) {
-		if (/commonui.userInfo.setAll[\s\S]*?<\/script>/.test(html)) {
-			try {
-				var initScript = /(commonui.userInfo.setAll[\s\S]*)__AUTO_TRANS_FID=/.exec(html)[1];
+	if (/commonui.userInfo.setAll[\s\S]*?<\/script>/.test(html)) {
+	try {
+	var initScript = /(commonui.userInfo.setAll[\s\S]*)__AUTO_TRANS_FID=/.exec(html)[1];
 
-				var c = eval(initScript);
-			} catch (e) {
-				try {
-					var initScript = /(commonui.userInfo.setAll[\s\S]*)__SELECTED_FORUM=/.exec(html)[1];
-					eval(initScript);
-				} catch (er) {
-					alert(er);
-				}
-			}
-		}
-		if (/<div class='w100' id='m_posts_c'>[\s\S]*?<div class='module_wrap'>/.test(html)) {
-			var thtml = /<div class='w100' id='m_posts_c'>[\s\S]*?<div class='module_wrap'>/.exec(html)[0];
-			if (/<table[\s\S]+?<\/table>[\s\S]+?(<table[\s\S]+<\/table>)/.test(thtml)) {
-				thtml = /<table[\s\S]+?<\/table>[\s\S]+?(<table[\s\S]+<\/table>)/.exec(thtml)[1];
-				var x = document.createElement('div');
-				x.innerHTML = thtml;
-				document.getElementById("m_posts_c").appendChild(x);
+	var c = eval(initScript);
+	} catch (e) {
+	try {
+	var initScript = /(commonui.userInfo.setAll[\s\S]*)__SELECTED_FORUM=/.exec(html)[1];
+	eval(initScript);
+	} catch (er) {
+	alert(er);
+	}
+	}
+	}
+	if (/<div class='w100' id='m_posts_c'>[\s\S]*?<div class='module_wrap'>/.test(html)) {
+	var thtml = /<div class='w100' id='m_posts_c'>[\s\S]*?<div class='module_wrap'>/.exec(html)[0];
+	if (/<table[\s\S]+?<\/table>[\s\S]+?(<table[\s\S]+<\/table>)/.test(thtml)) {
+	thtml = /<table[\s\S]+?<\/table>[\s\S]+?(<table[\s\S]+<\/table>)/.exec(thtml)[1];
+	var x = document.createElement('div');
+	x.innerHTML = thtml;
+	document.getElementById("m_posts_c").appendChild(x);
 
-			}
-		}
-		if (/<script>([\s\S]*?)<\/script>/gi.test(html)) { //附件处理
-			var t_js = html.match(/<script>([\s\S]*?)<\/script>/gi);
-			for (var i = 0; i < t_js.length; i++) {
-				var tt_js = /<script>([\s\S]*?)<\/script>/gi.exec(t_js[i])[1];
-				if (tt_js.indexOf("commonui.postArg.proc") >= 0 || tt_js.indexOf("ubbcode.attach.load") != -1) {
-					try {
-						eval(tt_js)
-					} catch (e) {
-						console.log(e);
-					}
-				}
-			}
-		}
-		setTimeout('try{Backlist_bl()}catch(e){};', 3000); //调用添加屏蔽链接模块   暂行办法
-		setTimeout('try{if (varietynga_setting.data.set.img) varietynga_img();}catch(e){}', 3000) //加载图片旋转功能
+	}
+	}
+	if (/<script>([\s\S]*?)<\/script>/gi.test(html)) { //附件处理
+	var t_js = html.match(/<script>([\s\S]*?)<\/script>/gi);
+	for (var i = 0; i < t_js.length; i++) {
+	var tt_js = /<script>([\s\S]*?)<\/script>/gi.exec(t_js[i])[1];
+	if (tt_js.indexOf("commonui.postArg.proc") >= 0 || tt_js.indexOf("ubbcode.attach.load") != -1) {
+	try {
+	eval(tt_js)
+	} catch (e) {
+	console.log(e);
+	}
+	}
+	}
+	}
+	setTimeout('try{Backlist_bl()}catch(e){};', 3000); //调用添加屏蔽链接模块   暂行办法
+	setTimeout('try{if (varietynga_setting.data.set.img) varietynga_img();}catch(e){}', 3000) //加载图片旋转功能
 	} */
 	function nload(html, arg) {
 		var x = document.createElement('div');
@@ -1028,36 +1028,36 @@ function varietynga_checkcolor(obj) {
 function varietynga_setthtml() {
 	var s = "";
 	s += '<div>\
-			<div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
-			<span class="green">自定义主题色</span><br>\
-			<div title="默认颜色" onclick="varietynga_setcolor(this)" style="height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="浅绿" onclick="varietynga_setcolor(this)" style="background-color:#CCE8CC;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="蓝色" onclick="varietynga_setcolor(this)" style="background-color:#1D7F99;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="绿色" onclick="varietynga_setcolor(this)" style="background-color:#85A333;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="红色" onclick="varietynga_setcolor(this)" style="background-color:#AB0303;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="紫色" onclick="varietynga_setcolor(this)" style="background-color:#AB2C74;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="青色" onclick="varietynga_setcolor(this)" style="background-color:#518791;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="褐色" onclick="varietynga_setcolor(this)" style="background-color:#BA4C30;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="白色" onclick="varietynga_setcolor(this)" style="background-color:#FFFFFF;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<div title="自定义颜色" onclick="varietynga_setcolor(this)" style="height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
-			<img src="about:blank" style="display:none" onerror="var ts=varietynga_setting.data.set.css.custombg;var divel=this.parentNode.getElementsByTagName(\'div\');if(!ts.check){divel[0].style.border=\'1px solid #f88\';return}for(var i=1;i<divel.length-1;i++){if(ts.bg.toLowerCase()==divel[i].style.backgroundColor.colorHex().toLowerCase()){divel[i].style.border=\'1px solid #f88\';return}};divel[divel.length-1].style.border=\'1px solid #f88\';return">\
-			<input onkeyup="var e = event || window.event;var keyCode = e.which || e.keyCode;if(keyCode==13) varietynga_checkcolor(this);" id="varietynga_color" size="6" value=' + varietynga_setting.data.set.css.custombg.custom + ' ' + d(varietynga_setting.data.set.css.custombg.bg.toLowerCase() == "custom" && varietynga_setting.data.set.css.custombg.check) + ' type="text"></div><div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
-			<span class="green">已访问帖子颜色</span><br>\
-			<input type="checkbox" onclick="document.getElementById(\'varietynga_color1\').disabled=!this.checked;varietynga_setting.data.set.css.avis.check=this.checked;varietynga_setting.save();varietynga_css();" ' + c(varietynga_setting.data.set.css.avis.check) + ' title="是否启用已访问帖子变色">启用已访问帖子变色    颜色：\
-			<input onkeyup="var e = event || window.event;var keyCode = e.which || e.keyCode;if(keyCode==13) varietynga_checkcolor(this);" id="varietynga_color1" size="6" value=' + varietynga_setting.data.set.css.avis.color + ' ' + d(varietynga_setting.data.set.css.avis.check) + ' type="text"></div>\
-			<div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
-			<span class="green">隐藏界面元素</span><br>\
-			<input onclick="varietynga_setting.data.set.css.colsenav=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colsenav) + ' title="是否隐藏顶部导航条">隐藏顶部导航条<br>\
-			<input onclick="varietynga_setting.data.set.css.colsebg=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colsebg) + ' title="是否隐藏顶部背景">隐藏顶部背景<br>\
-			<input onclick="varietynga_setting.data.set.css.colseinfo=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colseinfo) + ' title="是否隐藏底部内容">隐藏底部内容<br>\
-			<input onclick="varietynga_setting.data.set.css.noad=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.noad) + ' title="去除大部分NGA广告">去广告<br>\
-			</div>\
-			<div style="text-align:left;width:607px;"><span class="green">本页使用说明</span><br>\
-			选择主题色时直接点击相应的颜色块即可快速选择主题色，如需自定义主题色请点击“自定义”块后在后面的文本框输入3位颜色编码或者6位颜色编码，在文本框按下回车以保存并预览效果，如不使用自定义主题色请选择第一个颜色块（默认颜色）即可。<br><br>\
-			自定义已访问帖子的颜色请启用已访问帖子变色，然后在后面的文本框输入3位颜色编码或者6位颜色编码，在文本框按下回车以保存并预览效果。<br><br>\
-			隐藏界面元素时开启或者关闭对应选项立即保存并查看效果。\
-			</div>\
-			</div>';
+					<div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
+					<span class="green">自定义主题色</span><br>\
+					<div title="默认颜色" onclick="varietynga_setcolor(this)" style="height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="浅绿" onclick="varietynga_setcolor(this)" style="background-color:#CCE8CC;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="蓝色" onclick="varietynga_setcolor(this)" style="background-color:#1D7F99;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="绿色" onclick="varietynga_setcolor(this)" style="background-color:#85A333;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="红色" onclick="varietynga_setcolor(this)" style="background-color:#AB0303;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="紫色" onclick="varietynga_setcolor(this)" style="background-color:#AB2C74;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="青色" onclick="varietynga_setcolor(this)" style="background-color:#518791;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="褐色" onclick="varietynga_setcolor(this)" style="background-color:#BA4C30;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="白色" onclick="varietynga_setcolor(this)" style="background-color:#FFFFFF;height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<div title="自定义颜色" onclick="varietynga_setcolor(this)" style="height:10px;width:10px;display:inline-block!important;border: 1px solid #888;"></div>\
+					<img src="about:blank" style="display:none" onerror="var ts=varietynga_setting.data.set.css.custombg;var divel=this.parentNode.getElementsByTagName(\'div\');if(!ts.check){divel[0].style.border=\'1px solid #f88\';return}for(var i=1;i<divel.length-1;i++){if(ts.bg.toLowerCase()==divel[i].style.backgroundColor.colorHex().toLowerCase()){divel[i].style.border=\'1px solid #f88\';return}};divel[divel.length-1].style.border=\'1px solid #f88\';return">\
+					<input onkeyup="var e = event || window.event;var keyCode = e.which || e.keyCode;if(keyCode==13) varietynga_checkcolor(this);" id="varietynga_color" size="6" value=' + varietynga_setting.data.set.css.custombg.custom + ' ' + d(varietynga_setting.data.set.css.custombg.bg.toLowerCase() == "custom" && varietynga_setting.data.set.css.custombg.check) + ' type="text"></div><div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
+					<span class="green">已访问帖子颜色</span><br>\
+					<input type="checkbox" onclick="document.getElementById(\'varietynga_color1\').disabled=!this.checked;varietynga_setting.data.set.css.avis.check=this.checked;varietynga_setting.save();varietynga_css();" ' + c(varietynga_setting.data.set.css.avis.check) + ' title="是否启用已访问帖子变色">启用已访问帖子变色    颜色：\
+					<input onkeyup="var e = event || window.event;var keyCode = e.which || e.keyCode;if(keyCode==13) varietynga_checkcolor(this);" id="varietynga_color1" size="6" value=' + varietynga_setting.data.set.css.avis.color + ' ' + d(varietynga_setting.data.set.css.avis.check) + ' type="text"></div>\
+					<div style="border-bottom:1px solid #777;text-align:left;width:607px;">\
+					<span class="green">隐藏界面元素</span><br>\
+					<input onclick="varietynga_setting.data.set.css.colsenav=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colsenav) + ' title="是否隐藏顶部导航条">隐藏顶部导航条<br>\
+					<input onclick="varietynga_setting.data.set.css.colsebg=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colsebg) + ' title="是否隐藏顶部背景">隐藏顶部背景<br>\
+					<input onclick="varietynga_setting.data.set.css.colseinfo=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.colseinfo) + ' title="是否隐藏底部内容">隐藏底部内容<br>\
+					<input onclick="varietynga_setting.data.set.css.noad=this.checked;varietynga_setting.save();varietynga_css();" type="checkbox" ' + c(varietynga_setting.data.set.css.noad) + ' title="去除大部分NGA广告">去广告<br>\
+					</div>\
+					<div style="text-align:left;width:607px;"><span class="green">本页使用说明</span><br>\
+					选择主题色时直接点击相应的颜色块即可快速选择主题色，如需自定义主题色请点击“自定义”块后在后面的文本框输入3位颜色编码或者6位颜色编码，在文本框按下回车以保存并预览效果，如不使用自定义主题色请选择第一个颜色块（默认颜色）即可。<br><br>\
+					自定义已访问帖子的颜色请启用已访问帖子变色，然后在后面的文本框输入3位颜色编码或者6位颜色编码，在文本框按下回车以保存并预览效果。<br><br>\
+					隐藏界面元素时开启或者关闭对应选项立即保存并查看效果。\
+					</div>\
+					</div>';
 	return s;
 	function c(p) {
 		if (p)
@@ -1084,13 +1084,13 @@ function varietynga_img() {
 			ts.top = nga_plug_elementTop(timg[i]) + "px";
 			ts.left = nga_plug_elementLeft(timg[i]) + "px";
 			ts.innerHTML = "<div style='position: absolute;z-index:999'>\r\
-												<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"l\");return false;' title='左转' \
-												style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/left.gif); \
-												height: 16px; width: 16px; border:1px solid #777777; background-position: initial initial; background-repeat: initial initial;'></div>\r\
-												<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"r\");return false;' title='右转' \
-												style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/right.gif); \
-												height: 16px; width: 16px; border:1px solid #777777;background-position: initial initial; background-repeat: initial initial;'></div>\
-												</div>";
+																				<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"l\");return false;' title='左转' \
+																				style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/left.gif); \
+																				height: 16px; width: 16px; border:1px solid #777777; background-position: initial initial; background-repeat: initial initial;'></div>\r\
+																				<div onclick='event.cancelBubble = true;varietynga_imgclick(this.parentNode.parentNode,\"r\");return false;' title='右转' \
+																				style='display: inline-block; background-image: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/right.gif); \
+																				height: 16px; width: 16px; border:1px solid #777777;background-position: initial initial; background-repeat: initial initial;'></div>\
+																				</div>";
 			timg[i].parentNode.insertBefore(ts, timg[i]);
 			timg[i].className = timg[i].className.replace("imgmaxwidth", "");
 			ts.appendChild(timg[i]);
