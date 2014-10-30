@@ -286,6 +286,7 @@ function varietynga_Initialization(){
 		return td;
 	}
 }
+/*
 //腾讯微博风格（即时加载下一页）
 function varietynga_weibo(html,arg){
 	varietynga_weibo_scroll(0)
@@ -438,8 +439,8 @@ function varietynga_weibo(html,arg){
 		tipdiv.appendChild(oo)
 		if(oo._.__vml) oo._.__vml()
 	}
-}
-/* 
+}*/
+
 function getMaxPage()
 {
 	try{
@@ -600,7 +601,7 @@ function varietynga_weibo(html,arg){
 			setTimeout('new nga_plug_XMLHttp(\''+arg.url + (arg.p)+'\',varietynga_weibo,{url:\''+arg.url+'\',p:'+(arg.p)+',n:1,reload:true})',10000);
 		}
 	}
-} */
+} 
 
 //贴吧风格-使用AJAX获取版面帖子中是否有图片并作相应操作
 function varietynga_tieba(html,arg){
