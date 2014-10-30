@@ -297,8 +297,15 @@ function varietynga_Initialization() {
 			var maxpage = getMaxPage();
 			var nowpage = getNowPage();
 			var pageurl = "http://" + location.host + location.pathname + location.search + "&page=";
-			//if (maxpage == nowpage)
-			//	return;
+			if (maxpage == nowpage)
+			{
+				new nga_plug_XMLHttp(pageurl + (nowpage), varietynga_weibo, {
+					url : pageurl,
+					p : nowpage,
+					n : 2
+				});
+				return;
+			}
 			if (maxpage == null && location.search.indexOf("authorid") < 0)
 				return;
 			new nga_plug_XMLHttp(pageurl + (nowpage + 1), varietynga_weibo, {
