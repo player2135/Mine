@@ -567,7 +567,7 @@ function varietynga_weibo(html, arg) {
 	if (/<script>var __PAGE = {0:'\/read\.php\?tid=[\d\D]{1,20}',1:(\d+),2:\d+,3:\d+}<\/script>/i.test(html)) {
 		var maxpage = /<script>var __PAGE = {0:'\/read\.php\?tid=[\d\D]{1,20}',1:(\d+),2:\d+,3:\d+}<\/script>/i.exec(html)[1];
 		if (maxpage == arg.p) {
-			//load(html, arg);
+			load(html, arg);
 			over(html, arg);
 			return;
 		}
@@ -592,7 +592,73 @@ function varietynga_weibo(html, arg) {
 		p : arg.p + 1,
 		n : arg.n + 1
 	});
-	function load(html, arg) {
+	function load(html, arg) { //load方法，将新的回复append到主贴上，并进行必要的JavaScript处理
+		if (/<body>[\s\S]*?<\/body>/.test(html)) {
+			var tu = document.createElement('div'); //建立临时div存放get过来的html的body
+			tu.innerHTML = /<body>([\s\S]*?)<\/body>/.exec(html)[1]
+				var x = tu.getElementsByTagName('div');
+			for (var i = 0; i < x.length; i++) {
+				if (x[i].id == "m_posts_c") {
+					x = x[i];
+					break;
+				}
+			}
+			if (x.id == 'm_posts_c') {
+				var tmaxl = 0;
+				var n = x.firstChild while (n != null && Number(varietynga_maxl) >= Number(tmaxl)) { //判断有无新楼层
+						if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
+							tmaxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+						if (Number(varietynga_maxl) >= Number(tmaxl))
+							n.parentNode.removeChild(n);
+						n = x.firstChild
+					}
+
+					if (Number(tmaxl) > Number(varietynga_maxl)) {
+						var ts = tu.getElementsByTagName('script'); //必要的JavaScript脚本处理
+						for (var i = 0; i < ts.length; i++) {
+							if (ts[i].innerHTML) {
+								//console.info(ts[i].innerHTML);
+								if (/commonui.userInfo.setAll.* /.test(ts[i].innerHTML)) { //处理用户信息
+									//console.info(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0]);
+									try {
+										eval(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0])
+									} catch (e) {};
+									break;
+								}
+							}
+						}
+						for (n = x.firstChild; n != null; n = x.firstChild) { //将新楼层append到主贴上
+							if (n.tagName && n.tagName.toLowerCase() == "table" && n.rows && n.rows[0] && n.rows[0].id && /post1strow(\d+)/.exec(n.rows[0].id)[1])
+								varietynga_maxl = /post1strow(\d+)/.exec(n.rows[0].id)[1];
+							document.getElementById("m_posts_c").appendChild(n);
+
+							if (n.nodeType == 1) {
+								ts = n.getElementsByTagName('script'); //必要的JavaScript脚本处理
+								for (var i = 0; i < ts.length; i++) {
+									if (ts[i].innerHTML) {
+										if (ts[i].innerHTML.indexOf('commonui.loadAlertInfo') >= 0) { //处理编辑记录和评分记录
+											try {
+												eval(ts[i].innerHTML.replace('commonui.loadAlertInfo(', 'varietynga_loadAlertInfo(ts[i],'))
+											} catch (e) {}
+										}
+										if (ts[i].innerHTML.indexOf('commonui.postArg.proc') >= 0 || ts[i].innerHTML.indexOf('ubbcode.attach.load') >= 0) { //格式化样式和附件列表
+											try {
+												eval(ts[i].innerHTML)
+											} catch (e) {}
+										}
+									}
+								}
+							}
+						}
+
+						for (var i = 0; i < nga_plug_varietynga_reload.length; i++) { //处理需要在load后重新调用的方法
+							setTimeout('try{' + nga_plug_varietynga_reload[i] + '}catch(e){}', 3000);
+						}
+					}
+			}
+		}
+	}
+	/* function load(html, arg) {
 		if (/commonui.userInfo.setAll[\s\S]*?<\/script>/.test(html)) {
 			try {
 				var initScript = /(commonui.userInfo.setAll[\s\S]*)__AUTO_TRANS_FID=/.exec(html)[1];
@@ -632,7 +698,7 @@ function varietynga_weibo(html, arg) {
 		}
 		setTimeout('try{Backlist_bl()}catch(e){};', 3000); //调用添加屏蔽链接模块   暂行办法
 		setTimeout('try{if (varietynga_setting.data.set.img) varietynga_img();}catch(e){}', 3000) //加载图片旋转功能
-	}
+	} */
 	function nload(html, arg) {
 		var x = document.createElement('div');
 		x.style.borderLeft = "1px solid #A70";
