@@ -360,9 +360,9 @@ function varietynga_weibo(html,arg){
 					for(var i=0;i<ts.length;i++){
 						if(ts[i].innerHTML){
 							//console.info(ts[i].innerHTML);
-							if (/commonui.userInfo.setAll.*/.test(ts[i].innerHTML)){       //处理用户信息
-								//console.info(/commonui.userInfo.setAll.*/.exec(ts[i].innerHTML)[0]);
-								try{eval(/commonui.userInfo.setAll.*/.exec(ts[i].innerHTML)[0])}catch(e){};
+							if (/commonui.userInfo.setAll.* /.test(ts[i].innerHTML)){       //处理用户信息
+								//console.info(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0]);
+								try{eval(/commonui.userInfo.setAll.* /.exec(ts[i].innerHTML)[0])}catch(e){};
 								break;
 							}
 						}
