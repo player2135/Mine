@@ -567,7 +567,7 @@ function varietynga_weibo(html, arg) {
 	if (/<script>var __PAGE = {0:'\/read\.php\?tid=[\d\D]{1,20}',1:(\d+),2:\d+,3:\d+}<\/script>/i.test(html)) {
 		var maxpage = /<script>var __PAGE = {0:'\/read\.php\?tid=[\d\D]{1,20}',1:(\d+),2:\d+,3:\d+}<\/script>/i.exec(html)[1];
 		if (maxpage == arg.p) {
-			load(html, arg);
+			//load(html, arg);
 			over(html, arg);
 			return;
 		}
