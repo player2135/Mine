@@ -89,6 +89,7 @@ varietynga_weibo_ajax.tf = function(mode){
 				u:'/nuke.php?__api=1&__act=get&__lib=get_topic_modify_time&tid='+tid+'&__output=1',
 				f:function(d){
 					//alert(d.data[0])
+					console.log(d);
 					if(!d || !d.data){
 					return;}
 					if (d.data[0] > varietynga_weibo_ajax.lasttime){
