@@ -302,7 +302,7 @@ function varietynga_Initialization() {
 				new nga_plug_XMLHttp(pageurl + (nowpage), varietynga_weibo, {
 					url : pageurl,
 					p : nowpage,
-					n : 2
+					n : 1
 				});
 				return;
 			}
