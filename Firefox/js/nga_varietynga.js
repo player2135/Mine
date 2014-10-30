@@ -37,6 +37,7 @@ String.prototype.colorHex = function(){
             return that;
         }
 };
+/*
 //腾讯微博风格-onkey事件
 varietynga_weibo_ajax.k = function(e){
 	if(varietynga_weibo_ajax.t && varietynga_weibo_ajax.t!=-1) return;
@@ -169,7 +170,7 @@ function varietynga_weibo_scroll(check,tfunc){
 			window.removeEventListener("scroll",varietynga_weibo_ajax.f,false);
 		}
 	}
-}
+}*/
 function varietynga_Initialization(){
 	nga_plug_addmsg("varietynga","百变NGA","修复帖子列表页图片不能显示的BUG。");
 	
