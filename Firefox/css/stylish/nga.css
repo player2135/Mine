@@ -1,0 +1,55 @@
+﻿@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("bbs.ngacn.cc") ,domain("nga.178.com"){
+    .gnavv7{
+        display:none;
+    }
+    span#toppedtopic{
+        display:inline !important;
+    }
+    div#mc
+    {
+        width:100% !important;
+    }
+    table.headline
+    {
+        height:100% !important;
+    }
+    div.leftblock
+    {
+        height:100% !important;
+    }
+    .portrait img
+    {
+        max-width:180px !important;
+    }
+    img
+    {
+        max-width:900px !important;
+    }
+    img.avatar
+    {
+         max-width:180px !important;
+    }
+    div#mainmenuavatar
+    {
+        background-size:64px 64px !important;
+    }
+    div.avatar
+    {
+        background-size:60px 60px !important;
+        background-color:white !important;
+    }
+    div#_178NavAll_110906_765453
+    {
+        display:none;
+    }
+    div#m_threads div.w100 table.forumbox
+    {
+        display:none;
+    }
+    div#m_threads div.w100 table#topicrows
+    {
+        display:table;
+    }
+}

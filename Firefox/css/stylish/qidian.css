@@ -1,0 +1,35 @@
+﻿@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("qidian.com") {
+    input[type=button],input[type=submit]
+    {
+        vertical-align:middle;
+        padding:0px !important;
+        outline:none !important;
+    }
+    a.btn01
+    {
+        color:black !important;
+        border:none 0px !important;
+    }
+    a.btn01:hover
+    {
+        color:red !important;
+    }
+    table#showTB
+    {
+        width:31px !important;
+    }
+    span.bookname
+    {
+        height:18px !important;
+    }
+    body,* { 
+          -moz-user-select:toggle !important; 
+    } 
+    .zj_img img
+    {
+         margin-left:-100px;
+         width:900px !important;
+    }
+}
