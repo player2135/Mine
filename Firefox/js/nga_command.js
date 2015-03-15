@@ -717,29 +717,41 @@ function nga_plug_control_Initialization(){
 	nga_plug_msg.data = nga_plug_msg.data || [];
 	
 	//创建打开本插件设置的链接
-	var nga_plug_control_t_link = document.getElementById("mainmenu").getElementsByTagName("a");
+	var divRights = document.getElementById("mainmenu").getElementsByClassName("right");
 	var nga_plug_control_link = document.createElement("a");
-	nga_plug_control_link.href="javascript:void(0)";
+	nga_plug_control_link.className = "mmdefault";
+	nga_plug_control_link.href = "javascript:void(0)";
 	var newmsg = false;
-	if (nga_plug_msg.data.length > 0){
-		for (var i=0;i<nga_plug_msg.data.length;i++){
-			for (var k=0;k<nga_plug_msg.data[i].msg.length;k++){
-				if (!nga_plug_msg.data[i].msg[k].read){
-					nga_plug_control_link.style.color= "sandyBrown";
-					nga_plug_control_link.title="有插件升级了，点击查看升级内容。"
-					newmsg = true;
+	if (nga_plug_msg.data.length > 0) {
+		for (var i = 0; i < nga_plug_msg.data.length; i++) {
+			for (var k = 0; k < nga_plug_msg.data[i].msg.length; k++) {
+				if (!nga_plug_msg.data[i].msg[k].read) {
+					nga_plug_control_link.style.color = "sandyBrown";
+					nga_plug_control_link.title = "有插件升级了，点击查看升级内容。"
+						newmsg = true;
 				}
 			}
 		}
 	}
-	if (newmsg){
-		nga_plug_control_link.onclick=function(event){event.cancelBubble = true;nga_plug_control_create("newmsg");};
-	}else{
-		nga_plug_control_link.onclick=function(event){event.cancelBubble = true;nga_plug_control_create();};
+	if (newmsg) {
+		nga_plug_control_link.onclick = function (event) {
+			event.cancelBubble = true;
+			nga_plug_control_create("newmsg");
+		};
+	} else {
+		nga_plug_control_link.onclick = function (event) {
+			event.cancelBubble = true;
+			nga_plug_control_create();
+		};
 	}
-	nga_plug_control_link.className="rep gray txtbtnx b";
-	nga_plug_control_link.innerHTML="插件";
-	try{var nga_plug_td=document.createElement("td");nga_plug_td.appendChild(nga_plug_control_link);nga_plug_control_t_link[2].parentNode.parentNode.appendChild(nga_plug_td);}catch(e){};
+	nga_plug_control_link.innerHTML = "插件";
+	//try{var nga_plug_td=document.createElement("td");nga_plug_td.appendChild(nga_plug_control_link);nga_plug_control_t_link[2].parentNode.parentNode.appendChild(nga_plug_td);}catch(e){};
+	try {
+		var nga_plug_div = document.createElement("div");
+		nga_plug_div.className = "td";
+		nga_plug_div.appendChild(nga_plug_control_link);
+		divRights[0].appendChild(nga_plug_div);
+	} catch (e) {console.log(e);};
 	
 	nga_plug_addmsg("nga_plug","NGA 插件设置中心","恭喜！\n插件安装成功，更多功能请点击上方的“关于”，然后点击下面的“参与讨论”链接。","install");
 	nga_plug_addmsg("nga_plug","NGA 插件设置中心","本人已经离开NGA，该插件将已停止更新，现有功能不受影响。");
