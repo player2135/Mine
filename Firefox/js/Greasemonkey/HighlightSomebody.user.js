@@ -535,6 +535,14 @@ var highlightSomebody = function () {
 				}
 				clientIcons[i].setAttribute("hasChange", "yes");
 			}
+			else if(title.indexOf("Microsoft")!=-1 && title.indexOf("RM")!=-1 && hasChange!="yes"){
+				var manufacturerName=title.split("(")[0].replace("发送自 Microsoft ","");
+				var version=getLumiaVersion(manufacturerName);
+				if(version!=""){
+					clientIcons[i].setAttribute("title", title.replace(manufacturerName,version));
+				}
+				clientIcons[i].setAttribute("hasChange", "yes");
+			}
 		}
 	};
 	findLouzhu();
