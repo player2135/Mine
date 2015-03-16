@@ -5,6 +5,7 @@
 // @include     http://nga.178.com/thread.php*
 // @include		http://bbs.bt5156.com/forumdisplay.php*
 // @include		http://bbs.bt5156.com/thread.php*
+// @include		http://bbs.nga.cn/*
 // @version     1
 // ==/UserScript==
 function SetAllAOpenNew(anchors)

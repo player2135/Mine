@@ -3,6 +3,7 @@
 // @namespace   nga
 // @include     http://bbs.ngacn.cc/*
 // @include		http://nga.178.com/*
+// @include		http://bbs.nga.cn/*
 // @version     1
 // ==/UserScript==
 
