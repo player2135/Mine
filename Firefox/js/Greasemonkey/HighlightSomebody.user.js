@@ -97,7 +97,7 @@ var highlightSomebody = function () {
 		var anchor = document.getElementById("postauthor0");
 		var louzhuName = "";
 		if (anchor) {
-			louzhuName = anchor.innerHTML;
+			louzhuName = anchor.textContent;
 		}
 		return louzhuName;
 	};
@@ -125,7 +125,7 @@ var highlightSomebody = function () {
 			var anchors = document.getElementsByTagName("a");
 			for (var i = 0; i < anchors.length; i++) {
 				if (anchors[i].id.indexOf("postauthor") != -1) {
-					if (checkAuthor(name, anchors[i].innerHTML)) {
+					if (checkAuthor(name, anchors[i].textContent)) {
 						anchors[i].style.backgroundColor = bgColor;
 						anchors[i].style.color = color;
 						if (record != undefined) {
@@ -287,7 +287,7 @@ var highlightSomebody = function () {
 				var index = i + pageStartIndex;
 				var author = document.getElementById("postauthor" + index);
 				if (author) {
-					if (checkAuthor(name, author.innerHTML)) {
+					if (checkAuthor(name, author.textContent)) {
 						var anchor = document.getElementById("post1strow" + index);
 						return {
 							A : anchor,
