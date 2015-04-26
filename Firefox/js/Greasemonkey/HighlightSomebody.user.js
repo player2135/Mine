@@ -512,7 +512,7 @@ var highlightSomebody = function () {
 	{MN:"RM-892",Version:"925"},{MN:"RM-860",Version:"928"},{MN:"RM-885",Version:"720"},{MN:"RM-978",Version:"630"},{MN:"RM-955",Version:"925T"},
 	{MN:"RM-826",Version:"820"},{MN:"RM-820",Version:"920"},{MN:"RM-974",Version:"635"},{MN:"RM-846",Version:"620"},{MN:"RM-914",Version:"520"},
 	{MN:"RM-997",Version:"526"},{MN:"RM-927",Version:"929"},{MN:"RM-893",Version:"925"},{MN:"RM-1090",Version:"535"},{MN:"RM-1019",Version:"530"},
-	{MN:"RM-943",Version:"625H"},{MN:"RM-927",Version:"929"},{MN:"RM-893",Version:"925"},{MN:"RM-1090",Version:"535"},{MN:"RM-1019",Version:"530"},];
+	{MN:"RM-943",Version:"625H"},{MN:"RM-1096",Version:"640XL"},{MN:"RM-893",Version:"925"},{MN:"RM-1090",Version:"535"},{MN:"RM-1019",Version:"530"},];
 	var getLumiaVersion=function (manufacturerName)
 	{
 		for(var i=0;i<lumiaManufacturerNames.length;i++)
@@ -566,3 +566,4 @@ var highlightSomebody = function () {
 	appendTempConcernDiv();
 };
 highlightSomebody();
+
