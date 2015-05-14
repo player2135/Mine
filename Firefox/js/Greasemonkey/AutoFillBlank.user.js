@@ -32,6 +32,16 @@ var autoFillList = [{
 				value : "097565"
 			}
 		]
+	}, {
+		urls : ["http://www.zjsgat.gov.cn:8080/was/portals/car_lllegal_query.jsp"],
+		forms : [{
+				id : "carid",
+				value : "浙AG097T"
+			}, {
+				id : "carno",
+				value : "097565"
+			}
+		]
 	}
 ];
 
