@@ -3,6 +3,7 @@
 // @namespace   qidian
 // @include     http://vipreader.qidian.com/BookReader/vip,*.aspx
 // @include		http://vipreader.qidian.com/BookReader/vip,*.aspx*
+// @include 	http://vipreader.qidian.com/BookReaderNew/vip,*.aspx*
 // @version     1
 // ==/UserScript==
 function DisplayChapterName() {
