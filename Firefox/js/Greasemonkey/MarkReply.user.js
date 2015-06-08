@@ -87,7 +87,16 @@ var markReply = function () {
 		}
 	};
 	var setAllReplyA = function () {
-		var spans = document.getElementsByClassName("postcontent");
+		var postSpans = document.getElementsByClassName("postcontent");
+		var tagSpans = document.getElementsByClassName("comment_c_3");
+		var spans = new Array();
+		for (var i = 0; i < postSpans.length; i++) {
+			spans.push(postSpans[i]);
+		}
+		for (var i = 0; i < tagSpans.length; i++) {
+			spans.push(tagSpans[i]);
+		}
+		console.log(spans.length);
 		for (var i = 0; i < spans.length; i++) {
 			var anchors = spans[i].getElementsByTagName("a");
 			if (anchors.length != 0) {
@@ -114,7 +123,7 @@ var markReply = function () {
 									floorIndex = getFloorIndex(anchorID);
 									span.innerHTML = floorIndex + "楼评论";
 									span.style.fontSize = "16px";
-									
+
 									setAnchorClickEvent(anchors[j], commentID);
 									/* anchors[j].href = "#" + commentID;
 									anchors[j].target = "_self"; */
