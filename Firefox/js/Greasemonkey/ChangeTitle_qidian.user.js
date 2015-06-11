@@ -11,4 +11,13 @@ if (location.href.indexOf("http://vipreader.qidian.com/BookReader/BuyVIPChapterL
 }
 if (location.href.indexOf("http://vipreader.qidian.com/BookReaderNew/vip,") != -1) {
 	document.title = document.title.replace("小说:", "");
+	var unselectCheckBoxes=function(){
+	var inputs=document.getElementsByTagName("input");
+	for(var i=0;i<inputs.length;i++){
+		if(inputs[i].type=="checkbox"){
+			inputs[i].checked=false;
+		}
+	}
+	}
+	setTimeout(unselectCheckBoxes,100);
 }
