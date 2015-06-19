@@ -10,7 +10,7 @@ function ScrollTopAndBottom()
 {
 	function ScrollTop(){
 		var img=document.createElement("img");
-		img.setAttribute("onclick","scroll(0,0);");
+		img.setAttribute("onclick","window.scroll(0,0);");
 		img.style.width="40px";
 		img.style.cursor="pointer";
 		img.style.position="fixed";
@@ -25,7 +25,7 @@ function ScrollTopAndBottom()
 	}
 	function ScrollBottom(){
 		var img=document.createElement("img");
-		img.setAttribute("onclick","scroll(0,scrollMaxY);");
+		img.setAttribute("onclick","window.scroll(0,scrollMaxY);");
 		img.style.cursor="pointer";
 		img.style.position="fixed";
 		img.style.width="40px";
