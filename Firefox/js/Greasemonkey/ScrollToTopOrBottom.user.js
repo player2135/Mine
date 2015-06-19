@@ -19,7 +19,8 @@ function ScrollTopAndBottom()
 		img.style.bottom="0px";
 		img.style.fontSize="16px";
 		img.style.opacity="0.2";
-		img.src="https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toTop.png";
+		img.src="http://code.taobao.org/p/myfirefoxsupport/src/trunk/common/toTop.png?orig";
+		//"https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toTop.png";
 		document.body.appendChild(img);
 	}
 	function ScrollBottom(){
@@ -33,7 +34,8 @@ function ScrollTopAndBottom()
 		img.style.bottom="0px";
 		img.style.fontSize="16px";
 		img.style.opacity="0.2";
-		img.src="https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toBottom.png";
+		img.src="http://code.taobao.org/p/myfirefoxsupport/src/trunk/common/toBottom.png?orig";
+		//"https://raw.github.com/player2135/Mine/Firefox/Firefox/img/toBottom.png";
 		document.body.appendChild(img);
 	}
 	if(scrollMaxY!=0)
