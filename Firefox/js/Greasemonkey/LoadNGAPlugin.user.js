@@ -11,7 +11,8 @@
 var loadNGAPlugin = function(){
 	var head=document.getElementsByTagName("head")[0];
 	var script=document.createElement("script");
-	script.src="https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_command.js";
+	script.src="http://code.taobao.org/svn/myfirefoxsupport/trunk/nga/nga_command.js";
+	//"https://raw.github.com/player2135/Mine/Firefox/Firefox/js/nga_command.js";
 	head.appendChild(script);
 };
 loadNGAPlugin();
