@@ -625,6 +625,9 @@ var highlightSomebody = function () {
 		}, {
 			MN : "RM-975",
 			Version : "635"
+		}, {
+			MN : "RM-1049",
+			Version : "830"
 		}, ];
 	var getLumiaVersion = function (manufacturerName) {
 		for (var i = 0; i < lumiaManufacturerNames.length; i++) {
