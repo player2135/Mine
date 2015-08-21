@@ -1,6 +1,6 @@
 ﻿@namespace url(http://www.w3.org/1999/xhtml);
 
-@-moz-document domain("bbs.ngacn.cc") ,domain("nga.178.com"){
+@-moz-document domain("bbs.ngacn.cc") ,domain("nga.178.com"), domain("bbs.nga.cn"), domain("club.178.com"){
     .gnavv7{
         display:none;
     }
@@ -21,15 +21,15 @@
     }
     .portrait img
     {
-        max-width:180px !important;
+        max-width:300px !important;
     }
     img
     {
-        max-width:900px !important;
+        max-width:1400px !important;
     }
     img.avatar
     {
-         max-width:180px !important;
+         max-width:300px !important;
     }
     div#mainmenuavatar
     {

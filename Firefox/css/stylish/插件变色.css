@@ -1,0 +1,8 @@
+﻿@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("club.178.com") {
+  .nga_plug_tab_menu_close,.nga_plug_tab_main,.nga_plug_tab_menu_open,.nga_edit_table,#nga_edit_quickmojo
+  {
+    background-color:#E1EFEB !important;
+  }
+}
