@@ -4,6 +4,7 @@
 // @include     http://bbs.ngacn.cc/read.php*
 // @include     http://nga.178.com/read.php*
 // @include		http://bbs.nga.cn/read.php*
+// @include   http://club.178.com/read.php*
 // @version     1
 // ==/UserScript==
 

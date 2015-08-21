@@ -6,6 +6,7 @@
 // @include		http://bbs.bt5156.com/forumdisplay.php*
 // @include		http://bbs.bt5156.com/thread.php*
 // @include		http://bbs.nga.cn/*
+// @include   http://club.178.com/*
 // @version     1
 // ==/UserScript==
 function SetAllAOpenNew(anchors) {
@@ -62,7 +63,7 @@ function TryDo(func) {
 	try {
 		func();
 	} catch (_Err) {
-		console.log(_Err);
+		//console.log(_Err);
 	}
 }
 function OpenNew() {

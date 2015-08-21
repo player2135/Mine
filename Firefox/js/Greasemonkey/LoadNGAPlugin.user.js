@@ -4,6 +4,7 @@
 // @include     http://bbs.ngacn.cc/*
 // @include		http://nga.178.com/*
 // @include		http://bbs.nga.cn/*
+// @include   http://club.178.com/*
 // @version     1
 // ==/UserScript==
 
