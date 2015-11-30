@@ -14,7 +14,7 @@ function ChangeLink()
   {
     var row=rows[i];
     var bookId=row.getAttribute("id").split("_")[1];
-    var anchor=row.childNodes[2].childNodes[2];
+    var anchor=row.childNodes[2].getElementsByTagName("a")[2];
     anchor.setAttribute("href","http://vipreader.qidian.com/BookReader/BuyVIPChapterList.aspx?BookId="+bookId);
   }
 }
