@@ -6,7 +6,8 @@
 // @include		http://bbs.bt5156.com/forumdisplay.php*
 // @include		http://bbs.bt5156.com/thread.php*
 // @include		http://bbs.nga.cn/*
-// @include   http://club.178.com/*
+// @include   	http://club.178.com/*
+// @include   	http://bbs.bigccq.cn/*
 // @version     1
 // ==/UserScript==
 function SetAllAOpenNew(anchors) {
