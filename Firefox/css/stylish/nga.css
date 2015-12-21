@@ -1,6 +1,6 @@
 ﻿@namespace url(http://www.w3.org/1999/xhtml);
 
-@-moz-document domain("bbs.ngacn.cc") ,domain("nga.178.com"), domain("bbs.nga.cn"), domain("club.178.com"){
+@-moz-document domain("bbs.bigccq.cn") ,domain("bbs.ngacn.cc") ,domain("nga.178.com"), domain("bbs.nga.cn"), domain("club.178.com"){
     .gnavv7{
         display:none;
     }
@@ -52,8 +52,8 @@
     {
         display:table;
     }
-	#postads0
-	{
-		display:none;
-	}
+    #postads0,#bbs_ads16
+    {
+        display: none;
+    }
 }
