@@ -57,7 +57,7 @@
 				'http://img4.nga.178.com/ngabbs/post/smile/ac42.png',
 				'http://img4.nga.178.com/ngabbs/post/smile/ac43.png',
 				'http://img4.nga.178.com/ngabbs/post/smile/ac44.png']
-		}, {
+		}, /*{
 			title : '潘斯特',
 			id : 'pansite',
 			check : true,
@@ -132,7 +132,7 @@
 				"http://img4.nga.cn/ngabbs/post/smile/pt63.png",
 				"http://img4.nga.cn/ngabbs/post/smile/pt64.png"
 			]
-		}, {
+		},*/ {
 			title : 'QQ',
 			id : 'qqbiaoqing',
 			check : true,
