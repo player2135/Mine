@@ -56,4 +56,12 @@
     {
         display: none;
     }
+    div.video{
+        width:1000px !important;
+    }
+    div.spacer,div.spacer object,div.spacer embed
+    {
+        width:1000px !important;
+        height:750px !important;
+    }
 }
