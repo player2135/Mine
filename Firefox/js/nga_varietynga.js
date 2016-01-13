@@ -193,7 +193,7 @@ function varietynga_Initialization(){
 	
 	var x = document.createElement('style');
 	var h = document.getElementsByTagName('head')[0];
-	x.innerHTML = ".varietynga_cur_zin{cursor: url(http://ngaplug.googlecode.com/svn/ngaplug/img/cur_zin.cur) 14 14,pointer;}.varietynga_cur_zout{cursor: url(http://ngaplug.googlecode.com/svn/ngaplug/img/cur_zout.cur) 14 14,pointer;}";
+	x.innerHTML = ".varietynga_cur_zin{cursor: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/cur_zin.cur.ico) 14 14,pointer;}.varietynga_cur_zout{cursor: url(https://raw.githubusercontent.com/player2135/Mine/Firefox/Firefox/img/nga/cur_zout.cur.ico) 14 14,pointer;}";
 	h.insertBefore(x,h.firstChild);
 	
 	if (varietynga_setting.data.set.kj && !ubbcode.collapse.load_ngaplug) varietynga_setCollapseButton();
