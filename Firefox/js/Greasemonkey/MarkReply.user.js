@@ -98,7 +98,7 @@ var markReply = function () {
 		for (var i = 0; i < tagSpans.length; i++) {
 			spans.push(tagSpans[i]);
 		}
-		console.log(spans.length);
+		//console.log(spans.length);
 		for (var i = 0; i < spans.length; i++) {
 			var anchors = spans[i].getElementsByTagName("a");
 			if (anchors.length != 0) {
