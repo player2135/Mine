@@ -214,7 +214,7 @@ function varietynga_Initialization(){
 			}
 		}
 	}else if(location.pathname == "/read.php") {// && document.URL.indexOf("page=e#a") < 0){
-		if (location.search.indexOf("pid=") >= 0) return;
+		if (location.search.indexOf("pid=") >= 0 && location.search.indexOf("topid=")==-1) return;
 		if (varietynga_setting.data.set.weibo){
 			try{
 				var maxpage = __PAGE[1];
