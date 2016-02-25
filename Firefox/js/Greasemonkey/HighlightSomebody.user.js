@@ -35,49 +35,6 @@ var highlightSomebody = function () {
 				record : "安总"
 			}
 		],
-		female : [{
-				id : "cinderella2012",
-				record : "时政狂魔女汉子"
-			}, {
-				id : "竹小晓"
-			}, {
-				id : "一啊萨姆一"
-			}, {
-				id : "寄语明月"
-			}, {
-				id : "微微笑很倾城"
-			}, {
-				id : "陈_豆豆"
-			}, {
-				id : "明月清锋",
-				record : "大魔王"
-			}, {
-				id : "银色_荆棘"
-			}, {
-				id : "虞兮"
-			}, {
-				id : "辉夜姬kaguya",
-				record : "时政狂魔女汉子"
-			}, {
-				id : "圣光赐予我力量吧"
-			}, {
-				id : "无双包包"
-			}, {
-				id : "目立里"
-			}, {
-				id : "mi21",
-				record : "DS5女司机"
-			}, {
-				id : "安提·朝露",
-				record : "甲壳虫MM"
-			}, {
-				id : "朵朵桑",
-				record : "自称女汉子的君威女司机"
-			}, {
-				id : "夏小伊",
-				record : "起得早画眉毛"
-			}
-		],
 		known : [{
 				id : "liqiangzimu"
 			}, {
@@ -214,9 +171,6 @@ var highlightSomebody = function () {
 		try {
 			findSomebody(__CURRENT_UNAME, "#ffff00", "#ff0000");
 		} catch (ERR) {}
-	};
-	var findGirls = function () {
-		findPersons(specialPersons.female, "pink", "#000000");
 	};
 	var findFamous = function () {
 		findPersons(specialPersons.famous, "#ff0000", "#000000");
@@ -678,7 +632,6 @@ var highlightSomebody = function () {
 	findMyself();
 	findFamous();
 	findKnown();
-	findGirls();
 	quoteLinkOpenNew();
 	changeLumiaManufacturerName();
 	setInterval(findLouzhu, 5000);
