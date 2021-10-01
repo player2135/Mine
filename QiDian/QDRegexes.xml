@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QDPages>
+  <ChapterPageRegexes>
+    <AuthorID><![CDATA[data-auid="(\d+)"]]></AuthorID>
+    <AuthorID><![CDATA[href="//my.qidian.com/author/(\d+)/"]]></AuthorID>
+    <AuthorID><![CDATA[data-authorid="(\d+)"]]></AuthorID>
+    <AuthorID><![CDATA["authorId"\s*:\s*(\d+),]]></AuthorID>
+    <BookID><![CDATA[<a class="act" href="//book.qidian.com/info/\d+/" target="_blank" id="bookImg" data-bid="(\d+)">我能看见状态栏</a>]]></BookID>
+    <BookID><![CDATA[<a class="book-mark" href="javascript:" title="书签" data-cid="\d+" data-bid="(\d+)" data-auid="\d+" data-eid="qd_R104"></a>]]></BookID>
+    <BookID><![CDATA["bookId"\s*:\s*(\d+),]]></BookID>
+    <BookID><![CDATA[<meta http-equiv="mobile-agent" content="format=wml; url=https?://m[.]qidian[.]com/book/(\d+)/\d+/?">]]></BookID>
+    <BookID><![CDATA[<meta http-equiv="mobile-agent" content="format=xhtml; url=https?://m[.]qidian[.]com/book/(\d+)/\d+/?">]]></BookID>
+    <BookID><![CDATA[<meta http-equiv="mobile-agent" content="format=html5; url=https?://m[.]qidian[.]com/book/(\d+)/\d+/?">]]></BookID>
+    <BookID><![CDATA[<meta name="mobile-agent" content="format=html5; url=https?://m[.]qidian[.]com/book/(\d+)/\d+/?">]]></BookID>
+    <ChapterID><![CDATA[data-cid="(\d+)"]]></ChapterID>
+    <ChapterID><![CDATA[id="chapter-(\d+)"]]></ChapterID>
+    <ChapterID><![CDATA[&chapterId=(\d+)"]]></ChapterID>
+    <ChapterID><![CDATA[<a class="book-mark" href="javascript:" title="书签" data-cid="(\d+)" data-bid="\d+" data-auid="\d+" data-eid="qd_R104"></a>]]></ChapterID>
+    <ChapterID><![CDATA[<meta http-equiv="mobile-agent" content="format=wml; url=https?://m[.]qidian[.]com/book/\d+/(\d+)/?">]]></ChapterID>
+    <ChapterID><![CDATA[<meta http-equiv="mobile-agent" content="format=xhtml; url=https?://m[.]qidian[.]com/book/\d+/(\d+)/?">]]></ChapterID>
+    <ChapterID><![CDATA[<meta http-equiv="mobile-agent" content="format=html5; url=https?://m[.]qidian[.]com/book/\d+/(\d+)/?">]]></ChapterID>
+    <ChapterID><![CDATA[<meta name="mobile-agent" content="format=html5; url=https?://m[.]qidian[.]com/book/\d+/(\d+)/?">]]></ChapterID>
+    <AuthorName><![CDATA[<a href="//my.qidian.com/author/\d+/" target="_blank" data-bid="\d+" data-auid="\d+" data-eid="qd_R103"><em class="iconfont">&#xe650;</em>(.*?)</a>]]></AuthorName>
+    <AuthorName><![CDATA["authorName"\s*:\s*'(.*?)']]></AuthorName>
+    <BookName><![CDATA[<a class="act" href="//book.qidian.com/info/\d+/" target="_blank" id="bookImg" data-bid="\d+">(.*?)</a>]]></BookName>
+    <BookName><![CDATA["bookName"\s*:\s*'(.*?)',]]></BookName>
+    <BookName><![CDATA[<meta name="keywords" content="(.*?),.*?">]]></BookName>
+    <ChapterName><![CDATA[<span class="content-wrap">(.*?)</span>]]></ChapterName>
+    <ChapterName><![CDATA[<meta name="keywords" content=".*?,(.*?)">]]></ChapterName>
+    <Content><![CDATA[<div[^>]*class="[^"]*read-content[^"]*j_readContent[^"]*"[^>]*>\s*([\s\S]*?)\s*</div>]]></Content>
+  </ChapterPageRegexes>
+</QDPages>
