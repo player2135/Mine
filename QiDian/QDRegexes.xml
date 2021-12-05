@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<QDPages UpdateTime="2021-10-25 20:04">
+<QDPages UpdateTime="2021-12-05 22:56">
   <BookPageRegexes>
     <AuthorID><![CDATA[href="//my.qidian.com/author/(\d+)/"]]></AuthorID>
     <AuthorID><![CDATA[data-authorid="(\d+)"]]></AuthorID>
