@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<QDPages UpdateTime="2021-12-05 22:56">
+<QDPages UpdateTime="2022-01-23 21:35">
   <BookPageRegexes>
     <AuthorID><![CDATA[href="//my.qidian.com/author/(\d+)/"]]></AuthorID>
     <AuthorID><![CDATA[data-authorid="(\d+)"]]></AuthorID>
@@ -53,6 +53,8 @@
     <BookID><![CDATA[data-cid="//vipreader.qidian.com/chapter/(\d+)/\d+/?"]]></BookID>
     <BookName><![CDATA[<h2><a href="//book[.]qidian[.]com/info/\d+/?"[^>]*data-bid="\d+"[^>]*>(.*?)</a></h2>]]></BookName>
     <BookName><![CDATA[<h4><a[^>]*>(.*?)</a></h4>]]></BookName>
+    <BookName><![CDATA[<a title="(.*?)在线阅读"]]></BookName>
+    <BookName><![CDATA[<img alt="(.*?)在线阅读"]]></BookName>
     <AuthorID><![CDATA[href="//my.qidian.com/author/(\d+)/?"]]></AuthorID>
     <AuthorName><![CDATA[<p class="author">\s*<img[^>]*><a[^>]*>(.*?)</a>]]></AuthorName>
     <AuthorName><![CDATA[<p class="author">\s*<img[^>]*><i>(.*?)</i>]]></AuthorName>
