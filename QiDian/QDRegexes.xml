@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<QDPages UpdateTime="2022-01-23 21:35">
+<QDPages UpdateTime="2022-02-26 13:21">
+  <AuthorPageRegexes>
+    <AuthorName><![CDATA[<h1>(.*?)<a class="header-msg-level icon icon-god-4"]]></AuthorName>
+    <AuthorName><![CDATA[<a href="/author/\d+/">(.*?)小说大全</a>]]></AuthorName>
+    <AuthorName><![CDATA[<meta name="keywords" content="([^"]*),[^"]*全部小说,[^"]*最新小说">]]></AuthorName>
+    <AvatarUrl><![CDATA[<img class="header-avatar-img" src="([^"]*)"]]></AvatarUrl>
+    <AuthorInfo><![CDATA[<div class="header-msg-desc">\s*(.*?)\s*</div>]]></AuthorInfo>
+    <BookCount><![CDATA[<span class="mr12">作品总数<strong class="header-msg-strong">(\d+)</strong></span>]]></BookCount>
+    <WordCount><![CDATA[<span class="ml12 mr12">累计字数<strong class="header-msg-strong">(.*?)</strong>万</span>]]></WordCount>
+    <WorkDays><![CDATA[<span class="ml12 mr12">创作天数<strong class="header-msg-strong">(\d+)</strong>天]]></WorkDays>
+    <BooksHtml><![CDATA[<h2 class="author-title">全部作品[(]\d*[)]</h2>\s*<ul class="author-work" data-l2="\d*">\s*<li class="author-work-line"></li>\s*([\s\S]*?)</ul>]]></BooksHtml>
+    <BookHtml><![CDATA[<li class="author-item">\s*([\s\S]*?)\s*</li>]]></BookHtml>
+    <BookID><![CDATA[href="//book.qidian.com/info/(\d+)/?"]]></BookID>
+    <BookID><![CDATA[data-bid="(\d+)"]]></BookID>
+    <BookID><![CDATA[href="//vipreader.qidian.com/chapter/(\d+)/\d+/?"]]></BookID>
+    <BookName><![CDATA[<h2>\s*<a[^>]*>\s*(.*?)\s*</a>\s*</h2>]]></BookName>
+    <BookName><![CDATA[title="(.*?)在线阅读"]]></BookName>
+    <BookName><![CDATA[alt="(.*?)在线阅读"]]></BookName>
+    <BookType><![CDATA[<div class="author-item-exp"><a href=".*?" target="_blank">(.*?)</a>]]></BookType>
+    <BookWordCount><![CDATA[<div class="author-item-exp"><a href=".*?" target="_blank">.*?</a><i class="author-item-line"></i><a href=".*?" target="_blank">.*?</a><i class="author-item-line"></i>(.*?)</div>]]></BookWordCount>
+    <BookInfo><![CDATA[<div class="author-item-content">\s*([\s\S]*?)\s*</div>]]></BookInfo>
+    <LatestChapterName><![CDATA[<div class="author-item-update"><a href=".*?" class="blue" target="_blank" title="(.*?)">]]></LatestChapterName>
+    <LatestUpdateTime><![CDATA[最近更新&nbsp;.*?</a><span>&nbsp;&nbsp;·&nbsp;&nbsp;(.*?)</span></div>]]></LatestUpdateTime>
+  </AuthorPageRegexes>
   <BookPageRegexes>
     <AuthorID><![CDATA[href="//my.qidian.com/author/(\d+)/"]]></AuthorID>
     <AuthorID><![CDATA[data-authorid="(\d+)"]]></AuthorID>
@@ -42,6 +65,15 @@
     <ChapterName><![CDATA[<span class="content-wrap">(.*?)</span>]]></ChapterName>
     <ChapterName><![CDATA[<meta name="keywords" content=".*?,(.*?)">]]></ChapterName>
     <Content><![CDATA[<div[^>]*class="[^"]*read-content[^"]*j_readContent[^"]*"[^>]*>\s*([\s\S]*?)\s*</div>]]></Content>
+    <ContentWebViewReplace><![CDATA[\r\n]]></ContentWebViewReplace>
+    <ContentWebViewReplace Replacement="$%$%^&amp;"><![CDATA[[|]]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[<span class="content-wrap">(.*?)</span>]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[<span[^>]*class="content-wrap"[^>]*>.*?</span>]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[<span class="review-count hidden" data-segid="\d+"></span>]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[<span class="review-count" data-segid="\d+">\d+<i><cite>.*?</cite></i></span>]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[<span class="[^"]*review-count[^"]*" data-segid="\d+">.*?</span>]]></ContentWebViewReplace>
+    <ContentWebViewReplace><![CDATA[</p>]]></ContentWebViewReplace>
+    <ContentWebViewReplace Replacement="|"><![CDATA[<p[^>]*>]]></ContentWebViewReplace>
   </ChapterPageRegexes>
   <SearchPageRegexes>
     <BooksList><![CDATA[<div id="result-list" data-l1="\d*">\s*<div class="book-img-text">\s*<ul>([\s\S]*)</ul>\s*</div>\s*</div>\s*<div class="page-box cf" data-l1="3">]]></BooksList>
@@ -64,9 +96,13 @@
     <LatestUpdateTime><![CDATA[最新更新.*?</a><em>&#183;</em><span>(.*?)</span>]]></LatestUpdateTime>
     <TotalWordCount><![CDATA[<p><span>\s*(\S*?)</span>总字数</p>]]></TotalWordCount>
     <TotalRecommended><![CDATA[<p><span>\s*(\S*?)</span>总推荐</p>]]></TotalRecommended>
+    <PagingHtml><![CDATA[<div class="lbf-pagination">\s*(<ul class="lbf-pagination-item-list">\s*[\s\S]*?</ul>\s*<script[^>]*>[\s\S]*?</script>\s*<div[^>]*>[\s\S]*?</div>)\s*</div>]]></PagingHtml>
     <PagingHtml><![CDATA[<div class="pagination fr" data-eid="qd_C44" id="page-container"([^>]*)></div>]]></PagingHtml>
+    <PageIndex><![CDATA[<input[^>]*id="PAGINATION-INPUT"[^>]*value="(\d+)"[^>]*>]]></PageIndex>
     <PageIndex><![CDATA[data-page="(\d+)"]]></PageIndex>
+    <TotalPage><![CDATA[>(\d+)</a></li>\s*<li class="lbf-pagination-item"><a href="[^"]*" class="lbf-pagination-next[^"]*">&gt;</a></li>]]></TotalPage>
     <TotalPage><![CDATA[data-pageMax="(\d+)"]]></TotalPage>
+    <TotalCount><![CDATA[<div class="count-text">\s*共<span>(\d+)</span>本相关作品\s*</div>]]></TotalCount>
     <TotalCount><![CDATA[<p>共<span>(\d+)</span>本相关作品</p>]]></TotalCount>
   </SearchPageRegexes>
   <RankPageRegexes>
