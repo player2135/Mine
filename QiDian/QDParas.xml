@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Config UpdateTime="2022-3-1 21:34">
   <QDHeader QDHeader="NWY0NzVjYjYwNTU4NWYyYTRhNWJiM2VlOWYzNDliZDF8NC4yLjB8MTUzNnwyMDQ4fEFwcFN0b3JlfDkuMzB8NXxpUGhvbmUgT1MvaVBhZC9pUGFkNCw0fDE4NnxBcHBTdG9yZXwzfDMwNDMyODIzNnwxNDk5MzQ1ODQ1MzIyfDB8OGZhMDliMTYtMjRiZS00ODA1LTgxNDYtZmQxOTk0NzdkNTcw"
             AppID="12"
             AreaID="30"
             Bar="72"></QDHeader>
-  <cmfuToken>N((NxPwweGcvVNycwWK10ZRHvlNNbvEA6HRwxxvA_J4vJwV2EvPZX5dDtoFREDvBrsckv1l1KcfRKdM9pvfv_a0mtK2g78P-gFOi4aL0ClUbJUUc373dafSNYDqoXunz3SdGD-9EFfKVPYlu14t827-Q1sRs4PnpExUBdr19L69XOh8ljlFAwd7s_YcitHiuqfUs14KKSnRYm4Wd34I5B5nEb95MOKYtWvFaR8XXMjk1ciF53S4HQ3rTyAgEGjzJAob7JieYULlxFI1</cmfuToken>
+  <cmfuToken><![CDATA[N((NxPwweGcvVNycwWK10ZRHvlNNbvEA6HRwxxvA_J4vJwV2EvPZX5dDtoFREDvBrsckv1l1KcfRKdM9pvfv_a0mtK2g78P-gFOi4aL0ClUbJUUc373dafSNYDqoXunz3SdGD-9EFfKVPYlu14t827-Q1sRs4PnpExUBdr19L69XOh8ljlFAwd7s_YcitHiuqfUs14KKSnRYm4Wd34I5B5nEb95MOKYtWvFaR8XXMjk1ciF53S4HQ3rTyAgEGjzJAob7JieYULlxFI1]]></cmfuToken>
 </Config>
