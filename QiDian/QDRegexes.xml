@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<QDPages UpdateTime="2022-02-26 13:21">
+<QDPages UpdateTime="2022-03-17 19:56">
+  <PersonalPageRegexes>
+    <UserID><![CDATA["userId":(\d+),]]></UserID>
+    <UserID><![CDATA[<a href="/user/(\d+)"[^>]*>我的主页</a>]]></UserID>
+    <UserID><![CDATA[<a href="/user/(\d+)"[^>]*>个人主页</a>]]></UserID>
+    <NickName><![CDATA["nickName":"([^"]*)"]]></NickName>
+    <NickName><![CDATA[<a href="/setting"[^>]*>(.*?)</a>]]></NickName>
+    <NickName><![CDATA[<a href="/" id="headerLog" class="header-log"[^>]*>\s*(.*?)\s*</a>]]></NickName>
+    <NickName><![CDATA[alt="([^"]*)的头像"]]></NickName>
+    <AvatarUrl><![CDATA["avatar":"([^"]*)"]]></AvatarUrl>
+    <AvatarUrl><![CDATA[<img class="user-avatar-img" src="([^"]*)" alt="[^"]*的头像"[^>]*>]]></AvatarUrl>
+    <UserType><![CDATA["userType":(\d+),]]></UserType>
+    <UserLevel><![CDATA[<a href="/level"[^>]*class="home-user-level"[^>]*>\s*(.*?)\s*</a>]]></UserLevel>
+    <Balance><![CDATA[<b[^>]*>(\d+)</b>起点币</a>]]></Balance>
+    <MonthTicketCount><![CDATA[<b[^>]*>(\d+)</b>月票]]></MonthTicketCount>
+    <RecommendTicketCount><![CDATA[<span[^>]*>(\d+)</span>推荐票</a>]]></RecommendTicketCount>
+  </PersonalPageRegexes>
   <AuthorPageRegexes>
     <AuthorName><![CDATA[<h1>(.*?)<a class="header-msg-level icon icon-god-4"]]></AuthorName>
     <AuthorName><![CDATA[<a href="/author/\d+/">(.*?)小说大全</a>]]></AuthorName>
@@ -93,6 +109,7 @@
     <BookType><![CDATA[<a href="[^"]*" data-eid="qd_S07" target="_blank">(.*?)</a>]]></BookType>
     <BookSummary><![CDATA[<p class="intro">\s*([\s\S]*?)\s*</p>\s*<p class="update">]]></BookSummary>
     <LatestChapterName><![CDATA[最新更新\s*(.*?)</a>]]></LatestChapterName>
+    <LatestChapterName><![CDATA[<a href="//vipreader[.]qidian[.]com/chapter/\d+/\d+/?" title="(.*?)">.*?</a>]]></LatestChapterName>
     <LatestUpdateTime><![CDATA[最新更新.*?</a><em>&#183;</em><span>(.*?)</span>]]></LatestUpdateTime>
     <TotalWordCount><![CDATA[<p><span>\s*(\S*?)</span>总字数</p>]]></TotalWordCount>
     <TotalRecommended><![CDATA[<p><span>\s*(\S*?)</span>总推荐</p>]]></TotalRecommended>
